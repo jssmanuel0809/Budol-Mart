@@ -21,6 +21,7 @@
         <header-component></header-component>
 
         <!-- SHOP -->
+        <!-- same lang class name ng section sa about, contact, index, tsaka products -->
         <section class="content">
             <!-- PRODUCTS DISPLAY -->
             <div class="browsing-items">
