@@ -79,7 +79,8 @@ class Header extends HTMLElement {
         <div class="header-content">
             <nav>
                 <ul class="nav_links">
-                    <li><a href="landing.php">HOME</a></li>
+                    <li><a href="index.php">HOME</a></li>
+                    <li><a href="">ABOUT</a></li>
                 </ul>
             </nav>
             <a href="login.php" class="user">LOG IN</a>
