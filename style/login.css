@@ -1,0 +1,49 @@
+.login-content{
+    width: 95%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-content h3{
+    font-family: 'Amarante', serif;
+    font-size: 100px;
+    font-weight: 300;
+}
+.box{
+    width: 450px;
+    background-color: #F8EFEF;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden; /* Hide the overflow when collapsed */
+    transition: height 0.3s ease; /* Add smooth transition for height changes */
+}
+input[name="username"],input[name="password"]{
+    width: 365px;
+    height: 45px;
+    font-size: 20px;
+    border: 2px solid #3D4C6C;
+    border-radius: 30px;
+    padding: 8px 10px 10px 10px;
+    margin: 8px 0;
+}
+.login-button{
+    width: 365px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: #CFA180;
+    border: 2px solid #3D4C6C;
+    border-color: #3D4C6C;
+    margin-top: 5px;
+    color: #F8EFEF;
+    font-weight: bolder;
+    font-size: 20px;
+}
