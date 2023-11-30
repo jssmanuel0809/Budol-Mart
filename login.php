@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>BUDOL | Products</title>
+        <title>BUDOL | Login</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
@@ -20,8 +20,6 @@
         <!-- NAVIGATION BAR -->
         <header-component></header-component>
 
-        <!-- PRODUCTS -->
-        <!-- same lang class name ng section sa about, contact, index, tsaka products -->
         <section class="content">
             
         </section>

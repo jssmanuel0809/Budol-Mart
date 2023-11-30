@@ -85,7 +85,7 @@ class Header extends HTMLElement {
                     <li><a href="contacts.php">CONTACT</a></li>
                 </ul>
             </nav>
-            <a href="" class="user">LOG IN</a>
+            <a href="login.php" class="user">LOG IN</a>
         </div>
     </header>
         `
