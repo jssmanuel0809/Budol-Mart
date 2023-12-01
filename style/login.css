@@ -1,4 +1,4 @@
-.login-content{
+.authentication{
     width: 95%;
     position: absolute;
     top: 50%;
@@ -8,8 +8,7 @@
     flex-direction: column;
     align-items: center;
 }
-
-.login-content h3{
+.authentication h3{
     font-family: 'Amarante', serif;
     font-size: 100px;
     font-weight: 300;
@@ -25,15 +24,29 @@
     overflow: hidden; /* Hide the overflow when collapsed */
     transition: height 0.3s ease; /* Add smooth transition for height changes */
 }
-input[name="username"],input[name="password"]{
-    width: 365px;
+
+input[type="text"], input[type="password"]{
+    width: 350px;
     height: 45px;
     font-size: 20px;
-    border: 2px solid #3D4C6C;
+    border: 2px solid #3d4c6c;
     border-radius: 30px;
     padding: 8px 10px 10px 10px;
     margin: 8px 0;
+    background-color: #f8efef;
 }
+.box p, .box a{
+    color: #3D4C6C;
+    text-decoration: none;
+}
+.box a:hover{
+    font-weight: bolder;
+}
+.box a:active{
+    color: #3D4C6C;
+}
+
+/* LOGIN FORM */
 .login-button{
     width: 365px;
     height: 45px;
@@ -42,7 +55,32 @@ input[name="username"],input[name="password"]{
     background-color: #CFA180;
     border: 2px solid #3D4C6C;
     border-color: #3D4C6C;
-    margin-top: 5px;
+    margin: 16px;
+    color: #F8EFEF;
+    font-weight: bolder;
+    font-size: 20px;
+}
+.reg-link{
+    padding: 2px;
+}
+
+/* REGISTER FORM */
+fieldset {
+    border: none;
+}
+.row {
+    display: flex;
+    justify-content: space-evenly;
+}
+.register-button{
+    width: 365px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: #CFA180;
+    border: 2px solid #3D4C6C;
+    border-color: #3D4C6C;
+    margin: 16px;
     color: #F8EFEF;
     font-weight: bolder;
     font-size: 20px;

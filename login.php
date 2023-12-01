@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>BUDOL | Login</title>
+        <title>Login | Budol</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
@@ -20,7 +20,7 @@
         <!-- NAVIGATION BAR -->
         <header-component></header-component>
 
-        <section class="login-content">
+        <section class="authentication">
             <h3>Login</h3>
             <div class="box" id="box">
                 <form method="post" action="login.php">
@@ -28,6 +28,9 @@
                     <input type="password" id="password" name="password" placeholder="password">
                     <button class="login-button" type="submit" name="login_user">LOGIN</button>
                 </form>
+                <div class="reg-link">
+                    <p>Not yet registered? Register <a href="register.php">HERE</a>.</p>
+                </div>
                 <!-- <a class="forgot" href="">FORGOTTEN PASSWORD?</a> -->
                 <!-- <hr class="solid">
                 <button id="toggleButton" onclick="toggleContainer()">CREATE <br> ACCOUNT</button>
