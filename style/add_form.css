@@ -1,0 +1,18 @@
+.form_box{
+    width: 80%;
+    background-color: #F5E6CA;
+    margin-top: 25px;
+    color: #3D4C6C;
+}
+.products_form{
+    display: flex;
+    flex-direction: column;
+    margin: 35px;   
+}
+label{
+    padding: 10px;
+}
+.add_button{
+    margin-top: 20px;
+    width: 80px;
+}

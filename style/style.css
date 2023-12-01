@@ -15,11 +15,15 @@ body{
     top: 70%;
     left: 50%;
     transform: translate(-50%,-50%);
-    margin-top: 20vh;
+    /* margin-top: 20vh; */
     padding-bottom: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.content h1{
+    font-weight: bold;
+    font-size: 50px;
 }
 
 /* PRODUCTS DISPLAY */
