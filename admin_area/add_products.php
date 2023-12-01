@@ -32,6 +32,7 @@
                     <label for="">Product Category</label><input type="text">
                     <label for="">Product Brand</label><input type="text">
                     <label for="">Product Price</label><input type="text">
+                    <label for="">Product Stocks</label><input type="text">
                     <label for="">Product Image 1</label><input type="text">
                     <label for="">Product Image 2</label><input type="text">
                     <label for="">Product Image 3</label><input type="text">
