@@ -63,6 +63,7 @@ class Header extends HTMLElement {
                 color: #FCF1E6;
                 text-decoration: none;
                 font-family: 'Dongle', sans-serif;
+                font-weight: bold;
                 font-size: 40px;
                 padding: 5px;
                 padding-left: 25px;

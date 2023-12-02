@@ -21,6 +21,6 @@
         <header-component></header-component>
         <!-- CONTENTS -->
         <!-- FOOTER -->
-        <!-- <footer-component></footer-component> -->
+        <footer-component></footer-component>
     </body>
 </html>

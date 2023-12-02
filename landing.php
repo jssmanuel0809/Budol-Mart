@@ -17,22 +17,6 @@
     </head>
     <body>
         <!-- Nav Bar -->
-        <header class="header">
-            <div class="header-content">
-                <li><a href="landing" class="logo"> BUDOL!</a></li>
-                <input type="text" id="search" name="search" placeholder="SEARCH">
-
-            </div>
-            <div class="links">
-                <nav>
-                        <ul class="nav_links">
-                        <li><a href="">PRODUCTS</a></li>
-                        <li><a href="">ABOUT</a></li>
-                    </ul>
-                </nav>
-                <a href="" class="login">LOG IN</a>
-            </div>
-        </header>
-
+        <header-component></header-component>
         <!-- LANDING PAGE -->
     </body>

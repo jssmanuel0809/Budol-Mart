@@ -8,13 +8,14 @@ class Footer extends HTMLElement {
     <head>
         <style>
             .footer {
+                display: flex;
                 position: relative;
                 width: 100%;
                 bottom: 0px;
-                background-color: #F5E6CA;
-                padding-left: 20px;
-                padding-right: 20px;
+                background-color: #95A9CB;
                 height: 15vh;
+                transform: translate(-50%,-50%);
+                top: 70%;
             }
         </style>
     </head>
