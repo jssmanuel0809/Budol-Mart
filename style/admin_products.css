@@ -1,0 +1,39 @@
+.content {
+    width: 90%;
+    margin: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-buttons{
+    background-color: #95A9CB;
+    width: 100%;
+    padding-bottom: 25px;
+    border-radius: 20px;
+}
+
+.admin-buttons button{
+    width: 200px;
+    display: inline-block;
+    text-decoration: none;
+    border: 3px solid #E4E9F2;
+    background-color: #E4E9F2;
+    font-family: 'Darker Grotesque', sans-serif;
+    color: #95A9CB;
+    border-radius: 15px;
+    padding: 3px 30px;
+    margin-top: 20px;
+    margin-left: 120px;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    cursor: pointer;
+}
+
+.content h1{
+    color: #95A9CB;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+}

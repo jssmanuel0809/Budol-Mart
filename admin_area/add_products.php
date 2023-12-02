@@ -12,6 +12,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Darker+Grotesque:wght@400;600;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
         <!-- COMPONENTS -->
         <script src="../components/admin_header.js" type="text/javascript" defer></script>
     </head>
@@ -26,16 +28,43 @@
             <h1>ADD PRODUCTS</h1>
             <div class="form_box">
                 <form class="products_form" action="">
-                    <label for="">Product Name</label><input type="text">
-                    <label for="">Product Description</label><input type="text">
-                    <label for="">Product Tags</label><input type="text">
-                    <label for="">Product Category</label><input type="text">
-                    <label for="">Product Brand</label><input type="text">
-                    <label for="">Product Price</label><input type="text">
-                    <label for="">Product Stocks</label><input type="text">
-                    <label for="">Product Image 1</label><input type="text">
-                    <label for="">Product Image 2</label><input type="text">
-                    <label for="">Product Image 3</label><input type="text">
+                    <label for="">Product Name</label><input type="text" id="product-input">
+                    <label for="">Product Price</label><input type="text" id="product-input">
+                    <label for="">Product Stocks</label><input type="text" id="product-input">
+                    <label for="">Product Description</label><textarea rows="10" cols="50" id="product-desc"></textarea>
+                    <label for="">Product Tags</label><input type="text" id="product-input">
+                    <label for="">Product Type</label>
+                        <select>
+                            <option value="regular">Regular</option>
+                            <option value="limited">Limited</option>
+                        </select>
+                    <label for="">Product Brand</label>
+                        <select>
+                            <option value="brand1">Brand 1</option>
+                            <option value="brand2">Brand 2</option>
+                            <option value="brand3">Brand 3</option>
+                        </select>
+                    <label for="">Product Series</label>
+                        <select>
+                            <option value="series1">Series 1</option>
+                            <option value="series2">Series 2</option>
+                            <option value="series3">Series 3</option>
+                        </select>
+                    <div class="product-image">
+                        <label for="">Product Image 1</label><input type="file" accept="image/*">
+                        <label for="">Product Image 4</label><input type="file" accept="image/*">
+                        <label for="">Product Image 7</label><input type="file" accept="image/*">
+                    </div>
+                    <div class="product-image">
+                        <label for="">Product Image 2</label><input type="file" accept="image/*">
+                        <label for="">Product Image 5</label><input type="file" accept="image/*">
+                        <label for="">Product Image 8</label><input type="file" accept="image/*">
+                    </div>
+                    <div class="product-image">
+                        <label for="">Product Image 3</label><input type="file" accept="image/*">
+                        <label for="">Product Image 6</label><input type="file" accept="image/*">
+                        <label for="">Product Image 9</label><input type="file" accept="image/*">
+                    </div>
                     <button class="add_button">Add Product</button>
                 </form>
             </div>

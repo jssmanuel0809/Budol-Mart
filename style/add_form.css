@@ -1,18 +1,60 @@
-.form_box{
+.form_box {
     width: 80%;
-    background-color: #F5E6CA;
-    margin-top: 25px;
     color: #3D4C6C;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.form_box label{
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+#product-input{
+    padding: 5px 10px;
+    border: 2px solid #3D4C6C;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 10px;
+}
+#product-desc{
+    padding: 5px 10px;
+    border: 2px solid #3D4C6C;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 10px;
+    resize: none;
 }
 .products_form{
     display: flex;
     flex-direction: column;
-    margin: 35px;   
+    width: 100%;
+    margin: 35px;
+    margin-left: 180px; 
 }
 label{
     padding: 10px;
 }
+select{
+    padding: 5px 10px;
+    border: 2px solid #3D4C6C;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 10px;
+}
 .add_button{
+    width: 300px;
+    display: inline-block;
+    text-decoration: none;
+    border: 3px solid #95A9CB;
+    background-color: #E4E9F2;
+    color: #95A9CB;
+    border-radius: 15px;
+    padding: 10px 30px;
     margin-top: 20px;
-    width: 80px;
+    margin-left: 400px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
 }
