@@ -13,9 +13,10 @@ class Footer extends HTMLElement {
                 width: 100%;
                 bottom: 0px;
                 background-color: #95A9CB;
-                height: 15vh;
-                transform: translate(-50%,-50%);
+                height: 20vh;
+                transform: translate(0%,400%);
                 top: 70%;
+                opacity: 70%;
             }
         </style>
     </head>
