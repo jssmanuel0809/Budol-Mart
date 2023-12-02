@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="style/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Darker+Grotesque:wght@400;600;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
         <!-- COMPONENTS -->
         <script src="components/header.js" type="text/javascript" defer></script>
         <script src="components/footer.js" type="text/javascript" defer></script>
@@ -19,68 +19,7 @@
 
         <!-- NAVIGATION BAR -->
         <header-component></header-component>
-
-        <!-- SHOP -->
-        <!-- same lang class name ng section sa about, contact, index, tsaka products -->
-        <section class="content">
-            <!-- PRODUCTS DISPLAY -->
-            <div class="browsing-items">
-                <div class="row">
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>Product Name</h3>
-                        <p>PHP 100.00</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>Product Name</h3>
-                        <p>PHP 100.00</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>Product Name</h3>
-                        <p>PHP 100.00</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>Product Name</h3>
-                        <p>PHP 100.00</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>Product Name</h3>
-                        <p>PHP 100.00</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>Product Name</h3>
-                        <p>PHP 100.00</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>Product Name</h3>
-                        <p>PHP 100.00</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>Product Name</h3>
-                        <p>PHP 100.00</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
+        <!-- CONTENTS -->
         <!-- FOOTER -->
         <!-- <footer-component></footer-component> -->
     </body>
