@@ -26,7 +26,15 @@
                 <form id="search" method="post" action="search.php">
                     <input type="text" name="searching" placeholder="SEARCH">
                 </form>
-                <a href="" class="button">Filter:</a>
+                <div class="dropdown">
+                    <button id="filterButton" class="button">Filter</button>
+                    <div class="dropdown-content">
+                        <a href="#" class="filter-option" data-value="pending">All Orders</a>
+                        <a href="#" class="filter-option" data-value="pending">Pending</a>
+                        <a href="#" class="filter-option" data-value="completed">Completed</a>
+                    </div>
+                </div>
+                <div id="currentFilterDisplay">Filter: All</div>
             </div>
         </div>
     </section>
