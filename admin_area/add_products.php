@@ -11,7 +11,7 @@
 //     $type = $_POST['type'];
 //     $status = mysqli_real_escape_string($db, "Active");
 //     $brand = $_POST['brand'];
-//     // $series = $_POST['series'];
+//     $series = $_POST['series'];
 //     $stocks = $_POST['stocks'];
 //     $date = new DateTime(date('m.d.y'));
 //     $dateUpd = $date->format('Y-m-d H:i:s');
@@ -47,11 +47,24 @@
 
 //     //INSERTION
 //     if(count($errors) == 0){
-//         $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, ProductStatus)
-//         VALUES ('$prodname', '$price', '$description', '$type', '$status')";
+//         $brands_query = "SELECT * FROM Brands
+//         WHERE Brand = '$brand'";
+//         $result = mysqli_query($db, $brands_query);
+//         $brnd = mysqli_fetch_assoc($result);
+//         $brndID = $brnd['BrandID'];
+
+//         $series_query = "SELECT SeriesID FROM Series S
+//         WHERE Series = '$series'";
+//         $result = mysqli_query($db, $series_query);
+//         $srs = mysqli_fetch_assoc($result);
+//         $srsID = $srs['SeriesID'];
+            
+//         $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, BrandID, SeriesID, ProductStatus)
+//         VALUES ('$prodname', '$price', '$description', '$type', '$brndID', '$srsID', '$status')";
 //         $working = mysqli_query($db, $insert_query);
 
 //         if($working){
+
 //             $products_check_query = "SELECT * FROM Products
 //             WHERE ProductName = '$prodname' AND ProductType = '$type'";
 //             $result = mysqli_query($db, $products_check_query);
@@ -111,6 +124,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
         <!-- COMPONENTS -->
         <script src="../components/admin_header.js" type="text/javascript" defer></script>
+        <!-- SCRIPT -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     </head>
     <body>
 
@@ -121,7 +136,7 @@
             <h1>ADD PRODUCTS</h1>
             <div class="form_box">
                 <form class="products_form" action="add_products.php" method="post" enctype="multipart/form-data">
-                    <?php //include('../includes/errors.php') ?>
+                    <?php include('../includes/errors.php') ?>
                     <label for="">Product Name</label><input type="text" name="prodname" required>
                     <label for="">Product Price</label><input type="text" name="price" required>
                     <label for="">Product Stocks</label><input type="text" name="stocks" required>
@@ -133,7 +148,7 @@
                             <option value="Limited">Limited</option>
                         </select>
                     <label for="">Product Brand</label>
-                        <select name="brand">
+                        <select name="brand" id="brandDropdown">
                             <?php
                             // $select_query = "SELECT Brand FROM Brands";
                             // $results = mysqli_query($db, $select_query);
@@ -145,19 +160,9 @@
                             // }
                             ?>
                         </select>
-                    <!-- <label for="">Product Series</label>
-                        <select name="series">
-                            <?php
-                            // $select_query = "SELECT Series FROM Series";
-                            // $results = mysqli_query($db, $select_query);
-                            // $row = mysqli_num_rows($results);
-                            // if ($row > 0){
-                            //     while($data = mysqli_fetch_assoc($results)){
-                            //         echo '<option value="' . $data['Series'] . '">' . $data['Series'] . '</option>';
-                            //     }
-                            // }
-                            ?>
-                        </select> -->
+                    <label for="">Product Series</label>
+                        <select name="series" id="seriesDropdown">
+                        </select>
                     <div class="product-image">
                         <label for="">Product Image 1</label><input type="file" name="imageone">
                         <label for="">Product Image 4</label><input type="file" accept="image/*">
@@ -177,6 +182,35 @@
                 </form>
             </div>
         </section>
+
+        <script>
+            $(document).ready(function () {
+                // Function to populate series dropdown based on selected brand
+                function populateSeriesDropdown() {
+                    var selectedBrand = $("#brandDropdown").val();
+
+                    // Use AJAX to fetch series options from the server
+                    $.ajax({
+                        url: '../includes/get_series.php',  // Replace with the actual PHP script to fetch series
+                        type: 'POST',
+                        data: { brand: selectedBrand },
+                        success: function (response) {
+                            // Update the series dropdown with new options
+                            $("#seriesDropdown").html(response);
+                        }
+                    });
+                }
+
+                // Event listener for brand dropdown change
+                $("#brandDropdown").on("change", function () {
+                    // Call the function to populate series dropdown on brand change
+                    populateSeriesDropdown();
+                });
+
+                // Initial population of series dropdown when the page loads
+                populateSeriesDropdown();
+            });
+        </script>
 
     </body>
 </html>
