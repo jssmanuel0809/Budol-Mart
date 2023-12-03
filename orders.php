@@ -19,12 +19,15 @@
     <body>
         <header-component></header-component>
 
-        <section class="qoute">
-            <h1>Orders</h1>
-            <div class="src-fltr">
-                <form id="search" method="post" action="search.php">
+        <section id="order" class="order">
+            <div class="order-box">
+                <h1>Orders</h1>
+                <div class="filters">
+                    <form id="search" method="post" action="search.php">
                         <input type="text" name="search" placeholder="SEARCH">
-                </form>
+                    </form>
+                    <a href="" class="button">Filter:</a>
+                </div>
             </div>
         </section>
     </body>
