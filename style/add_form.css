@@ -10,14 +10,14 @@
     font-weight: 700;
     font-size: 20px;
 }
-#product-input{
+input[type=text]{
     padding: 5px 10px;
     border: 2px solid #3D4C6C;
     font-size: 14px;
     width: 100%;
     border-radius: 10px;
 }
-#product-desc{
+.product-desc{
     padding: 5px 10px;
     border: 2px solid #3D4C6C;
     font-size: 14px;
