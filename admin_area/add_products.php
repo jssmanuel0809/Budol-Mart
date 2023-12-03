@@ -1,3 +1,4 @@
+<?php include('../includes/server.php');?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,25 +26,26 @@
         <section class="content">
             <h1>ADD PRODUCTS</h1>
             <div class="form_box">
-                <form class="products_form" action="">
-                    <label for="">Product Name</label><input type="text" id="product-input">
-                    <label for="">Product Price</label><input type="text" id="product-input">
-                    <label for="">Product Stocks</label><input type="text" id="product-input">
-                    <label for="">Product Description</label><textarea rows="10" cols="50" id="product-desc"></textarea>
-                    <label for="">Product Tags</label><input type="text" id="product-input">
+                <form class="products_form" action="add_products.php">
+                    <?php include('../includes/errors.php') ?>
+                    <label for="">Product Name</label><input type="text" name="prodname" required>
+                    <label for="">Product Price</label><input type="text" name="price" required>
+                    <label for="">Product Stocks</label><input type="text" name="stocks" required>
+                    <label for="">Product Description</label><textarea rows="10" cols="50" class="product-desc" name="desc" required></textarea>
+                    <label for="">Product Tags</label><input type="text">
                     <label for="">Product Type</label>
-                        <select>
+                        <select name="type">
                             <option value="regular">Regular</option>
                             <option value="limited">Limited</option>
                         </select>
                     <label for="">Product Brand</label>
-                        <select>
+                        <select name="brand">
                             <option value="brand1">Brand 1</option>
                             <option value="brand2">Brand 2</option>
                             <option value="brand3">Brand 3</option>
                         </select>
                     <label for="">Product Series</label>
-                        <select>
+                        <select name="series">
                             <option value="series1">Series 1</option>
                             <option value="series2">Series 2</option>
                             <option value="series3">Series 3</option>
@@ -63,7 +65,7 @@
                         <label for="">Product Image 6</label><input type="file" accept="image/*">
                         <label for="">Product Image 9</label><input type="file" accept="image/*">
                     </div>
-                    <button class="add_button">Add Product</button>
+                    <button class="add_button" name="add_products">Add Product</button>
                 </form>
             </div>
         </section>
@@ -72,4 +74,56 @@
 </html>
 
 <!-- ADD PRODUCT FUNCTION -->
-<??>
+<?php 
+if (isset($_POST['add_products'])){
+    $prodname = mysqli_real_escape_string($db, $_POST['prodname']);
+    $price = $_POST['price'];
+    $description = mysqli_real_escape_string($db, $_POST['desc']);
+    $type = $_POST['type'];
+    $brand = $_POST['brand'];
+    $series = $_POST['series'];
+
+    $stocks = $_POST['stocks'];
+    $dateUpd = new DateTime(date('m.d.y'));
+
+    // $tags
+
+    // $imageone
+    // $imagetwo
+    // $imagethree
+    // $imagefour
+    // $imagefive
+    // $imagesix
+    // $imageseven
+    // $imageeight
+    // $imagenine
+
+    $products_check_query = "SELECT * FROM Products
+    WHERE ProductName = $prodname AND ProductType = $type AND Brand = $brand AND Series = $series";
+    $result = mysqli_query($db, $products_check_query);
+    $prod = mysqli_fetch_assoc($result);
+    if ($prod){
+        array_push($errors, "Duplicate product detected.");
+    }
+
+    if(count($errors) == 0){
+        $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, Brand, Series)
+        VALUES ('$prodname', '$price', '$description', '$type', '$brand', '$series')";
+        $working = mysqli_query($db, $insert_query);
+
+        if($working){
+            $products_check_query = "SELECT * FROM Products
+            WHERE ProductName = $prodname AND ProductType = $type AND Brand = $brand AND Series = $series";
+            $result = mysqli_query($db, $products_check_query);
+            $prod = mysqli_fetch_assoc($result);
+            $prodID = $prod['ProductID'];
+
+            $insert_query = "INSERT INTO Inventory (Quantity, DateUpdated)
+            VALUES ('$stocks', '$dateUpd')";
+        }
+
+        header('location: index.php');
+    }
+
+}
+?>
