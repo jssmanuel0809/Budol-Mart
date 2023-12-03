@@ -1,89 +1,89 @@
 <?php
-include('../includes/server.php');
+// include('../includes/server.php');
 
-//ADD PRODUCTS FUNCTION
-if (isset($_POST['add_products'])){
-    //VARIABLES
-    $imgext_val = "false";
-    $prodname = mysqli_real_escape_string($db, $_POST['prodname']);
-    $price = $_POST['price'];
-    $description = mysqli_real_escape_string($db, $_POST['desc']);
-    $type = $_POST['type'];
-    $status = mysqli_real_escape_string($db, "Active");
-    // $brand = $_POST['brand'];
-    // $series = $_POST['series'];
-    $stocks = $_POST['stocks'];
-    $date = new DateTime(date('m.d.y'));
-    $dateUpd = $date->format('Y-m-d H:i:s');
-    // $tags
+// //ADD PRODUCTS FUNCTION
+// if (isset($_POST['add_products'])){
+//     //VARIABLES
+//     $imgext_val = "false";
+//     $prodname = mysqli_real_escape_string($db, $_POST['prodname']);
+//     $price = $_POST['price'];
+//     $description = mysqli_real_escape_string($db, $_POST['desc']);
+//     $type = $_POST['type'];
+//     $status = mysqli_real_escape_string($db, "Active");
+//     // $brand = $_POST['brand'];
+//     // $series = $_POST['series'];
+//     $stocks = $_POST['stocks'];
+//     $date = new DateTime(date('m.d.y'));
+//     $dateUpd = $date->format('Y-m-d H:i:s');
+//     // $tags
 
-    //IMAGE VALIDATION
-    if (isset($_FILES['imageone'])){
-        $imageone = $_FILES['imageone'];
-        $imgonefile = $imageone['name'];
-        $imgonetemp = $imageone['tmp_name'];
+//     //IMAGE VALIDATION
+//     if (isset($_FILES['imageone'])){
+//         $imageone = $_FILES['imageone'];
+//         $imgonefile = $imageone['name'];
+//         $imgonetemp = $imageone['tmp_name'];
     
-        $filename_sep = explode('.', $imgonefile);
-        $file_ext = strtolower(end($filename_sep));
+//         $filename_sep = explode('.', $imgonefile);
+//         $file_ext = strtolower(end($filename_sep));
     
-        $ext = array('jpeg', 'jpg', 'png');
-        if(in_array($file_ext, $ext)){
-            $imgext_val = "true";
-        }
-    }
-    //INPUT VALIDATION
-    //if all input is filled
+//         $ext = array('jpeg', 'jpg', 'png');
+//         if(in_array($file_ext, $ext)){
+//             $imgext_val = "true";
+//         }
+//     }
+//     //INPUT VALIDATION
+//     //if all input is filled
 
-    //DUPLICATE PRODUCTS VALIDATION
-    $products_check_query = "SELECT * FROM Products
-    WHERE ProductName = '$prodname' AND ProductType = '$type'";
-    $result = mysqli_query($db, $products_check_query);
-    $prod = mysqli_fetch_assoc($result);
-    if ($prod){
-        array_push($errors, "Duplicate product detected.");
-    }
+//     //DUPLICATE PRODUCTS VALIDATION
+//     $products_check_query = "SELECT * FROM Products
+//     WHERE ProductName = '$prodname' AND ProductType = '$type'";
+//     $result = mysqli_query($db, $products_check_query);
+//     $prod = mysqli_fetch_assoc($result);
+//     if ($prod){
+//         array_push($errors, "Duplicate product detected.");
+//     }
 
-    //INSERTION
-    if(count($errors) == 0){
-        $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, ProductStatus)
-        VALUES ('$prodname', '$price', '$description', '$type', '$status')";
-        $working = mysqli_query($db, $insert_query);
+//     //INSERTION
+//     if(count($errors) == 0){
+//         $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, ProductStatus)
+//         VALUES ('$prodname', '$price', '$description', '$type', '$status')";
+//         $working = mysqli_query($db, $insert_query);
 
-        if($working){
-            $products_check_query = "SELECT * FROM Products
-            WHERE ProductName = '$prodname' AND ProductType = '$type'";
-            $result = mysqli_query($db, $products_check_query);
-            $prod = mysqli_fetch_assoc($result);
-            $prodID = $prod['ProductID'];
+//         if($working){
+//             $products_check_query = "SELECT * FROM Products
+//             WHERE ProductName = '$prodname' AND ProductType = '$type'";
+//             $result = mysqli_query($db, $products_check_query);
+//             $prod = mysqli_fetch_assoc($result);
+//             $prodID = $prod['ProductID'];
 
-            $insert_query = "INSERT INTO Inventory (ProductID, Quantity, DateUpdated)
-            VALUES ('$prodID', '$stocks', '$dateUpd')";
-            mysqli_query($db, $insert_query);
+//             $insert_query = "INSERT INTO Inventory (ProductID, Quantity, DateUpdated)
+//             VALUES ('$prodID', '$stocks', '$dateUpd')";
+//             mysqli_query($db, $insert_query);
 
-            if ($imgext_val == "true") {
-                // $upload_directory = '/Applications/XAMPP/xamppfiles/htdocs/Budol-Mart/admin_area/product_images';
-                // if (!is_dir($upload_directory)) {
-                //     mkdir($upload_directory, 0777, true);
-                // }
-                // $upload_image = $upload_directory . '/' . $imgonefile;
+//             if ($imgext_val == "true") {
+//                 // $upload_directory = '/Applications/XAMPP/xamppfiles/htdocs/Budol-Mart/admin_area/product_images';
+//                 // if (!is_dir($upload_directory)) {
+//                 //     mkdir($upload_directory, 0777, true);
+//                 // }
+//                 // $upload_image = $upload_directory . '/' . $imgonefile;
 
-                $upload_image = "product_images/".$imgonefile;
-                // move_uploaded_file($imgonetemp, $upload_image);
+//                 $upload_image = "product_images/".$imgonefile;
+//                 // move_uploaded_file($imgonetemp, $upload_image);
 
-                if (move_uploaded_file($imgonetemp, $upload_image)) {
-                    $insert_query = "INSERT INTO ProductImages (ProductID, ImageURL)
-                    VALUES ('$prodID', '$upload_image')";
-                    mysqli_query($db, $insert_query);
-                } else {
-                    echo 'File upload failed with error code ' . $_FILES['imageone']['error'];
-                }
-            }
-        }
+//                 if (move_uploaded_file($imgonetemp, $upload_image)) {
+//                     $insert_query = "INSERT INTO ProductImages (ProductID, ImageURL)
+//                     VALUES ('$prodID', '$upload_image')";
+//                     mysqli_query($db, $insert_query);
+//                 } else {
+//                     echo 'File upload failed with error code ' . $_FILES['imageone']['error'];
+//                 }
+//             }
+//         }
 
-        header('location: index.php');
-    }
+//         header('location: index.php');
+//     }
 
-}
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">

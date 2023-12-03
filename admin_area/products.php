@@ -26,9 +26,9 @@
         <section class="content">
             <div class="admin-buttons">
                 <a href="add_products.php"><button>Add Products</button></a>
-                <a href="add_products.php"><button>View Products</button></a>
-                <a href="add_products.php"><button>Add Categories</button></a>
-                <a href="add_products.php"><button>View Categories</button></a>
+                <a href=""><button>View Products</button></a>
+                <a href="add_categories.php"><button>Add Categories</button></a>
+                <a href=""><button>View Categories</button></a>
             </div>
             <h1>All Products</h1>
             
