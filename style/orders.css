@@ -48,20 +48,23 @@ thead th {
 }
 
 button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #4CAF50; /* Set your desired button background color */
+    padding: 0px 20px;
+    background-color: #95A9CB; /* Set your desired button background color */
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
+    font-size: 24px;
 }
 
 button:hover {
-    background-color: #45a049; /* Set your desired button background color on hover */
+    background-color: #aec6f0; /* Set your desired button background color on hover */
 }
 
 /* DROPDOWN */
+#filterButton{
+    display: flex;
+}
 .dropdown {
     position: relative;
     display: inline-block;
