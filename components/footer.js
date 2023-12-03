@@ -14,7 +14,7 @@ class Footer extends HTMLElement {
                 background-color: #95A9CB;
                 height: 30vh;
                 transform: translate(0%,50%);
-                top: 10%;
+                top: 0%;
                 opacity: 70%;
             }
             .footer-contents {
