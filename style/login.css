@@ -67,29 +67,3 @@ input[type="text"], input[type="password"]{
 .reg-link{
     padding: 2px;
 }
-
-/* REGISTER FORM */
-fieldset {
-    border: none;
-}
-.row {
-    display: flex;
-    justify-content: space-evenly;
-}
-.register-button{
-    background-color: #F6B185;
-    color: #FCF1E6;
-    text-decoration: none;
-    font-family: 'Dongle', sans-serif;
-    font-weight: bold;
-    font-size: 40px;
-    padding: 5px;
-    padding-left: 25px;
-    padding-right: 25px;
-    width: 365px;
-    height: 45px;
-    cursor: pointer;
-    border-radius: 30px;
-    border: 2px solid #3D4C6C;
-    border-color: #3D4C6C;
-}
