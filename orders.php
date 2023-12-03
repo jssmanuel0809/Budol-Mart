@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +16,7 @@
     <script src="components/header.js" type="text/javascript" defer></script>
 </head>
 
-<body> 
+<body>
     <header-component></header-component>
 
     <section id="order" class="order">
@@ -31,21 +32,52 @@
     </section>
 
     <div class="order-box-contents">
-        <div class="column">
-            <p>Order #</p>
-        </div>
-        <div class="column">
-            <p>Date of Order</p>
-        </div>
-        <div class="column">
-            <p>Total</p>
-        </div>
-        <div class="column">
-            <p>Status</p>
-        </div>
-        <div class="column">
-            <p>Estimated Time of Arrival</p>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order #</th>
+                    <th>Date of Order</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Estimated Time of Arrival</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- to be deleted na part, placeholder lang kung gumagana -->
+                <!-- Sample row -->
+                <tr>
+                    <td>#111</td>
+                    <td>November 21, 2023</td>
+                    <td>100 PHP</td>
+                    <td>Shipped</td>
+                    <td>December 1, 2023</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+
+    <button id="addOrderButton">Add Order</button>
+
+    <script>
+        document.getElementById('addOrderButton').addEventListener('click', function () {
+            // Sample order details (replace with dynamic data)
+            const orderDetails = ['#112', 'December 1, 2023', '150 PHP', 'Processing', 'December 10, 2023'];
+
+            // Create a new row
+            const newRow = document.createElement('tr');
+
+            // Append order details as columns to the new row
+            orderDetails.forEach(detail => {
+                const column = document.createElement('td');
+                column.innerHTML = detail;
+                newRow.appendChild(column);
+            });
+
+            // Append the new row to the table body
+            const tableBody = document.querySelector('.order-box-contents tbody');
+            tableBody.appendChild(newRow);
+        });
+    </script>
 </body>
+
 </html>
