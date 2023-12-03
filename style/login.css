@@ -9,9 +9,9 @@
     align-items: center;
 }
 .authentication h3{
-    font-family: 'Amarante', serif;
+    font-family: 'Righteous', sans-serif;
     font-size: 100px;
-    font-weight: 300;
+    font-weight: bold;
 }
 .box{
     width: 450px;
