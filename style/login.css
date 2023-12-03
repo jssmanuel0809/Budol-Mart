@@ -15,7 +15,7 @@
 }
 .box{
     width: 450px;
-    background-color: #F8EFEF;
+    background-color: #3D4C6C;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -73,15 +73,19 @@ fieldset {
     justify-content: space-evenly;
 }
 .register-button{
+    background-color: #F6B185;
+    color: #FCF1E6;
+    text-decoration: none;
+    font-family: 'Dongle', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
     width: 365px;
     height: 45px;
     cursor: pointer;
     border-radius: 30px;
-    background-color: #CFA180;
     border: 2px solid #3D4C6C;
     border-color: #3D4C6C;
-    margin: 16px;
-    color: #F8EFEF;
-    font-weight: bolder;
-    font-size: 20px;
 }
