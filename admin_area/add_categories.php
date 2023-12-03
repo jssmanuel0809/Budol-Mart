@@ -1,73 +1,73 @@
 <?php
-    include('../includes/server.php');
+    // include('../includes/server.php');
 
-    //ADD CATEGORIES FUNCTION
-    if (isset($_POST['add_categories'])){
-        //BRAND VALIDATION
-        $brandselection = $_POST['brand'];
-        if($brandselection == "addBrand"){
-            $brand = mysqli_real_escape_string($db, $_POST['newBrand']);
-            $brands_check_query = "SELECT * FROM Brands
-            WHERE Brand = '$brand'";
-            $results = mysqli_query($db, $brands_check_query);
-            $brnd = mysqli_fetch_assoc($results);
-            if ($brnd){
-                array_push($errors, "Duplicate brand detected.");
-            }
+    // //ADD CATEGORIES FUNCTION
+    // if (isset($_POST['add_categories'])){
+    //     //BRAND VALIDATION
+    //     $brandselection = $_POST['brand'];
+    //     if($brandselection == "addBrand"){
+    //         $brand = mysqli_real_escape_string($db, $_POST['newBrand']);
+    //         $brands_check_query = "SELECT * FROM Brands
+    //         WHERE Brand = '$brand'";
+    //         $results = mysqli_query($db, $brands_check_query);
+    //         $brnd = mysqli_fetch_assoc($results);
+    //         if ($brnd){
+    //             array_push($errors, "Duplicate brand detected.");
+    //         }
 
-            //INSERTION
-            if(count($errors) == 0){
-                $insert_query = "INSERT INTO Brands (Brand)
-                VALUES ('$brand')";
-                mysqli_query($db, $insert_query);
+    //         //INSERTION
+    //         if(count($errors) == 0){
+    //             $insert_query = "INSERT INTO Brands (Brand)
+    //             VALUES ('$brand')";
+    //             mysqli_query($db, $insert_query);
 
-                //SERIES VALIDATION
-                if(isset($_POST['series'])){
-                    $series = mysqli_real_escape_string($db, $_POST['series']);
-                    $brands_check_query = "SELECT * FROM Brands
-                    WHERE Brand = '$brand'";
-                    $results = mysqli_query($db, $brands_check_query);
-                    $brnd = mysqli_fetch_assoc($results);
-                    $brndID = $brnd['BrandID'];
-                    //INSERTION
-                    $insert_query = "INSERT INTO Series (BrandID, Series)
-                    VALUES ('$brndID', '$series')";
-                    mysqli_query($db, $insert_query);
-                }
-            }
-        }else{
-            $brand = mysqli_real_escape_string($db, $_POST['brand']);
-            //SERIES VALIDATION
-            if(isset($_POST['series'])){
-                $series = mysqli_real_escape_string($db, $_POST['series']);
+    //             //SERIES VALIDATION
+    //             if(isset($_POST['series'])){
+    //                 $series = mysqli_real_escape_string($db, $_POST['series']);
+    //                 $brands_check_query = "SELECT * FROM Brands
+    //                 WHERE Brand = '$brand'";
+    //                 $results = mysqli_query($db, $brands_check_query);
+    //                 $brnd = mysqli_fetch_assoc($results);
+    //                 $brndID = $brnd['BrandID'];
+    //                 //INSERTION
+    //                 $insert_query = "INSERT INTO Series (BrandID, Series)
+    //                 VALUES ('$brndID', '$series')";
+    //                 mysqli_query($db, $insert_query);
+    //             }
+    //         }
+    //     }else{
+    //         $brand = mysqli_real_escape_string($db, $_POST['brand']);
+    //         //SERIES VALIDATION
+    //         if(isset($_POST['series'])){
+    //             $series = mysqli_real_escape_string($db, $_POST['series']);
                 
-                $series_check_query = "SELECT * FROM Series S
-                INNER JOIN Brands B ON S.BrandID = B.BrandID
-                WHERE S.Series = '$series' AND B.Brand = '$brand'";
-                $results = mysqli_query($db, $series_check_query);
-                $srs = mysqli_fetch_assoc($results);
-                if ($srs){
-                    array_push($errors, "Duplicate series detected.");
-                }
+    //             $series_check_query = "SELECT * FROM Series S
+    //             INNER JOIN Brands B ON S.BrandID = B.BrandID
+    //             WHERE S.Series = '$series' AND B.Brand = '$brand'";
+    //             $results = mysqli_query($db, $series_check_query);
+    //             $srs = mysqli_fetch_assoc($results);
+    //             if ($srs){
+    //                 array_push($errors, "Duplicate series detected.");
+    //             }
 
                 
 
-                //INSERTION
-                if(count($errors) == 0){
-                    $series_check_query = "SELECT * FROM Brands
-                    WHERE Brand = '$brand'";
-                    $results = mysqli_query($db, $series_check_query);
-                    $srs = mysqli_fetch_assoc($results);
-                    $brndID = $srs['BrandID'];
-                    $insert_query = "INSERT INTO Series (BrandID, Series)
-                    VALUES ('$brndID', '$series')";
-                    mysqli_query($db, $insert_query);
-                }
-            }
-        }
+    //             //INSERTION
+    //             if(count($errors) == 0){
+    //                 $series_check_query = "SELECT * FROM Brands
+    //                 WHERE Brand = '$brand'";
+    //                 $results = mysqli_query($db, $series_check_query);
+    //                 $srs = mysqli_fetch_assoc($results);
+    //                 $brndID = $srs['BrandID'];
+    //                 $insert_query = "INSERT INTO Series (BrandID, Series)
+    //                 VALUES ('$brndID', '$series')";
+    //                 mysqli_query($db, $insert_query);
+    //             }
+    //         }
+    //     }
 
-        header('location: index.php');
-    }
+    //     header('location: index.php');
+    // }
 ?>
 <html lang="en">
     <head>
@@ -94,19 +94,19 @@
         <section class="content">
             <div class="form_box">
                 <form class="categories_form" action="add_categories.php" method="post">
-                    <?php include('../includes/errors.php') ?>
+                    <?php //include('../includes/errors.php') ?>
                     <label for="">Product Brand</label>
                     <select name="brand" id="brandDropdown" onchange="toggleBrandInput()">
                         <option value="select">Select Brand</option>
                         <?php
-                            $select_query = "SELECT Brand FROM Brands";
-                            $results = mysqli_query($db, $select_query);
-                            $row = mysqli_num_rows($results);
-                            if ($row > 0){
-                                while($data = mysqli_fetch_assoc($results)){
-                                    echo '<option value="' . $data['Brand'] . '">' . $data['Brand'] . '</option>';
-                                }
-                            }
+                            // $select_query = "SELECT Brand FROM Brands";
+                            // $results = mysqli_query($db, $select_query);
+                            // $row = mysqli_num_rows($results);
+                            // if ($row > 0){
+                            //     while($data = mysqli_fetch_assoc($results)){
+                            //         echo '<option value="' . $data['Brand'] . '">' . $data['Brand'] . '</option>';
+                            //     }
+                            // }
                         ?>
                         <option value="addBrand">Add Brand</option>
                     </select>
