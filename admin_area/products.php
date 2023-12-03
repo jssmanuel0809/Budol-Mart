@@ -12,6 +12,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
         <!-- COMPONENTS -->
         <script src="../components/admin_header.js" type="text/javascript" defer></script>
     </head>
@@ -32,8 +33,20 @@
             <h1>All Products</h1>
             
             <!-- PRODUCTS DISPLAY -->
-            <div>
-                
+            <div class="product-table">
+                <table class="order-table">
+                    <tr>
+                        <th>Order 1</th>
+                        <th>Order 2</th>
+                        <th>Order 3</th>
+                        <th>Order 4</th>
+                        <th>Order 5</th>
+                        <th>Order 6</th>
+                        <th>Order 7</th>
+                        <th>Order 8</th>
+                    </tr>
+                    <!-- Add your product rows here -->
+                </table>
             </div>
         </section>
 
