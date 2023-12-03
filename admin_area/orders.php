@@ -3,11 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Login | BUDOL Admin Portal</title>
+        <title>BUDOL Orders Portal</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
-        <link rel="stylesheet" href="../style/login.css">
+        <link rel="stylesheet" href="../style/admin_orders.css">
         <link rel="stylesheet" href="../style/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,16 +18,5 @@
 
     <body>
         <header-component></header-component>
-        <!-- LOGIN CONTENT -->
-        <section class="authentication">
-            <h3>Admin Portal</h3>
-            <div class="box" id="box">
-                <form method="post" action="adminLogin.php">
-                    <input type="text" name="username" placeholder="username" required />
-                    <input type="password" name="password" placeholder="password" required />
-                    <button class="login-button" type="submit" name="login_admin">LOG IN</button>
-                </form>
-            </div>
-        </section>
     </body>
 </html>
