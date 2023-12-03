@@ -136,7 +136,7 @@
             <h1>ADD PRODUCTS</h1>
             <div class="form_box">
                 <form class="products_form" action="add_products.php" method="post" enctype="multipart/form-data">
-                    <?php include('../includes/errors.php') ?>
+                    <?php //include('../includes/errors.php') ?>
                     <label for="">Product Name</label><input type="text" name="prodname" required>
                     <label for="">Product Price</label><input type="text" name="price" required>
                     <label for="">Product Stocks</label><input type="text" name="stocks" required>
