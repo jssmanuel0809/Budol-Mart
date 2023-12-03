@@ -13,6 +13,7 @@
     font-size: 90px;
     font-weight: bold;
     color: #3D4C6C;
+    letter-spacing: 10px;
 }
 .box{
     width: 450px;
@@ -65,10 +66,76 @@ form{
     cursor: pointer;
     border-radius: 30px;
     border: 2px solid #3D4C6C;
-    border-color: #3D4C6C;
     width: 350px;
     height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+/* REGISTER */
+/* Remove border from fieldset */
+.authentication form fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Customize register button */
+.register-button {
+    background-color: #F6B185;
+    color: #FCF1E6;
+    font-family: 'Dongle', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px solid #3D4C6C;
+    width: 350px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.register-button:hover {
+    background-color: #faa46e;
+}
+
+
+
+
+
+
+/* fieldset {
+    border: none;
+    padding: 0; 
+}
+
+.row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.register-button {
+    background-color: #F6B185; 
+    color: #FCF1E6; 
+    font-family: 'YourDesiredFont', sans-serif; 
+    font-weight: bold;
+    font-size: 20px; 
+    padding: 10px; 
+    border-radius: 15px; 
+    border: 2px solid #3D4C6C; 
+    width: 200px; 
+    height: 40px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: #be8967;
+} */
