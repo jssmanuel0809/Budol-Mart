@@ -1,4 +1,4 @@
-<?php include('../includes/server.php');?>
+<?php include('../includes/server.php')?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,7 +26,7 @@
         <section class="content">
             <h1>ADD PRODUCTS</h1>
             <div class="form_box">
-                <form class="products_form" action="add_products.php">
+                <form class="products_form" action="add_products.php" method="post">
                     <?php include('../includes/errors.php') ?>
                     <label for="">Product Name</label><input type="text" name="prodname" required>
                     <label for="">Product Price</label><input type="text" name="price" required>
@@ -65,7 +65,7 @@
                         <label for="">Product Image 6</label><input type="file" accept="image/*">
                         <label for="">Product Image 9</label><input type="file" accept="image/*">
                     </div>
-                    <button class="add_button" name="add_products">Add Product</button>
+                    <button class="add_button" type="submit" name="add_products">Add Product</button>
                 </form>
             </div>
         </section>
