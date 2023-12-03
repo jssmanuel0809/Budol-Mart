@@ -26,26 +26,36 @@
         <section class="content">
             <div class="admin-buttons">
                 <a href="add_products.php"><button>Add Products</button></a>
-                <a href="add_products.php"><button>View Products</button></a>
-                <a href="add_products.php"><button>Add Categories</button></a>
-                <a href="add_products.php"><button>View Categories</button></a>
+                <a href="products.php"><button>View Products</button></a>
+                <a href="add_categories.php"><button>Add Categories</button></a>
+                <a href="categories.php"><button>View Categories</button></a>
             </div>
             <h1>All Products</h1>
             
             <!-- PRODUCTS DISPLAY -->
             <div class="product-table">
                 <table class="order-table">
-                    <tr>
-                        <th>Order 1</th>
-                        <th>Order 2</th>
-                        <th>Order 3</th>
-                        <th>Order 4</th>
-                        <th>Order 5</th>
-                        <th>Order 6</th>
-                        <th>Order 7</th>
-                        <th>Order 8</th>
+                    <!-- HEADER  -->
+                    <tr class="table-header">
+                        <th>Product ID</th>
+                        <th>Product Title</th>
+                        <th>Product Image</th>
+                        <th>Total Sold</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
-                    <!-- Add your product rows here -->
+                    <!-- LAMAN NG TABLE -->
+                    <tr>
+                        <td>1</td>
+                        <td>POPMART</td>
+                        <td>1</td>
+                        <td>Lilios</td>
+                        <td>1</td>
+                        <td>Lilios</td>
+                        <td>1</td>
+                        <td>Lilios</td>
+                    </tr>
                 </table>
             </div>
         </section>
