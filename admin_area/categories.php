@@ -41,6 +41,7 @@
                         <th>Brand</th>
                         <th>Series ID</th>
                         <th>Series</th>
+                        <th>Unlist</th>
                     </tr>
                     <!-- LAMAN NG TABLE -->
                     <tr>
@@ -48,10 +49,43 @@
                         <td>POPMART</td>
                         <td>1</td>
                         <td>Lilios</td>
+                        <td>
+                            <a class="icon-button" onclick="showUnlistPopup()">
+                                <img src="product_images/trash.png" alt="Unlist Icon" class="table-button">
+                            </a>
+                        </td>
                     </tr>
                 </table>
             </div>
+
+            <!-- UNLIST WARNING -->
+            <div class="overlay" id="overlay"></div>
+            <div class="unlist-popup" id="unlistPopup">
+                <h2>Are you sure you want to<br>unlist this product?</h2>
+                <div class="popup-buttons">
+                    <button class="cancel" onclick="hideUnlistPopup()">Cancel</button>
+                    <button class="unlist">Unlist</button>
+                </div>
+            </div>
         </section>
+
+        <script>
+            function showUnlistPopup() {
+                var overlay = document.getElementById("overlay");
+                var unlistPopup = document.getElementById("unlistPopup");
+
+                overlay.style.display = "block";
+                unlistPopup.classList.add("active");
+            }
+
+            function hideUnlistPopup() {
+                var overlay = document.getElementById("overlay");
+                var unlistPopup = document.getElementById("unlistPopup");
+
+                overlay.style.display = "none";
+                unlistPopup.classList.remove("active");
+            }
+        </script>
 
     </body>
 </html>
