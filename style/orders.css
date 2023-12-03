@@ -4,15 +4,28 @@ input[name="searching"] {
     border-radius: 25px;
     background-color: #FFFFFF;
     padding: 8px 20px;
-    margin: 8px 0;
+    margin: 8px 15px;
     opacity: 75%;
+}
+.order h1{
+    margin: 5%;
+    font-family: 'Righteous', sans-serif;
+    font-size: 60px;
+}
+.filters{
+    margin-left: 110px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 /* DYNAMIC */
 .order-box-contents {
+    width: 75%;
     margin: 20px auto;
     padding: 10px;
-    background-color: #526C99; /* Set your desired background color */
+    background-color: #95A9CB; /* Set your desired background color */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
 }
@@ -31,20 +44,53 @@ thead th, tbody td {
 }
 
 thead th {
-    background-color: #4CAF50; /* Set your desired header background color */
     color: white;
 }
 
 button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #4CAF50; /* Set your desired button background color */
+    padding: 0px 20px;
+    background-color: #95A9CB; /* Set your desired button background color */
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
+    font-size: 24px;
 }
 
 button:hover {
-    background-color: #45a049; /* Set your desired button background color on hover */
+    background-color: #aec6f0; /* Set your desired button background color on hover */
+}
+
+/* DROPDOWN */
+#filterButton{
+    display: flex;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
 }

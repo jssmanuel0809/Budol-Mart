@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
     <script src="components/header.js" type="text/javascript" defer></script>
+    <script src="components/filter.js" type="text/javascript" defer></script>
 </head>
 
 <body>
@@ -26,7 +27,14 @@
                 <form id="search" method="post" action="search.php">
                     <input type="text" name="searching" placeholder="SEARCH">
                 </form>
-                <a href="" class="button">Filter:</a>
+                <div class="dropdown">
+                    <button id="filterButton" class="button">Filter: All</button>
+                    <div class="dropdown-content">
+                        <a href="#" class="filter-option" data-value="all">All Orders</a>
+                        <a href="#" class="filter-option" data-value="pending">Pending</a>
+                        <a href="#" class="filter-option" data-value="completed">Completed</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

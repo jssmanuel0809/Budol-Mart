@@ -1,5 +1,3 @@
-//dapat maga-adjust yung box kada dagdag ng element
-
 document.getElementById('addOrderButton').addEventListener('click', function () {
     // Create a new row
     const newRow = document.createElement('div');
@@ -20,4 +18,3 @@ document.getElementById('addOrderButton').addEventListener('click', function () 
     const orderContents = document.querySelector('.order-box-contents');
     orderContents.appendChild(newRow);
 });
-
