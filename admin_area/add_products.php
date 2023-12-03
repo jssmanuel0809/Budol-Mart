@@ -1,4 +1,61 @@
-<?php include('../includes/server.php')?>
+<?php
+
+include('../includes/server.php');
+
+if (isset($_POST['add_products'])){
+    $prodname = mysqli_real_escape_string($db, $_POST['prodname']);
+    $price = $_POST['price'];
+    $description = mysqli_real_escape_string($db, $_POST['desc']);
+    $type = $_POST['type'];
+    $brand = $_POST['brand'];
+    $series = $_POST['series'];
+
+    $stocks = $_POST['stocks'];
+    $date = new DateTime(date('m.d.y'));
+    $dateUpd = $date->format('Y-m-d H:i:s');
+
+    // $tags
+
+    // $imageone
+    // $imagetwo
+    // $imagethree
+    // $imagefour
+    // $imagefive
+    // $imagesix
+    // $imageseven
+    // $imageeight
+    // $imagenine
+
+    $products_check_query = "SELECT * FROM Products
+    WHERE ProductName = '$prodname' AND ProductType = '$type' AND Brand = '$brand' AND Series = '$series'";
+    $result = mysqli_query($db, $products_check_query);
+    $prod = mysqli_fetch_assoc($result);
+    if ($prod){
+        array_push($errors, "Duplicate product detected.");
+    }
+
+    if(count($errors) == 0){
+        $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, Brand, Series)
+        VALUES ('$prodname', '$price', '$description', '$type', '$brand', '$series')";
+        $working = mysqli_query($db, $insert_query);
+
+        if($working){
+            $products_check_query = "SELECT * FROM Products
+            WHERE ProductName = '$prodname' AND ProductType = '$type' AND Brand = '$brand' AND Series = '$series'";
+            $result = mysqli_query($db, $products_check_query);
+            $prod = mysqli_fetch_assoc($result);
+            $prodID = $prod['ProductID'];
+
+            $insert_query = "INSERT INTO Inventory (ProductID, Quantity, DateUpdated)
+            VALUES ('$prodID', '$stocks', '$dateUpd')";
+            mysqli_query($db, $insert_query);
+        }
+
+        header('location: index.php');
+    }
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -72,58 +129,3 @@
 
     </body>
 </html>
-
-<!-- ADD PRODUCT FUNCTION -->
-<?php 
-if (isset($_POST['add_products'])){
-    $prodname = mysqli_real_escape_string($db, $_POST['prodname']);
-    $price = $_POST['price'];
-    $description = mysqli_real_escape_string($db, $_POST['desc']);
-    $type = $_POST['type'];
-    $brand = $_POST['brand'];
-    $series = $_POST['series'];
-
-    $stocks = $_POST['stocks'];
-    $dateUpd = new DateTime(date('m.d.y'));
-
-    // $tags
-
-    // $imageone
-    // $imagetwo
-    // $imagethree
-    // $imagefour
-    // $imagefive
-    // $imagesix
-    // $imageseven
-    // $imageeight
-    // $imagenine
-
-    $products_check_query = "SELECT * FROM Products
-    WHERE ProductName = $prodname AND ProductType = $type AND Brand = $brand AND Series = $series";
-    $result = mysqli_query($db, $products_check_query);
-    $prod = mysqli_fetch_assoc($result);
-    if ($prod){
-        array_push($errors, "Duplicate product detected.");
-    }
-
-    if(count($errors) == 0){
-        $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, Brand, Series)
-        VALUES ('$prodname', '$price', '$description', '$type', '$brand', '$series')";
-        $working = mysqli_query($db, $insert_query);
-
-        if($working){
-            $products_check_query = "SELECT * FROM Products
-            WHERE ProductName = $prodname AND ProductType = $type AND Brand = $brand AND Series = $series";
-            $result = mysqli_query($db, $products_check_query);
-            $prod = mysqli_fetch_assoc($result);
-            $prodID = $prod['ProductID'];
-
-            $insert_query = "INSERT INTO Inventory (Quantity, DateUpdated)
-            VALUES ('$stocks', '$dateUpd')";
-        }
-
-        header('location: index.php');
-    }
-
-}
-?>
