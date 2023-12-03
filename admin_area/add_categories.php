@@ -1,3 +1,74 @@
+<?php
+    include('../includes/server.php');
+
+    //ADD CATEGORIES FUNCTION
+    if (isset($_POST['add_categories'])){
+        //BRAND VALIDATION
+        $brandselection = $_POST['brand'];
+        if($brandselection == "addBrand"){
+            $brand = mysqli_real_escape_string($db, $_POST['newBrand']);
+            $brands_check_query = "SELECT * FROM Brands
+            WHERE Brand = '$brand'";
+            $results = mysqli_query($db, $brands_check_query);
+            $brnd = mysqli_fetch_assoc($results);
+            if ($brnd){
+                array_push($errors, "Duplicate brand detected.");
+            }
+
+            //INSERTION
+            if(count($errors) == 0){
+                $insert_query = "INSERT INTO Brands (Brand)
+                VALUES ('$brand')";
+                mysqli_query($db, $insert_query);
+
+                //SERIES VALIDATION
+                if(isset($_POST['series'])){
+                    $series = mysqli_real_escape_string($db, $_POST['series']);
+                    $brands_check_query = "SELECT * FROM Brands
+                    WHERE Brand = '$brand'";
+                    $results = mysqli_query($db, $brands_check_query);
+                    $brnd = mysqli_fetch_assoc($results);
+                    $brndID = $brnd['BrandID'];
+                    //INSERTION
+                    $insert_query = "INSERT INTO Series (BrandID, Series)
+                    VALUES ('$brndID', '$series')";
+                    mysqli_query($db, $insert_query);
+                }
+            }
+        }else{
+            $brand = mysqli_real_escape_string($db, $_POST['brand']);
+            //SERIES VALIDATION
+            if(isset($_POST['series'])){
+                $series = mysqli_real_escape_string($db, $_POST['series']);
+                
+                $series_check_query = "SELECT * FROM Series S
+                INNER JOIN Brands B ON S.BrandID = B.BrandID
+                WHERE S.Series = '$series' AND B.Brand = '$brand'";
+                $results = mysqli_query($db, $series_check_query);
+                $srs = mysqli_fetch_assoc($results);
+                if ($srs){
+                    array_push($errors, "Duplicate series detected.");
+                }
+
+                
+
+                //INSERTION
+                if(count($errors) == 0){
+                    $series_check_query = "SELECT * FROM Brands
+                    WHERE Brand = '$brand'";
+                    $results = mysqli_query($db, $series_check_query);
+                    $srs = mysqli_fetch_assoc($results);
+                    $brndID = $srs['BrandID'];
+                    $insert_query = "INSERT INTO Series (BrandID, Series)
+                    VALUES ('$brndID', '$series')";
+                    mysqli_query($db, $insert_query);
+                }
+            }
+        }
+
+        header('location: index.php');
+    }
+?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -22,33 +93,68 @@
 
         <section class="content">
             <div class="form_box">
-                <form class="categories_form" action="add_categories.php" method="post" enctype="multipart/form-data">
+                <form class="categories_form" action="add_categories.php" method="post">
+                    <?php include('../includes/errors.php') ?>
                     <label for="">Product Brand</label>
                     <select name="brand" id="brandDropdown" onchange="toggleBrandInput()">
-                        <option value="brand1">Brand 1</option>
-                        <option value="brand2">Brand 2</option>
+                        <option value="select">Select Brand</option>
+                        <?php
+                            $select_query = "SELECT Brand FROM Brands";
+                            $results = mysqli_query($db, $select_query);
+                            $row = mysqli_num_rows($results);
+                            if ($row > 0){
+                                while($data = mysqli_fetch_assoc($results)){
+                                    echo '<option value="' . $data['Brand'] . '">' . $data['Brand'] . '</option>';
+                                }
+                            }
+                        ?>
                         <option value="addBrand">Add Brand</option>
                     </select>
                     
                     <!-- Hidden input text box initially -->
-                    <input type="text" name="newBrand" id="newBrandInput" placeholder="Enter New Brand" style="display: none;">
-                    <label for="">Product Series</label><input type="text">
+                    <input type="text" name="newBrand" id="newBrandInput" placeholder="Add New Brand" style="display: none;">                    
+                    <div id="series">
+                        <label for="">Product Series</label><input type="text" name="series" id="seriesInput" placeholder="Add New Series">
+                    </div>
                     
-                    <button class="add_button" type="submit" name="add_products">Add Product</button>
+                    <button class="add_button" type="submit" name="add_categories">Add Category</button>
                 </form>
             </div>
 
             <script>
+                newBrandInput.style.display = "hidden";
+                newBrandInput.disabled = true;
+                seriesInput.disabled = true;
+                series.style.visibility = "hidden";
+
                 function toggleBrandInput() {
                     var brandDropdown = document.getElementById("brandDropdown");
+                    var brandselection = brandDropdown.value;
                     var newBrandInput = document.getElementById("newBrandInput");
+                    var seriesInput = document.getElementById("seriesInput");
+                    var series = document.getElementById("series");
 
-                    // Display input text box if "Add Brand" is selected, hide otherwise
-                    newBrandInput.style.display = brandDropdown.value === "addBrand" ? "block" : "none";
+                    if (brandselection == "addBrand") {
+                        // Display input text box if "Add Brand" is selected, hide otherwise
+                        newBrandInput.style.display = "block";
+                        newBrandInput.disabled = false;
+                        seriesInput.disabled = true;
+                        series.style.display = "none";  // Use 'none' to hide
+                    } else if (brandselection == "select") {
+                        newBrandInput.style.display = "none";
+                        newBrandInput.disabled = true;
+                        seriesInput.disabled = true;
+                        series.style.display = "none";
+                    } else {
+                        newBrandInput.style.display = "none";
+                        newBrandInput.disabled = true;
+                        series.style.display = "block";
+                        series.style.visibility = "visible";
+                        seriesInput.disabled = false;
+                    }
                 }
             </script>
         </section>
-
 
     </body>
 </html>
