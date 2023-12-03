@@ -82,7 +82,7 @@ class Header extends HTMLElement {
                 <ul class="nav_links">
                     <li><a href="products.php">PRODUCTS</a></li>
                     <li><a href="about.php">ABOUT</a></li>
-                    <li><a href="about.php">ORDERS</a></li>
+                    <li><a href="orders.php">ORDERS</a></li>
                 </ul>
             </nav>
             <a href="login.php" class="user">LOG IN</a>
