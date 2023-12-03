@@ -16,7 +16,7 @@
         <script src="components/header.js" type="text/javascript" defer></script>
     </head>
 
-    <body>
+    <body> 
         <header-component></header-component>
 
         <section id="order" class="order">
@@ -24,11 +24,29 @@
                 <h1>Orders</h1>
                 <div class="filters">
                     <form id="search" method="post" action="search.php">
-                        <input type="text" name="search" placeholder="SEARCH">
+                        <input type="text" name="searching" placeholder="SEARCH">
                     </form>
                     <a href="" class="button">Filter:</a>
                 </div>
             </div>
         </section>
+
+        <div class="order-box-contents">
+            <div class="column">
+                <p>Order #</p>
+            </div>
+            <div class="column">
+                <p>Date of Order</p>
+            </div>
+            <div class="column">
+                <p>Total</p>
+            </div>
+            <div class="column">
+                <p>Status</p>
+            </div>
+            <div class="column">
+                <p>Estimated Time of Arrival</p>
+            </div>
+        </div>
     </body>
 </html>
