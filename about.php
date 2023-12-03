@@ -27,6 +27,6 @@
         </section>
 
         <!-- FOOTER -->
-        <!-- <footer-component></footer-component> -->
+        <footer-component></footer-component>
     </body>
 </html>
