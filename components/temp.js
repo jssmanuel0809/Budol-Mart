@@ -1,5 +1,5 @@
 function toggleEditMode() {
-    const checkboxes = document.querySelectorAll('.checkboxes input[type="checkbox"]');
+    const checkboxes = document.querySelectorAll('.checkbox input[type="checkbox"]');
     const editBtn = document.getElementById('editBtn');
     const saveBtn = document.getElementById('saveBtn');
 
@@ -13,7 +13,7 @@ function toggleEditMode() {
 }
 
 function saveChanges() {
-    const checkboxes = document.querySelectorAll('.checkboxes input[type="checkbox"]');
+    const checkboxes = document.querySelectorAll('.checkbox input[type="checkbox"]');
     const editBtn = document.getElementById('editBtn');
     const saveBtn = document.getElementById('saveBtn');
     const statusElement = document.getElementById('status');

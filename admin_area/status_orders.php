@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Status | BUDOL Admin Portal</title>
+    <title>Status | BUDOL Admin</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- LINKS -->
@@ -11,9 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="your-styles.css"> <!-- Add your custom styles -->
 
-    <script src="../components/status.js" type="text/javascript" defer></script>
+    <script src="../components/temp.js" type="text/javascript" defer></script>
 </head>
 <body>
     <section class="box">
@@ -33,23 +32,27 @@
         </div>
         <div class="">
                 
-                <div class="container">
-                    <div class="checkboxes">
-                        <input type="checkbox" id="orderConfirmation" disabled>
-                        <label for="orderConfirmation">Order Confirmation</label>
-                        
-                        <input type="checkbox" id="shippedPacked" disabled>
-                        <label for="shippedPacked">Shipped/Packed</label>
-                        
-                        <input type="checkbox" id="complete" disabled>
-                        <label for="complete">Complete</label>
-
-                    <div class="button-container">
-                        <button id="editBtn" onclick="toggleEditMode()">Edit</button>
-                        <button id="saveBtn" onclick="saveChanges()" style="display: none;">Save</button>
-                    </div>
-                    </div>
+            <div class="container">
+                <div class="checkbox">
+                    <input type="checkbox" id="orderConfirmation" disabled>
+                    <label for="orderConfirmation">Order Confirmation</label>
                 </div>
+                
+                <div class="checkbox">
+                    <input type="checkbox" id="shippedPacked" disabled>
+                    <label for="shippedPacked">Shipped/Packed</label>
+                </div>
+                
+                <div class="checkbox">
+                    <input type="checkbox" id="complete" disabled>
+                    <label for="complete">Complete</label>
+                </div>
+
+                <div class="button-container">
+                    <button id="editBtn" onclick="toggleEditMode()">Edit</button>
+                    <button id="saveBtn" onclick="saveChanges()" style="display: none;">Save</button>
+                </div>
+            </div>
         </div>
     </section>
 </body>
