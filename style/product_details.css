@@ -75,10 +75,6 @@
     text-align: center;
 }
 
-.quantity span.num{
-    border-right: ;
-}
-
 .cart_button {
     margin-left: 20px;
 }
@@ -92,5 +88,13 @@
     font-size: 20px;
     padding: 2px 30px 5px;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.minus{
+    cursor: pointer;
+}
+
+.add{
     cursor: pointer;
 }

@@ -35,11 +35,11 @@
                     <h5>BRAND</h5>
                     <h3>PHP 100.00</h3>
                     <div class="add-cart">
-                        <div class="quantity">
-                            <span class="minus">-</span>
-                            <span class="num">01</span>
-                            <span class="add">+</span>
-                        </div>
+                    <div class="quantity">
+                        <span class="minus" onclick="decrement()">-</span>
+                        <span class="num" id="quantity">01</span>
+                        <span class="add" onclick="increment()">+</span>
+                    </div>
                         <div class="cart_button">
                         <button class="add_button" type="submit" name="add_cart">Add to Cart</button>
                         </div>
@@ -60,6 +60,28 @@
                 </div>
             </div>
         </section>
+
+        <script>
+            // JavaScript to handle quantity increment and decrement
+            var quantityElement = document.getElementById('quantity');
+            var currentQuantity = 1; // Initial quantity
+
+            function increment() {
+                currentQuantity++;
+                updateQuantity();
+            }
+
+            function decrement() {
+                if (currentQuantity > 1) {
+                    currentQuantity--;
+                    updateQuantity();
+                }
+            }
+
+            function updateQuantity() {
+                quantityElement.textContent = currentQuantity.toString().padStart(2, '0');
+            }
+        </script>
 
         <!-- FOOTER -->
         <!-- <footer-component></footer-component> -->
