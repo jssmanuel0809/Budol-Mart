@@ -1,0 +1,107 @@
+.form_box {
+    margin-top: -40px;
+    width: 80%;
+    color: #3D4C6C;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.user_form{
+    padding: 30px;
+    background-color: #E4E9F2;
+    border-radius: 20px;
+    border: 3px solid #3D4C6C;
+    box-shadow: rgba(0, 0, 0, 0.16) 2px 2px 4px;
+}
+.form_box label{
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 30px;
+}
+.form_box h2{
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    margin-left: 40px;
+}
+.form_box h3{
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+.content h1{
+    margin-top: 80px;
+    margin-left: 100px;
+    font-family: 'Righteous', sans-serif;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+input[type=text]{
+    padding: 5px 10px;
+    border: 2px solid #3D4C6C;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 10px;
+}
+.product-desc{
+    padding: 5px 10px;
+    border: 2px solid #3D4C6C;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 10px;
+    resize: none;
+}
+.user_form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 35px;
+    margin-left: 180px; 
+}
+label{
+    padding: 10px;
+}
+select{
+    padding: 5px 10px;
+    border: 2px solid #3D4C6C;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.save_button {
+    width: 100px;
+    margin-top: 15px; 
+    align-self: flex-end;
+    text-decoration: none;
+    border: 3px solid #95A9CB;
+    background-color: #E4E9F2;
+    color: #3D4C6C;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.edit_button {
+    width: 100px;
+    margin-top: 15px; 
+    align-self: flex-end;
+    text-decoration: none;
+    border: 3px solid #95A9CB;
+    background-color: #E4E9F2;
+    color: #3D4C6C;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
