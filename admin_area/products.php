@@ -1,3 +1,6 @@
+<?php 
+    //include('../includes/server.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -48,10 +51,46 @@
                         <th>Unlist</th>
                     </tr>
                     <!-- LAMAN NG TABLE -->
+
+                    <!-- PHP FUNCTION FOR DISPLAY (uncomment pag connected na sa server)-->
+                    <?php
+                        // $display_query = "SELECT P.ProductID, P.ProductName, PI.ImageURL, P.Price, I.Quantity, P.ProductStatus
+                        // FROM Products P
+                        // INNER JOIN Inventory I ON P.ProductID = I.ProductID
+                        // INNER JOIN ProductImages PI ON P.ProductID = PI.ProductID";
+                        // $results = mysqli_query($db, $display_query);
+                        // $row = mysqli_num_rows($results);
+                        // if ($row > 0){
+                        //     while($data = mysqli_fetch_assoc($results)){
+                        //         echo '
+                        //             <tr>
+                        //                 <td>' . $data['ProductID'] . '</td>
+                        //                 <td>' . $data['ProductName'] . '</td>
+                        //                 <td><img src="' . $data['ImageURL'] . '"></td>
+                        //                 <td>' . $data['Price'] . '</td>
+                        //                 <td>' . $data['Quantity'] . '</td>
+                        //                 <td>-</td>
+                        //                 <td>' . $data['ProductStatus'] . '</td>
+                        //                 <td>
+                        //                     <a class="icon-button">
+                        //                         <img src="product_images/edit.png" alt="Edit Icon" class="table-button">
+                        //                     </a>
+                        //                 </td>
+                        //                 <td>
+                        //                     <a class="icon-button" onclick="showUnlistPopup()">
+                        //                         <img src="product_images/trash.png" alt="Unlist Icon" class="table-button">
+                        //                     </a>
+                        //                 </td>
+                        //             </tr>';
+                        //     }
+                        // }
+                    ?>
+
+
                     <tr>
                         <td>1</td>
                         <td>POPMART Lilios</td>
-                        <td>1</td>
+                        <td><img src=""></td> <!-- paayos size ng img nito para uniform lahat ng products -->
                         <td>500</td>
                         <td>100</td>
                         <td>50</td>
