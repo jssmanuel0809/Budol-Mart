@@ -37,6 +37,7 @@ table {
 }
 
 thead th, tbody td {
+    font-size: 24px;
     padding: 12px;
     color: #FFFFFF;
     text-align: left;
@@ -44,6 +45,7 @@ thead th, tbody td {
 }
 
 thead th {
+    font-size: 24px;
     color: white;
 }
 

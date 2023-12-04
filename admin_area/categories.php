@@ -51,7 +51,7 @@
                         <td>Lilios</td>
                         <td>
                             <a class="icon-button" onclick="showUnlistPopup()">
-                                <img src="product_images/trash.png" alt="Unlist Icon" class="table-button">
+                                <img src="../images/trash.png" alt="Unlist Icon" class="table-button">
                             </a>
                         </td>
                     </tr>
@@ -86,6 +86,5 @@
                 unlistPopup.classList.remove("active");
             }
         </script>
-
     </body>
 </html>

@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>BUDOL</title>
+        <title>Products | BUDOL Admin</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
@@ -97,12 +97,12 @@
                         <td>true</td>
                         <td>
                             <a class="icon-button">
-                                <img src="product_images/edit.png" alt="Edit Icon" class="table-button">
+                                <img src="../images/edit.png" alt="Edit Icon" class="table-button">
                             </a>
                         </td>
                         <td>
                             <a class="icon-button" onclick="showUnlistPopup()">
-                                <img src="product_images/trash.png" alt="Unlist Icon" class="table-button">
+                                <img src="../images/trash.png" alt="Unlist Icon" class="table-button">
                             </a>
                         </td>
                     </tr>
