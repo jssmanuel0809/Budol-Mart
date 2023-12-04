@@ -26,22 +26,34 @@
         <!-- PRODUCTS -->
         <section id="profile" class="profile">
             <div class="product-box">
-                <div class="preview">
-                    <img src="images/placeholder.png" class="placeholder">
+            <div class="preview">
+                <img src="images/product_1.jpg" class="spotlight" id="spotlight">
+                <div class="image_slider" id="imageSlider" onclick="changeSpotlight(event)">
+                    <img src="images/product_1.jpg" class="product_images">
+                    <img src="images/product_2.jpg" class="product_images">
+                    <img src="images/product_3.jpg" class="product_images">
+                    <img src="images/product_4.jpg" class="product_images">
+                    <img src="images/product_5.jpg" class="product_images">
+                    <img src="images/product_6.jpg" class="product_images">
+                    <img src="images/product_1.jpg" class="product_images">
+                    <img src="images/product_2.jpg" class="product_images">
+                    <img src="images/product_3.jpg" class="product_images">
                 </div>
+            </div>
+
                 <div class="text_content">
                     <h2>Product Name</h2>
                     <h4>SERIES</h4>
                     <h5>BRAND</h5>
                     <h3>PHP 100.00</h3>
                     <div class="add-cart">
-                    <div class="quantity">
-                        <span class="minus" onclick="decrement()">-</span>
-                        <span class="num" id="quantity">01</span>
-                        <span class="add" onclick="increment()">+</span>
-                    </div>
+                        <div class="quantity">
+                            <span class="minus" onclick="decrement()">-</span>
+                            <span class="num" id="quantity">01</span>
+                            <span class="add" onclick="increment()">+</span>
+                        </div>
                         <div class="cart_button">
-                        <button class="add_button" type="submit" name="add_cart">Add to Cart</button>
+                            <button class="add_button" type="submit" name="add_cart">Add to Cart</button>
                         </div>
                     </div>
                     <h4>DETAILS</h4>
@@ -80,6 +92,20 @@
 
             function updateQuantity() {
                 quantityElement.textContent = currentQuantity.toString().padStart(2, '0');
+            }
+
+            function changeSpotlight(event) {
+                if (event.target.tagName === 'IMG') {
+                    // Remove 'selected' class from all images
+                    var images = document.querySelectorAll('.product_images');
+                    images.forEach(image => image.classList.remove('selected'));
+
+                    // Set 'selected' class for the clicked image
+                    event.target.classList.add('selected');
+
+                    var spotlightImage = document.getElementById('spotlight');
+                    spotlightImage.src = event.target.src;
+                }
             }
         </script>
 
