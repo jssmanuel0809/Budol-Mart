@@ -60,15 +60,27 @@
     color: #FCF1E6;
     border-radius: 20px;
 }
-.listing h3 {
+
+/* changed from h3 & p to input boxes for php */
+input[name="prodname"] {
+    background-color: transparent;
+    border: none;
+    color: #FCF1E6;
     font-family: 'Righteous', sans-serif;
     font-weight: bold;
     font-size: 23px;
     letter-spacing: 2px;
 }
-.listing p {
+input[name="price"] {
+    background-color: transparent;
+    border: none;
+    color: #FCF1E6;
     font-family: 'Righteous', sans-serif;
     font-size: 18px;
+}
+.listing .productimg{
+    width: 200px;
+    height: 200px;
 }
 .details-button {
     display: inline-block;

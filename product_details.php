@@ -1,3 +1,6 @@
+<?php 
+//     include('includes/server.php');
+// ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,6 +29,65 @@
         <!-- PRODUCTS -->
         <section id="profile" class="profile">
             <div class="product-box">
+                <!-- PRODUCT DETAILS PHP CODE -->
+            <?php
+            // if (isset($_POST['get_prod'])){
+            //     print_r("working");
+            //     $selectedprod = mysqli_real_escape_string($db, $_POST['prodname']);
+            //     print_r("$selectedprod");
+        
+            //     $display_query = "SELECT P.ProductName, P.Price, P.ProductDescription, B.Brand
+            //     FROM Products P
+            //     JOIN Brands B ON B.BrandID = P.BrandID
+            //     WHERE P.ProductName='$selectedprod'";
+            //     print_r($display_query);
+            //     $result = mysqli_query($db, $display_query);
+            //     print_r("<br>");
+            //     print_r($result);
+            //     $data = mysqli_fetch_assoc($result);
+            //     print_r("<br>");
+            //     print_r($data);
+            //     if($data){
+            //         print_r("data working");
+            //     }
+
+            //     echo '
+            //     <div class="preview">
+            //         <img src="admin_area/' . $data['ImageURL'] . '" class="spotlight" id="spotlight">
+            //         <div class="image_slider" id="imageSlider" onclick="changeSpotlight(event)">
+            //             <img src="admin_area/' . $data['ImageURL'] . '" class="product_images">
+            //             <img src="" class="product_images">
+            //             <img src="" class="product_images">
+            //             <img src="" class="product_images">
+            //             <img src="" class="product_images">
+            //             <img src="" class="product_images">
+            //             <img src="" class="product_images">
+            //             <img src="" class="product_images">
+            //             <img src="" class="product_images">
+            //         </div>
+            //     </div>
+
+            //     <div class="text_content">
+            //         <h2>' . $data['ProductName'] . '</h2>
+            //         <h4>SERIES</h4>
+            //         <h5>BRAND</h5>
+            //         <h3>PHP ' . $data['Price'] . '</h3>
+            //         <div class="add-cart">
+            //             <div class="quantity">
+            //                 <span class="minus" onclick="decrement()">-</span>
+            //                 <span class="num" id="quantity">01</span>
+            //                 <span class="add" onclick="increment()">+</span>
+            //             </div>
+            //             <div class="cart_button">
+            //                 <button class="add_button" type="submit" name="add_cart">Add to Cart</button>
+            //             </div>
+            //         </div>
+            //         <h4>DETAILS</h4>
+            //         <h6>' . $data['ProductDescription'] . '</h6>
+            //     </div>
+            //     ';
+            // }
+            ?>
             <div class="preview">
                 <img src="images/product_1.jpg" class="spotlight" id="spotlight">
                 <div class="image_slider" id="imageSlider" onclick="changeSpotlight(event)">
@@ -41,35 +103,35 @@
                 </div>
             </div>
 
-                <div class="text_content">
-                    <h2>Product Name</h2>
-                    <h4>SERIES</h4>
-                    <h5>BRAND</h5>
-                    <h3>PHP 100.00</h3>
-                    <div class="add-cart">
-                        <div class="quantity">
-                            <span class="minus" onclick="decrement()">-</span>
-                            <span class="num" id="quantity">01</span>
-                            <span class="add" onclick="increment()">+</span>
-                        </div>
-                        <div class="cart_button">
-                            <button class="add_button" type="submit" name="add_cart">Add to Cart</button>
-                        </div>
+            <div class="text_content">
+                <h2>Product Name</h2>
+                <h4>SERIES</h4>
+                <h5>BRAND</h5>
+                <h3>PHP 100.00</h3>
+                <div class="add-cart">
+                    <div class="quantity">
+                        <span class="minus" onclick="decrement()">-</span>
+                        <span class="num" id="quantity">01</span>
+                        <span class="add" onclick="increment()">+</span>
                     </div>
-                    <h4>DETAILS</h4>
-                    <h6>I can't lie, it feels nice that you're calling<br>
-                    You sound sad and alone, and you're stalling<br>
-                    And for once, I don't care about what you want<br>
-                    As long as we keep talking (as long as we're talking)<br>
-                    I mean, you gotta admit the history's kind of unmatched<br>
-                    Asian Calvinism, we made it out of that<br>
-                    Well, whether we're free of will or predestined<br>
-                    Clearly, I've not learned my lesson even now<br>
-                    Hope He doesn't strike me down (strike me down)<br>
-                    The Goo Goo Dolls are dead to me<br>
-                    The way you should be too but you bring them up<br>
-                    Along with how much I fucking miss you</h6>
+                    <div class="cart_button">
+                        <button class="add_button" type="submit" name="add_cart">Add to Cart</button>
+                    </div>
                 </div>
+                <h4>DETAILS</h4>
+                <h6>I can't lie, it feels nice that you're calling<br>
+                You sound sad and alone, and you're stalling<br>
+                And for once, I don't care about what you want<br>
+                As long as we keep talking (as long as we're talking)<br>
+                I mean, you gotta admit the history's kind of unmatched<br>
+                Asian Calvinism, we made it out of that<br>
+                Well, whether we're free of will or predestined<br>
+                Clearly, I've not learned my lesson even now<br>
+                Hope He doesn't strike me down (strike me down)<br>
+                The Goo Goo Dolls are dead to me<br>
+                The way you should be too but you bring them up<br>
+                Along with how much I fucking miss you</h6>
+            </div>
             </div>
         </section>
 
