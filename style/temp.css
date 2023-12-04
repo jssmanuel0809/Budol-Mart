@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Dongle', sans-serif;
+}
+
+body {
+    background-color: #95A9CB;
+    color: #3D4C6C;
+}
+
+.box {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #FCF1E6;
+    border-radius: 10px;
+}
+
+.box-contents {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 30px;
+}
+
+.start h1 {
+    font-size: 24px; /* Adjust the font size as needed */
+}
+
+.end {
+    display: flex;
+    align-items: center;
+}
+
+.button-container button {
+    padding: 10px;
+    font-size: 14px;
+    margin-right: 10px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #45a049;
+}
+
+.button-container #saveBtn {
+    background-color: #008CBA; /* Blue */
+}
+
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.checkboxes input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.checkboxes label {
+    font-size: 14px;
+}
+
+#status {
+    font-size: 18px; /* Adjust the font size as needed */
+}
+.container{
+    display: flex;
+}
