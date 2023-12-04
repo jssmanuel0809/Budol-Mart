@@ -1,0 +1,96 @@
+.product-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.preview {
+    flex: 1;
+}
+
+.text_content {
+    flex: 1;
+    padding: 0 20px; 
+}
+
+.preview img {
+    width: 60%;
+    height: auto;
+    margin-left: 150px;
+}
+
+.text_content h2{
+    font-family: 'Righteous', sans-serif;
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.text_content h4{
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 25px;
+}
+
+.text_content h5{
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.text_content h3{
+    font-family: 'Righteous', sans-serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.text_content h6{
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.add-cart {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px; 
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.quantity span{
+    width: 100%;
+    text-align: center;
+}
+
+.quantity span.num{
+    border-right: ;
+}
+
+.cart_button {
+    margin-left: 20px;
+}
+
+.add_button{
+    border: 3px solid #95A9CB;
+    background-color: #E4E9F2;
+    color: #3D4C6C;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    padding: 2px 30px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
