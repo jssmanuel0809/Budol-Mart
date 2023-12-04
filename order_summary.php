@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
         <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="style/cart.css">
+        <link rel="stylesheet" href="style/order_summary.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
         <!-- PRODUCTS -->
         <section id="profile" class="profile">
             <div class="product-box">
-            <div class="text_content">
+                <div class="text_content">
                     <h1>Order Summary</h1>
                     <table class="order-table">
                         <!-- HEADER  -->
@@ -34,8 +34,6 @@
                             <th>Image</th>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Unlist</th>
                         </tr>
                         <!-- LAMAN NG TABLE -->
                         <tr>
@@ -44,18 +42,6 @@
                             </td>
                             <td>Product Name</td>
                             <td>P200</td>
-                            <td>
-                                <div class="quantity">
-                                    <span class="minus" onclick="decrement()">-</span>
-                                    <span class="num" id="quantity">01</span>
-                                    <span class="add" onclick="increment()">+</span>
-                                </div>
-                            </td>
-                            <td>
-                                <a class="icon-button" onclick="removeProduct(this)">
-                                    <img src="images/trash.png" alt="Remove Icon" class="table-button">
-                                </a>
-                            </td>
                         </tr>
                     </table>
                     <div class="total_summary">
@@ -64,42 +50,55 @@
                                 <td>Subtotal</td>
                                 <td>P200</td>
                             </tr>
+                            <tr>
+                                <td>Shipping</td>
+                                <td>P200</td>
+                            </tr>
                         </table>
                     </div>
-                    <div class="cart_button">
-                            <button class="add_button" type="submit" name="add_cart">Proceed to Checkout</button>
+                    <div class="overall_total">
+                        <table>
+                            <tr>
+                                <td>Total</td>
+                                <td class="price">P200</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
+
+            <div class="product-box">
+                <div class="text_content">
+                    <h1>Customer Information</h1>
+                    <table class="customer_info">
+                        <!-- LAMAN NG TABLE -->
+                        <tr>
+                            <th>SHIPPING ADDRESS</th>
+                            <th>BILLING ADDRESS</th>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>Name</td>
+                        </tr>
+                        <tr>
+                            <td>Address Line 1</td>
+                            <td>Address Line 1</td>
+                        </tr>
+                        <tr>
+                            <td>Address Line 2</td>
+                            <td>Address Line 2</td>
+                        </tr>
+                        <tr>
+                            <td>Contact #</td>
+                            <td>Contact #</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping Method</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </section>
-
-        <script>
-            // JavaScript to handle quantity increment and decrement
-            var quantityElement = document.getElementById('quantity');
-            var currentQuantity = 1; // Initial quantity
-
-            function increment() {
-                currentQuantity++;
-                updateQuantity();
-            }
-
-            function decrement() {
-                if (currentQuantity > 1) {
-                    currentQuantity--;
-                    updateQuantity();
-                }
-            }
-
-            function updateQuantity() {
-                quantityElement.textContent = currentQuantity.toString().padStart(2, '0');
-            }
-
-            function removeProduct(element) {
-                var row = element.closest('tr');
-                row.remove();
-            }
-
-        </script>
 
         <!-- FOOTER -->
         <!-- <footer-component></footer-component> -->

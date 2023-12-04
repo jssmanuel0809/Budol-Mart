@@ -46,7 +46,6 @@
     font-size: 20px;
     font-weight: 800;
     font-family: 'Darker Grotesque', sans-serif;
-    border-bottom: 1px solid #3D4C6C;
 }
 
 .summary h1{
@@ -73,68 +72,23 @@
     text-align: right; 
 }
 
-.quantity {
-    margin: 20px 0;
-    display: flex;
-    height: 40px;
-    min-width: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    border-radius: 10px;
-    font-size: 30px;
+.order-table td:last-child{
+    text-align: right;
+}
+.order-table th:last-child{
+    text-align: right;
 }
 
-.quantity span{
-    width: 100%;
-    text-align: center;
-}
-
-.minus{
-    cursor: pointer;
-}
-
-.add{
-    cursor: pointer;
-}
-
-.icon-button{
-    text-decoration: none;
-    display: inline-block;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    outline: none;
-}
-
-.table-button{
-    width: 20px;
-    height: 20px;
-}
-
-.summary h1{
-    font-family: 'Darker Grotesque', sans-serif;
-    font-weight: 800;
-    font-size: 25px;
-}
-
-.summary h2{
-    font-family: 'Darker Grotesque', sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-}
-
-.total_summary {
+.total_summary{
     margin-top: 10px;
     display: flex;
     justify-content: flex-end;
 }
 
-.total_summary table {
+.total_summary table{
     width: 100%;
     max-width: 350px;
+    border-top: 2px solid #3D4C6C;
 }
 
 .total_summary td{
@@ -142,27 +96,63 @@
     font-weight: 700;
     font-size: 20px;
 }
-td:last-child{
+.total_summary td:last-child{
     text-align: right;
 }
-th:last-child{
+.total_summary th:last-child{
     text-align: right;
 }
 
-.cart_button{
-        margin-top: 20px;
-        display: flex;
-        justify-content: flex-end;
+.overall_total{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
 }
 
-.add_button {
-    border: 3px solid #95A9CB;
-    background-color: #E4E9F2;
-    color: #3D4C6C;
+.overall_total table{
+    width: 100%;
+    max-width: 350px;
+    border-top: 2px solid #3D4C6C;
+}
+
+.overall_total td{
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+.overall_total td.price{
     font-family: 'Darker Grotesque', sans-serif;
     font-weight: 800;
+    font-size: 30px;
+}
+.overall_total td:last-child{
+    text-align: right;
+}
+.overall_total th:last-child{
+    text-align: right;
+}
+
+.customer_info {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+}
+
+.customer_info th {
+    color: #3D4C6C;
+    padding: 10px 40px;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 700;
     font-size: 20px;
-    padding: 2px 90px 5px;
-    border-radius: 10px;
-    cursor: pointer;
+    text-align: left;
+    border-top: 2px solid #3D4C6C;
+}
+
+.customer_info td {
+    padding: 0 40px;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Darker Grotesque', sans-serif;
 }
