@@ -1,0 +1,81 @@
+body {
+    display: flex;
+    padding: 5% 0px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .box {
+    width: 150px;
+    height: 100px;
+    background-color: lightblue;
+    margin: 10px;
+    cursor: pointer;
+    padding: 5px 15px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  
+  .total {
+    display: none;
+  }
+  
+  .number {
+    font-size: 20px;
+  }
+  
+  .percentage {
+    font-size: 12px;
+  }
+
+  /* DYNAMIC */
+.order-box-contents {
+    width: 75%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #95A9CB; /* Set your desired background color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead th, tbody td {
+    font-size: 24px;
+    padding: 12px;
+    color: #FFFFFF;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Add lines between rows */
+}
+
+thead th {
+    font-size: 24px;
+    color: white;
+}
+
+button {
+    padding: 0px 20px;
+    background-color: #95A9CB; /* Set your desired button background color */
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+button:hover {
+    background-color: #aec6f0; /* Set your desired button background color on hover */
+}
+.container{
+    display: flex;
+    width: 100%;
+}
+.toggle{
+    display: flex;
+    flex-direction: column;
+}
