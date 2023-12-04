@@ -1,5 +1,43 @@
-.box{
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Dongle', sans-serif;
+}
+
+body {
+    background-color: #95A9CB;
+    color: #3D4C6C;
+}
+
+.box {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #FCF1E6; /* Set your desired background color */  
+    border-radius: 10px;
+}
+
+.box-contents {
     display: flex;
-    width: 1021px;
-    height: 300px;
+    justify-content: space-between; /* Adjusted this line */
+    align-items: center;
+    margin: 0px 30px;
+}
+
+.upper {
+    display: flex;
+    font-weight: bold;
+    flex-direction: row;
+    align-items: center;
+}
+
+.upper h1 {
+    font-size: 64px;
+    margin-right: 5px;
+}
+
+.upper h3 {
+    font-size: 40px;
 }
