@@ -60,9 +60,7 @@ class Header extends HTMLElement {
                 .nav_links li {
                     padding: 5px 50px;
                 }
-                .nav_links li:nth-child(3) {
-                    display: ${currentPath.includes('index.php') ? 'none' : 'block'};
-                }
+                
   
                 .header-content .user {
                     background-color: #F6B185;
@@ -90,6 +88,7 @@ class Header extends HTMLElement {
                         <li><a href="products.php">PRODUCTS</a></li>
                         <li><a href="about.php">ABOUT</a></li>
                         <li><a href="orders.php">ORDERS</a></li>
+                        <li><a href="cart.php">C</a></li>
                     </ul>
                 </nav>
                 <a href="login.php" class="user">LOG IN</a>

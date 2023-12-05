@@ -68,24 +68,28 @@
                         </div>
                     </div>
 
-                    <div class="text_content">
-                        <h2>' . $data['ProductName'] . '</h2>
-                        <h4>' . $data['Series'] . '</h4>
-                        <h5>' . $data['Brand'] . '</h5>
-                        <h3>PHP ' . $data['Price'] . '</h3>
-                        <div class="add-cart">
-                            <div class="quantity">
-                                <span class="minus" onclick="decrement()">-</span>
-                                <span class="num" id="quantity">01</span>
-                                <span class="add" onclick="increment()">+</span>
+                    <form method="post" action="includes/add_cart.php">
+                        <div class="text_content">
+                            <input type="text" name="prodid" value="' . $data['ProductID'] . '" readonly hidden>
+                            <input type="text" name="prodname" value="' . $data['ProductName'] . '" readonly>
+                            <h4>' . $data['Series'] . '</h4>
+                            <h5>' . $data['Brand'] . '</h5>
+                            <h3>PHP ' . $data['Price'] . '</h3>
+                            <input type="hidden" name="product_quantity" id="product_quantity" value="1">
+                            <div class="add-cart">
+                                <div class="quantity">
+                                    <span class="minus" onclick="decrement()">-</span>
+                                    <span class="num" id="quantity">01</span>
+                                    <span class="add" onclick="increment()">+</span>
+                                </div>
+                                <div class="cart_button">
+                                    <button class="add_button" type="submit" name="get_cart">Add to Cart</button>
+                                </div>
                             </div>
-                            <div class="cart_button">
-                                <button class="add_button" type="submit" name="add_cart">Add to Cart</button>
-                            </div>
+                            <h4>DETAILS</h4>
+                            <h6>' . $data['ProductDescription'] . '</h6>
                         </div>
-                        <h4>DETAILS</h4>
-                        <h6>' . $data['ProductDescription'] . '</h6>
-                    </div>
+                    </form>
                     ';
             }
             ?>
@@ -97,20 +101,44 @@
             var quantityElement = document.getElementById('quantity');
             var currentQuantity = 1; // Initial quantity
 
-            function increment() {
-                currentQuantity++;
-                updateQuantity();
-            }
+            // function increment() {
+            //     currentQuantity++;
+            //     updateQuantity();
+            // }
+
+            // function decrement() {
+            //     if (currentQuantity > 1) {
+            //         currentQuantity--;
+            //         updateQuantity();
+            //     }
+            // }
+
+            // function updateQuantity() {
+            //     quantityElement.textContent = currentQuantity.toString().padStart(2, '0');
+            // }
 
             function decrement() {
-                if (currentQuantity > 1) {
-                    currentQuantity--;
-                    updateQuantity();
+                var quantityElement = document.getElementById('quantity');
+                var hiddenInput = document.getElementById('product_quantity');
+
+                // Decrease the quantity
+                var quantityValue = parseInt(quantityElement.innerText, 10);
+                if (quantityValue > 1) {
+                    quantityValue--;
+                    quantityElement.innerText = quantityValue;
+                    hiddenInput.value = quantityValue; // Update the hidden input
                 }
             }
 
-            function updateQuantity() {
-                quantityElement.textContent = currentQuantity.toString().padStart(2, '0');
+            function increment() {
+                var quantityElement = document.getElementById('quantity');
+                var hiddenInput = document.getElementById('product_quantity');
+
+                // Increase the quantity
+                var quantityValue = parseInt(quantityElement.innerText, 10);
+                quantityValue++;
+                quantityElement.innerText = quantityValue;
+                hiddenInput.value = quantityValue; // Update the hidden input
             }
 
             function changeSpotlight(event) {

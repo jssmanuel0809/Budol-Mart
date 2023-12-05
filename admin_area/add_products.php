@@ -3,7 +3,6 @@ include('../includes/server.php');
 
 //ADD PRODUCTS FUNCTION
 if (isset($_POST['add_products'])){
-    print_r("form submitted");
     //VARIABLES
     $imgext_val = "false";
     $prodname = mysqli_real_escape_string($db, $_POST['prodname']);
@@ -19,7 +18,6 @@ if (isset($_POST['add_products'])){
     $tagsInput = mysqli_real_escape_string($db, $_POST['tags']);
     $tagsArray = explode(',', $tagsInput);
 
-    print_r($prodname . $price. $description . $type . $status);
 
     //IMAGE VALIDATION
     // if (isset($_FILES['images'])){
@@ -52,28 +50,23 @@ if (isset($_POST['add_products'])){
 
     //INSERTION
     if(count($errors) == 0){
-        print_r("0 errors");
         $brands_query = "SELECT * FROM Brands
         WHERE Brand = '$brand'";
         $result = mysqli_query($db, $brands_query);
         $brnd = mysqli_fetch_assoc($result);
         $brndID = $brnd['BrandID'];
-        print_r($brndID);
 
         $series_query = "SELECT SeriesID FROM Series S
         WHERE Series = '$series' AND BrandID = '$brndID'";
         $result = mysqli_query($db, $series_query);
         $srs = mysqli_fetch_assoc($result);
         $srsID = $srs['SeriesID'];
-        print_r($srsID);
             
         $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, BrandID, SeriesID, ProductStatus)
         VALUES ('$prodname', '$price', '$description', '$type', '$brndID', '$srsID', '$status')";
         $working = mysqli_query($db, $insert_query);
-        print_r($insert_query);
 
         if($working){
-            print_r("insert products");
             $products_check_query = "SELECT * FROM Products
             WHERE ProductName = '$prodname' AND ProductType = '$type'";
             $result = mysqli_query($db, $products_check_query);

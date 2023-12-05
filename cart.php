@@ -1,3 +1,6 @@
+<?php 
+    include('includes/server.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -38,7 +41,46 @@
                             <th>Unlist</th>
                         </tr>
                         <!-- LAMAN NG TABLE -->
-                        <tr>
+                        <?php
+                            $display_query = "SELECT * FROM ShoppingCart";
+                            $results = mysqli_query($db, $display_query);
+                            $row = mysqli_num_rows($results);
+                            if ($row > 0){
+                                while($data = mysqli_fetch_assoc($results)){
+                                    $prodid = $data['ProductID'];
+                                    $qty = $data['Quantity'];
+                                    $product_query = "SELECT PI.ImageURL, P.ProductName, (P.Price * SC.Quantity) AS 'TOTAL'
+                                    FROM Products P
+                                    INNER JOIN ProductImages PI ON PI.ProductID = P.ProductID
+                                    INNER JOIN ShoppingCart SC ON P.ProductID = SC.ProductID
+                                    WHERE P.ProductID = '$prodid'";
+                                    $info = mysqli_query($db, $product_query);
+                                    $cart_info = mysqli_fetch_assoc($info);
+                                    echo '
+                                    <tr>
+                                        <td>
+                                            <img src="admin_area/'.$cart_info['ImageURL'].'" alt="Product Icon" class="product-img">
+                                        </td>
+                                        <td>'.$cart_info['ProductName'].'</td>
+                                        <td>P'.$cart_info['TOTAL'].'</td>
+                                        <td>
+                                            <div class="quantity">
+                                                <span class="minus" onclick="decrement()">-</span>
+                                                <span class="num" id="quantity">'.$qty.'</span>
+                                                <span class="add" onclick="increment()">+</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a class="icon-button" onclick="removeProduct(this)">
+                                                <img src="images/trash.png" alt="Remove Icon" class="table-button">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    ';
+                                }
+                            }
+                        ?>
+                        <!-- <tr>
                             <td>
                                 <img src="images/placeholder.png" alt="Product Icon" class="product-img">
                             </td>
@@ -56,7 +98,7 @@
                                     <img src="images/trash.png" alt="Remove Icon" class="table-button">
                                 </a>
                             </td>
-                        </tr>
+                        </tr> -->
                     </table>
                     <div class="total_summary">
                         <table>

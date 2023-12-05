@@ -50,7 +50,6 @@
                         FROM Products P
                         INNER JOIN Inventory I ON P.ProductID = I.ProductID";
                         $results = mysqli_query($db, $display_query);
-                        $results = mysqli_query($db, $display_query);
                         $row = mysqli_num_rows($results);
                         if ($row > 0){
                             while($data = mysqli_fetch_assoc($results)){

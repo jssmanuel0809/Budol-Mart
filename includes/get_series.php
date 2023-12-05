@@ -3,6 +3,7 @@ include('../includes/server.php');
 
 if (isset($_POST['brand'])) {
     $selectedBrand = mysqli_real_escape_string($db, $_POST['brand']);
+    $selectedSeries = mysqli_real_escape_string($db, $_POST['series']);
 
     // Fetch series options based on the selected brand
     $query = "SELECT Series
@@ -13,7 +14,8 @@ if (isset($_POST['brand'])) {
 
     if ($result) {
         while ($data = mysqli_fetch_assoc($result)) {
-            echo '<option value="' . $data['Series'] . '">' . $data['Series'] . '</option>';
+            $selected = ($selectedSeries == $data['Series']) ? 'selected' : '';
+            echo '<option value="' . $data['Series'] . '" ' . $selected . '>' . $data['Series'] . '</option>';
         }
     }
 }

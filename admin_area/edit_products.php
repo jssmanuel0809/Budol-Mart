@@ -16,12 +16,37 @@
         $result = mysqli_query($db, $product_details_query);
         $data = mysqli_fetch_assoc($result);
 
+        $type = $data['ProductType'];
+        $brand = $data['Brand'];
+        $series = $data['Series'];
+
         $product_images_query = "SELECT PI.ImageURL
         FROM ProductImages PI
         INNER JOIN Products P ON PI.ProductID = P.ProductID
         WHERE P.ProductID = '$selectedid'";
         $images = mysqli_query($db, $product_images_query);
         $img = mysqli_fetch_assoc($images);
+    }
+
+    if (isset($_POST['edit_products'])){
+        
+        $selectedid = mysqli_real_escape_string($db, $_POST['prodid']);
+        $prodname = mysqli_real_escape_string($db, $_POST['prodname']);
+        $price = $_POST['price'];
+        $description = mysqli_real_escape_string($db, $_POST['desc']);
+        $stocks = $_POST['stocks'];
+
+        $update_query = "UPDATE Products
+        SET ProductName = '$prodname', Price = '$price', ProductDescription = '$description'
+        WHERE ProductID = '$selectedid'";
+        mysqli_query($db, $update_query);
+
+        $update_query = "UPDATE Inventory
+        SET Quantity = '$stocks'
+        WHERE ProductID = '$selectedid'";
+        mysqli_query($db, $update_query);
+
+        header('location: products.php');
     }
 ?>
 <!DOCTYPE html>
@@ -54,15 +79,16 @@
             <div class="form_box">
                 <form class="products_form" action="edit_products.php" method="post" enctype="multipart/form-data">
                     <?php //include('../includes/errors.php') ?>
+                    <input type="text" name="prodid" value="<?php echo $selectedid ?>" readonly hidden>
                     <label for="">Product Name</label><input type="text" name="prodname" value="<?php echo $data['ProductName'] ?>" required>
                     <label for="">Product Price</label><input type="text" name="price" value="<?php echo $data['Price'] ?>"  required>
-                    <label for="">Product Stocks</label><input type="text" name="stocks" required>
+                    <label for="">Product Stocks</label><input type="text" name="stocks" value="<?php echo $data['Quantity'] ?>" required>
                     <label for="">Product Description</label><textarea rows="10" cols="50" class="product-desc" name="desc"  required><?php echo $data['ProductDescription'] ?></textarea>
-                    <label for="">Product Tags</label><input type="text" name="tags">
+                    <!-- <label for="">Product Tags</label><input type="text" name="tags"> -->
                     <label for="">Product Type</label>
-                        <select name="type">
-                            <option value="Regular">Regular</option>
-                            <option value="Limited">Limited</option>
+                        <select name="type" id="typeDropdown">
+                            <option value="Regular" <?php echo ($type == 'Regular') ? 'selected' : ''; ?>>Regular</option>
+                            <option value="Limited" <?php echo ($type == 'Limited') ? 'selected' : ''; ?>>Limited</option>
                         </select>
                     <label for="">Product Brand</label>
                         <select name="brand" id="brandDropdown">
@@ -72,7 +98,8 @@
                             $row = mysqli_num_rows($results);
                             if ($row > 0){
                                 while($data = mysqli_fetch_assoc($results)){
-                                    echo '<option value="' . $data['Brand'] . '">' . $data['Brand'] . '</option>';
+                                    $selected = ($brand == $data['Brand']) ? 'selected' : '';
+                                    echo '<option value="' . $data['Brand'] . '" ' . $selected . '>' . $data['Brand'] . '</option>';
                                 }
                             }
                             ?>
@@ -80,8 +107,21 @@
                     <label for="">Product Series</label>
                         <select name="series" id="seriesDropdown">
                         </select>
-                    <div class="product-image">
-                        <label for="">Product Image 1</label><input type="file" name="imageone" value="<?php $img['ImageURL']?>">
+                    <?php
+                        $product_images_query = "SELECT ImageURL
+                        FROM ProductImages
+                        WHERE ProductID = '$selectedid'";
+                        $images = mysqli_query($db, $product_images_query);
+                        while ($img = mysqli_fetch_assoc($images)){
+                            echo '
+                                <div class="remove-images-button">
+                                    <img src="' . $img['ImageURL'] . '" class="product_images">
+                                    <button class="unlist" type="button" onclick="removeImage(\'' . $img['ImageURL'] . '\')">Remove Image</button>
+                                </div>';
+                        }
+                    ?>
+                    <!-- <div class="product-image">
+                        <label for="">Product Image 1</label><input type="file" name="imageone" value="<?php //$img['ImageURL']?>">
                         <label for="">Product Image 4</label><input type="file" accept="image/*">
                         <label for="">Product Image 7</label><input type="file" accept="image/*">
                     </div>
@@ -94,7 +134,7 @@
                         <label for="">Product Image 3</label><input type="file" accept="image/*">
                         <label for="">Product Image 6</label><input type="file" accept="image/*">
                         <label for="">Product Image 9</label><input type="file" accept="image/*">
-                    </div>
+                    </div> -->
                     <button class="add_button" type="submit" name="edit_products">Edit Product</button>
                 </form>
             </div>
@@ -110,7 +150,8 @@
                     $.ajax({
                         url: '../includes/get_series.php',  // Replace with the actual PHP script to fetch series
                         type: 'POST',
-                        data: { brand: selectedBrand },
+                        data: { brand: selectedBrand,
+                            series: '<?php echo $series; ?>' },
                         success: function (response) {
                             // Update the series dropdown with new options
                             $("#seriesDropdown").html(response);
@@ -127,6 +168,19 @@
                 // Initial population of series dropdown when the page loads
                 populateSeriesDropdown();
             });
+
+            function removeImage(imageURL) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'remove_image.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // Handle the response data if needed
+                        console.log(xhr.responseText);
+                    }
+                };
+                xhr.send('imageURL=' + encodeURIComponent(imageURL));
+            }
         </script>
 
     </body>

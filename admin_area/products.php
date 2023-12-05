@@ -86,7 +86,7 @@
                                             </td>
                                             <td>
                                                 <button class="icon-button" type="button" value="Submit" name="get_prod" href="product_details.php" class="details-button" onclick="showUnlistPopup()">
-                                                    <img src="../images/trash.png" alt="Unlist Icon" class="table-button">
+                                                    <img src="../images/trash.png" alt="Unlist Icon" class="table-button" name="unlist_process">
                                                 </button>
                                             </td>
                                         </form>
@@ -104,8 +104,6 @@
             <div class="unlist-popup" id="unlistPopup">
                 <h2>Are you sure you want to<br>unlist this product?</h2>
                 <form action="../includes/unlist_product.php" method="post">
-                    <input type="text" name="prodid" value="' . $data['ProductID'] . '" readonly hidden>
-                    <input type="text" name="prodname" value="' . $data['ProductName'] . '" readonly hidden>
                     <div class="popup-buttons">
                         <button class="cancel" onclick="hideUnlistPopup()">Cancel</button>
                         <button class="unlist" type="submit" name="get_prod">Unlist</button>

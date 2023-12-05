@@ -46,10 +46,13 @@
     display: block;
 }
 
-.text_content h2{
+input[name="prodname"]{
+    background-color: transparent;
+    border: none;
     font-family: 'Righteous', sans-serif;
     font-size: 40px;
     letter-spacing: 2px;
+    color: #3D4C6C;
 }
 
 .text_content h4{
