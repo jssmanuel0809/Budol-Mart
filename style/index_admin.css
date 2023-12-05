@@ -8,7 +8,8 @@ body {
   .box {
     width: 150px;
     height: 100px;
-    background-color: lightblue;
+    background-color: #C8CCD8;
+    border-radius: 10px;
     margin: 10px;
     cursor: pointer;
     padding: 5px 15px;
