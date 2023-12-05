@@ -29,7 +29,7 @@
         <section class="content">
             <div class="admin-buttons">
                 <a href="add_products.php"><button>Add Products</button></a>
-                <!-- <a href="products.php"><button>View Products</button></a> -->
+                <a href="products.php"><button>View Products</button></a>
                 <a href="add_categories.php"><button>Add Categories</button></a>
                 <a href="categories.php"><button>View Categories</button></a>
             </div>
@@ -56,7 +56,8 @@
                     <?php
                         $display_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity, P.ProductStatus
                         FROM Products P
-                        INNER JOIN Inventory I ON P.ProductID = I.ProductID";
+                        INNER JOIN Inventory I ON P.ProductID = I.ProductID
+                        WHERE P.ProductStatus = 'Active'";
                         $results = mysqli_query($db, $display_query);
                         $row = mysqli_num_rows($results);
                         if ($row > 0){
@@ -102,10 +103,12 @@
             <div class="overlay" id="overlay"></div>
             <div class="unlist-popup" id="unlistPopup">
                 <h2>Are you sure you want to<br>unlist this product?</h2>
-                <form action="" method="post">
+                <form action="../includes/unlist_product.php" method="post">
+                    <input type="text" name="prodid" value="' . $data['ProductID'] . '" readonly hidden>
+                    <input type="text" name="prodname" value="' . $data['ProductName'] . '" readonly hidden>
                     <div class="popup-buttons">
                         <button class="cancel" onclick="hideUnlistPopup()">Cancel</button>
-                        <button class="unlist" type="submit">Unlist</button>
+                        <button class="unlist" type="submit" name="get_prod">Unlist</button>
                     </div>
                 </form>
             </div>
