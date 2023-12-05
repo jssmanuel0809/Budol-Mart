@@ -1,3 +1,6 @@
+<?php 
+    include('../includes/server.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,7 +29,7 @@
         <section class="content">
             <div class="admin-buttons">
                 <a href="add_products.php"><button>Add Products</button></a>
-                <a href="products.php"><button>View Products</button></a>
+                <!-- <a href="products.php"><button>View Products</button></a> -->
                 <a href="add_categories.php"><button>Add Categories</button></a>
                 <a href="categories.php"><button>View Categories</button></a>
             </div>
@@ -37,14 +40,50 @@
                 <table class="order-table">
                     <!-- HEADER  -->
                     <tr class="table-header">
-                        <th>Brand ID</th>
                         <th>Brand</th>
-                        <th>Series ID</th>
                         <th>Series</th>
-                        <th>Unlist</th>
+                        <!-- <th>Unlist</th> -->
                     </tr>
                     <!-- LAMAN NG TABLE -->
-                    <tr>
+                    <?php 
+                        $display_query = "SELECT *
+                        FROM Brands
+                        ORDER BY BrandID";
+                        $results = mysqli_query($db, $display_query);
+                        $row = mysqli_num_rows($results);
+                        if ($row > 0){
+                            while($data = mysqli_fetch_assoc($results)){
+                                $brnd = $data['BrandID'];
+                                //check for series
+                                $series_query = "SELECT S.Series
+                                FROM Brands B
+                                INNER JOIN Series S ON B.BrandID = S.BrandID
+                                WHERE B.BrandID = '$brnd'";
+                                $srsres = mysqli_query($db, $series_query);
+                                $srs = mysqli_num_rows($srsres);
+                                if ($srs > 0){
+                                    while($series = mysqli_fetch_assoc($srsres)){
+                                        echo '
+                                        <tr>
+                                            <td>' . $data['Brand'] . '</td>
+                                            <td>' . $series['Series'] . '</td>
+                                        </tr>
+                                        ';
+                                    }
+                                }
+                                else {
+                                    echo '
+                                        <tr>
+                                            <td>' . $data['Brand'] . '</td>
+                                            <td></td>
+                                        </tr>
+                                        ';
+                                }
+                                
+                            }
+                        }
+                    ?>
+                    <!-- <tr>
                         <td>1</td>
                         <td>POPMART</td>
                         <td>1</td>
@@ -54,22 +93,22 @@
                                 <img src="../images/trash.png" alt="Unlist Icon" class="table-button">
                             </a>
                         </td>
-                    </tr>
+                    </tr> -->
                 </table>
             </div>
 
             <!-- UNLIST WARNING -->
-            <div class="overlay" id="overlay"></div>
+            <!-- <div class="overlay" id="overlay"></div>
             <div class="unlist-popup" id="unlistPopup">
                 <h2>Are you sure you want to<br>unlist this product?</h2>
                 <div class="popup-buttons">
                     <button class="cancel" onclick="hideUnlistPopup()">Cancel</button>
                     <button class="unlist">Unlist</button>
                 </div>
-            </div>
+            </div> -->
         </section>
 
-        <script>
+        <!-- <script>
             function showUnlistPopup() {
                 var overlay = document.getElementById("overlay");
                 var unlistPopup = document.getElementById("unlistPopup");
@@ -85,6 +124,6 @@
                 overlay.style.display = "none";
                 unlistPopup.classList.remove("active");
             }
-        </script>
+        </script> -->
     </body>
 </html>

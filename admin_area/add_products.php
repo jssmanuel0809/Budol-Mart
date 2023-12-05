@@ -1,111 +1,143 @@
 <?php
-// include('../includes/server.php');
+include('../includes/server.php');
 
-// //ADD PRODUCTS FUNCTION
-// if (isset($_POST['add_products'])){
-//     //VARIABLES
-//     $imgext_val = "false";
-//     $prodname = mysqli_real_escape_string($db, $_POST['prodname']);
-//     $price = $_POST['price'];
-//     $description = mysqli_real_escape_string($db, $_POST['desc']);
-//     $type = $_POST['type'];
-//     $status = mysqli_real_escape_string($db, "Active");
-//     $brand = $_POST['brand'];
-//     $series = $_POST['series'];
-//     $stocks = $_POST['stocks'];
-//     $date = new DateTime(date('m.d.y'));
-//     $dateUpd = $date->format('Y-m-d H:i:s');
-//     $tagsInput = mysqli_real_escape_string($db, $_POST['tags']);
-//     $tagsArray = explode(',', $tagsInput);
+//ADD PRODUCTS FUNCTION
+if (isset($_POST['add_products'])){
+    print_r("form submitted");
+    //VARIABLES
+    $imgext_val = "false";
+    $prodname = mysqli_real_escape_string($db, $_POST['prodname']);
+    $price = $_POST['price'];
+    $description = mysqli_real_escape_string($db, $_POST['desc']);
+    $type = $_POST['type'];
+    $status = mysqli_real_escape_string($db, "Active");
+    $brand = mysqli_real_escape_string($db, $_POST['brand']);
+    $series = mysqli_real_escape_string($db, $_POST['series']);
+    $stocks = $_POST['stocks'];
+    $date = new DateTime(date('m.d.y'));
+    $dateUpd = $date->format('Y-m-d H:i:s');
+    $tagsInput = mysqli_real_escape_string($db, $_POST['tags']);
+    $tagsArray = explode(',', $tagsInput);
 
-//     //IMAGE VALIDATION
-//     if (isset($_FILES['imageone'])){
-//         $imageone = $_FILES['imageone'];
-//         $imgonefile = $imageone['name'];
-//         $imgonetemp = $imageone['tmp_name'];
+    print_r($prodname . $price. $description . $type . $status);
+
+    //IMAGE VALIDATION
+    // if (isset($_FILES['images'])){
+        // $imageone = $_FILES['imageone'];
+        // $imgonefile = $imageone['name'];
+        // $imgonetemp = $imageone['tmp_name'];
     
-//         $filename_sep = explode('.', $imgonefile);
-//         $file_ext = strtolower(end($filename_sep));
+        // $filename_sep = explode('.', $imgonefile);
+        // $file_ext = strtolower(end($filename_sep));
     
-//         $ext = array('jpeg', 'jpg', 'png');
-//         if(in_array($file_ext, $ext)){
-//             $imgext_val = "true";
-//         }
-//     }
-//     //INPUT VALIDATION
-//     //if all input is filled
+        // $ext = array('jpeg', 'jpg', 'png');
+        // if(in_array($file_ext, $ext)){
+        //     $imgext_val = "true";
+        // }
+    // }
+    //INPUT VALIDATION
+    //if all input is filled
 
-//     //DUPLICATE PRODUCTS VALIDATION
-//     //redo validation for brand and series
-//     $products_check_query = "SELECT * FROM Products
-//     WHERE ProductName = '$prodname' AND ProductType = '$type'";
-//     $result = mysqli_query($db, $products_check_query);
-//     $prod = mysqli_fetch_assoc($result);
-//     if ($prod){
-//         array_push($errors, "Duplicate product detected.");
-//     }
+    //DUPLICATE PRODUCTS VALIDATION
+    $products_check_query = "SELECT *
+    FROM Products P
+    INNER JOIN Brands B ON P.BrandID = B.BrandID
+    INNER JOIN Series S ON P.SeriesID = S.SeriesID
+    WHERE P.ProductName = '$prodname' AND P.ProductType = '$type' AND B.Brand = '$brand' AND S.Series = '$series'";
+    $result = mysqli_query($db, $products_check_query);
+    $prod = mysqli_fetch_assoc($result);
+    if ($prod){
+        array_push($errors, "Duplicate product detected.");
+    }
 
-//     //INSERTION
-//     if(count($errors) == 0){
-//         $brands_query = "SELECT * FROM Brands
-//         WHERE Brand = '$brand'";
-//         $result = mysqli_query($db, $brands_query);
-//         $brnd = mysqli_fetch_assoc($result);
-//         $brndID = $brnd['BrandID'];
+    //INSERTION
+    if(count($errors) == 0){
+        print_r("0 errors");
+        $brands_query = "SELECT * FROM Brands
+        WHERE Brand = '$brand'";
+        $result = mysqli_query($db, $brands_query);
+        $brnd = mysqli_fetch_assoc($result);
+        $brndID = $brnd['BrandID'];
+        print_r($brndID);
 
-//         $series_query = "SELECT SeriesID FROM Series S
-//         WHERE Series = '$series'";
-//         $result = mysqli_query($db, $series_query);
-//         $srs = mysqli_fetch_assoc($result);
-//         $srsID = $srs['SeriesID'];
+        $series_query = "SELECT SeriesID FROM Series S
+        WHERE Series = '$series' AND BrandID = '$brndID'";
+        $result = mysqli_query($db, $series_query);
+        $srs = mysqli_fetch_assoc($result);
+        $srsID = $srs['SeriesID'];
+        print_r($srsID);
             
-//         $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, BrandID, SeriesID, ProductStatus)
-//         VALUES ('$prodname', '$price', '$description', '$type', '$brndID', '$srsID', '$status')";
-//         $working = mysqli_query($db, $insert_query);
+        $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, BrandID, SeriesID, ProductStatus)
+        VALUES ('$prodname', '$price', '$description', '$type', '$brndID', '$srsID', '$status')";
+        $working = mysqli_query($db, $insert_query);
+        print_r($insert_query);
 
-//         if($working){
+        if($working){
+            print_r("insert products");
+            $products_check_query = "SELECT * FROM Products
+            WHERE ProductName = '$prodname' AND ProductType = '$type'";
+            $result = mysqli_query($db, $products_check_query);
+            $prod = mysqli_fetch_assoc($result);
+            $prodID = $prod['ProductID'];
 
-//             $products_check_query = "SELECT * FROM Products
-//             WHERE ProductName = '$prodname' AND ProductType = '$type'";
-//             $result = mysqli_query($db, $products_check_query);
-//             $prod = mysqli_fetch_assoc($result);
-//             $prodID = $prod['ProductID'];
+            $insert_query = "INSERT INTO Inventory (ProductID, Quantity, DateUpdated)
+            VALUES ('$prodID', '$stocks', '$dateUpd')";
+            mysqli_query($db, $insert_query);
 
-//             $insert_query = "INSERT INTO Inventory (ProductID, Quantity, DateUpdated)
-//             VALUES ('$prodID', '$stocks', '$dateUpd')";
-//             mysqli_query($db, $insert_query);
+            foreach ($tagsArray as $tag) {
+                $tag = mysqli_real_escape_string($db, $tag);
+                $tags_query = "INSERT INTO ProductTags (ProductID, TagName)
+                VALUES ('$prodID', '$tag')";
+                mysqli_query($db, $tags_query);
+            }
 
-//             foreach ($tagsArray as $tag) {
-//                 $tag = mysqli_real_escape_string($db, $tag);
-//                 $tags_query = "INSERT INTO ProductTags (ProductID, TagName)
-//                 VALUES ('$prodID', '$tag')";
-//                 mysqli_query($db, $tags_query);
-//             }
+            //IMAGE VALIDATION
+            if (isset($_FILES['images'])) {
+                $images = $_FILES['images'];
+            
+                foreach ($images['tmp_name'] as $key => $tmp_name) {
+                    $imgfile = $images['name'][$key];
+                    $imgtemp = $tmp_name;
+            
+                    $filename_sep = explode('.', $imgfile);
+                    $file_ext = strtolower(end($filename_sep));
+            
+                    $ext = array('jpeg', 'jpg', 'png');
+                    if (in_array($file_ext, $ext)) {
+                        $imgext_val = "true";
+                    }
+            
+                    if ($imgext_val == "true") {
+                        $upload_image = "product_images/" . $imgfile;
+            
+                        if (move_uploaded_file($imgtemp, $upload_image)) {
+                            $insert_query = "INSERT INTO ProductImages (ProductID, ImageURL)
+                                VALUES ('$prodID', '$upload_image')";
+                            mysqli_query($db, $insert_query);
+                        } else {
+                            echo 'File upload failed with error code ' . $images['error'][$key];
+                        }
+                    }
+                }
+            }
 
-//             if ($imgext_val == "true") {
-//                 // $upload_directory = '/Applications/XAMPP/xamppfiles/htdocs/Budol-Mart/admin_area/product_images';
-//                 // if (!is_dir($upload_directory)) {
-//                 //     mkdir($upload_directory, 0777, true);
-//                 // }
-//                 // $upload_image = $upload_directory . '/' . $imgonefile;
+            // if ($imgext_val == "true") {
+            //     $upload_image = "product_images/".$imgonefile;
 
-//                 $upload_image = "product_images/".$imgonefile;
-//                 // move_uploaded_file($imgonetemp, $upload_image);
+            //     if (move_uploaded_file($imgonetemp, $upload_image)) {
+            //         $insert_query = "INSERT INTO ProductImages (ProductID, ImageURL)
+            //         VALUES ('$prodID', '$upload_image')";
+            //         mysqli_query($db, $insert_query);
+            //     } else {
+            //         echo 'File upload failed with error code ' . $_FILES['imageone']['error'];
+            //     }
+            // }
+        }
 
-//                 if (move_uploaded_file($imgonetemp, $upload_image)) {
-//                     $insert_query = "INSERT INTO ProductImages (ProductID, ImageURL)
-//                     VALUES ('$prodID', '$upload_image')";
-//                     mysqli_query($db, $insert_query);
-//                 } else {
-//                     echo 'File upload failed with error code ' . $_FILES['imageone']['error'];
-//                 }
-//             }
-//         }
+        header('location: products.php');
+    }
 
-//         header('location: index.php');
-//     }
-
-// }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -150,34 +182,34 @@
                     <label for="">Product Brand</label>
                         <select name="brand" id="brandDropdown">
                             <?php
-                            // $select_query = "SELECT Brand FROM Brands";
-                            // $results = mysqli_query($db, $select_query);
-                            // $row = mysqli_num_rows($results);
-                            // if ($row > 0){
-                            //     while($data = mysqli_fetch_assoc($results)){
-                            //         echo '<option value="' . $data['Brand'] . '">' . $data['Brand'] . '</option>';
-                            //     }
-                            // }
+                            $select_query = "SELECT Brand FROM Brands";
+                            $results = mysqli_query($db, $select_query);
+                            $row = mysqli_num_rows($results);
+                            if ($row > 0){
+                                while($data = mysqli_fetch_assoc($results)){
+                                    echo '<option value="' . $data['Brand'] . '">' . $data['Brand'] . '</option>';
+                                }
+                            }
                             ?>
                         </select>
                     <label for="">Product Series</label>
                         <select name="series" id="seriesDropdown">
                         </select>
                     <div class="product-image">
-                        <label for="">Product Image 1</label><input type="file" name="imageone">
-                        <label for="">Product Image 4</label><input type="file" accept="image/*">
-                        <label for="">Product Image 7</label><input type="file" accept="image/*">
+                        <label for="">Product Images</label><input type="file" accept="image/*" name="images[]" required multiple>
+                        <!-- <label for="">Product Image 4</label><input type="file" accept="image/*" name="images[]" multiple>
+                        <label for="">Product Image 7</label><input type="file" accept="image/*" name="images[]" multiple> -->
+                    </div>
+                    <!-- <div class="product-image">
+                        <label for="">Product Image 2</label><input type="file" accept="image/*" name="images[]" multiple>
+                        <label for="">Product Image 5</label><input type="file" accept="image/*" name="images[]" multiple>
+                        <label for="">Product Image 8</label><input type="file" accept="image/*" name="images[]" multiple>
                     </div>
                     <div class="product-image">
-                        <label for="">Product Image 2</label><input type="file" accept="image/*">
-                        <label for="">Product Image 5</label><input type="file" accept="image/*">
-                        <label for="">Product Image 8</label><input type="file" accept="image/*">
-                    </div>
-                    <div class="product-image">
-                        <label for="">Product Image 3</label><input type="file" accept="image/*">
-                        <label for="">Product Image 6</label><input type="file" accept="image/*">
-                        <label for="">Product Image 9</label><input type="file" accept="image/*">
-                    </div>
+                        <label for="">Product Image 3</label><input type="file" accept="image/*" name="images[]" multiple>
+                        <label for="">Product Image 6</label><input type="file" accept="image/*" name="images[]" multiple>
+                        <label for="">Product Image 9</label><input type="file" accept="image/*" name="images[]" multiple>
+                    </div> -->
                     <button class="add_button" type="submit" name="add_products">Add Product</button>
                 </form>
             </div>

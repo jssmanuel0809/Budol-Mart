@@ -1,5 +1,5 @@
 <?php 
-    //include('../includes/server.php');
+    include('../includes/server.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,7 @@
         <section class="content">
             <div class="admin-buttons">
                 <a href="add_products.php"><button>Add Products</button></a>
-                <a href="products.php"><button>View Products</button></a>
+                <!-- <a href="products.php"><button>View Products</button></a> -->
                 <a href="add_categories.php"><button>Add Categories</button></a>
                 <a href="categories.php"><button>View Categories</button></a>
             </div>
@@ -54,58 +54,47 @@
 
                     <!-- PHP FUNCTION FOR DISPLAY (uncomment pag connected na sa server)-->
                     <?php
-                        // $display_query = "SELECT P.ProductID, P.ProductName, PI.ImageURL, P.Price, I.Quantity, P.ProductStatus
-                        // FROM Products P
-                        // INNER JOIN Inventory I ON P.ProductID = I.ProductID
-                        // INNER JOIN ProductImages PI ON P.ProductID = PI.ProductID";
-                        // $results = mysqli_query($db, $display_query);
-                        // $row = mysqli_num_rows($results);
-                        // if ($row > 0){
-                        //     while($data = mysqli_fetch_assoc($results)){
-                        //         echo '
-                        //             <tr>
-                        //                 <td>' . $data['ProductID'] . '</td>
-                        //                 <td>' . $data['ProductName'] . '</td>
-                        //                 <td><img src="' . $data['ImageURL'] . '"></td>
-                        //                 <td>' . $data['Price'] . '</td>
-                        //                 <td>' . $data['Quantity'] . '</td>
-                        //                 <td>-</td>
-                        //                 <td>' . $data['ProductStatus'] . '</td>
-                        //                 <td>
-                        //                     <a class="icon-button">
-                        //                         <img src="product_images/edit.png" alt="Edit Icon" class="table-button">
-                        //                     </a>
-                        //                 </td>
-                        //                 <td>
-                        //                     <a class="icon-button" onclick="showUnlistPopup()">
-                        //                         <img src="product_images/trash.png" alt="Unlist Icon" class="table-button">
-                        //                     </a>
-                        //                 </td>
-                        //             </tr>';
-                        //     }
-                        // }
+                        $display_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity, P.ProductStatus
+                        FROM Products P
+                        INNER JOIN Inventory I ON P.ProductID = I.ProductID";
+                        $results = mysqli_query($db, $display_query);
+                        $row = mysqli_num_rows($results);
+                        if ($row > 0){
+                            while($data = mysqli_fetch_assoc($results)){
+                                $prodid = $data['ProductID'];
+                                $product_images_query = "SELECT PI.ImageURL
+                                FROM ProductImages PI
+                                INNER JOIN Products P ON PI.ProductID = P.ProductID
+                                WHERE P.ProductID = '$prodid'";
+                                $images = mysqli_query($db, $product_images_query);
+                                $img = mysqli_fetch_assoc($images);
+                                echo '
+                                    <tr>
+                                        <form method="post" action="edit_products.php">
+                                            <td><input type="text" name="prodid" value="' . $data['ProductID'] . '" readonly></td>
+                                            <td><input type="text" name="prodname" value="' . $data['ProductName'] . '" readonly></td>
+                                            <td><img class="prodimg" src="' . $img['ImageURL'] . '"></td>
+                                            <td>' . $data['Price'] . '</td>
+                                            <td>' . $data['Quantity'] . '</td>
+                                            <td>-</td>
+                                            <td>' . $data['ProductStatus'] . '</td>
+                                            <td>
+                                                <button class="icon-button" type="submit" value="Submit" name="get_prod" href="edit_products.php">
+                                                    <img src="../images/edit.png" alt="Edit Icon" class="table-button">
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="icon-button" type="button" value="Submit" name="get_prod" href="product_details.php" class="details-button" onclick="showUnlistPopup()">
+                                                    <img src="../images/trash.png" alt="Unlist Icon" class="table-button">
+                                                </button>
+                                            </td>
+                                        </form>
+                                    </tr>';
+
+                                    
+                            }
+                        }
                     ?>
-
-
-                    <tr>
-                        <td>1</td>
-                        <td>POPMART Lilios</td>
-                        <td><img src=""></td> <!-- paayos size ng img nito para uniform lahat ng products -->
-                        <td>500</td>
-                        <td>100</td>
-                        <td>50</td>
-                        <td>true</td>
-                        <td>
-                            <a class="icon-button">
-                                <img src="../images/edit.png" alt="Edit Icon" class="table-button">
-                            </a>
-                        </td>
-                        <td>
-                            <a class="icon-button" onclick="showUnlistPopup()">
-                                <img src="../images/trash.png" alt="Unlist Icon" class="table-button">
-                            </a>
-                        </td>
-                    </tr>
                 </table>
             </div>
 
@@ -113,10 +102,12 @@
             <div class="overlay" id="overlay"></div>
             <div class="unlist-popup" id="unlistPopup">
                 <h2>Are you sure you want to<br>unlist this product?</h2>
-                <div class="popup-buttons">
-                    <button class="cancel" onclick="hideUnlistPopup()">Cancel</button>
-                    <button class="unlist">Unlist</button>
-                </div>
+                <form action="" method="post">
+                    <div class="popup-buttons">
+                        <button class="cancel" onclick="hideUnlistPopup()">Cancel</button>
+                        <button class="unlist" type="submit">Unlist</button>
+                    </div>
+                </form>
             </div>
         </section>
 

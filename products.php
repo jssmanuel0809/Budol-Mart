@@ -1,5 +1,5 @@
 <?php 
-    //include('includes/server.php');
+    include('includes/server.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,75 +46,35 @@
                 <div class="browsing-items">
                     <!-- PHP FUNCTION FOR DISPLAY (uncomment pag connected na sa server)-->
                     <?php
-                        // $display_query = "SELECT P.ProductID, P.ProductName, PI.ImageURL, P.Price, I.Quantity, P.ProductStatus
-                        // FROM Products P
-                        // INNER JOIN Inventory I ON P.ProductID = I.ProductID
-                        // INNER JOIN ProductImages PI ON P.ProductID = PI.ProductID";
-                        // $results = mysqli_query($db, $display_query);
-                        // $row = mysqli_num_rows($results);
-                        // if ($row > 0){
-                        //     while($data = mysqli_fetch_assoc($results)){
-                        //         echo '
-                        //         <form action="product_details.php" method="post">
-                        //             <div class="listing">
-                        //                 <img src="admin_area/' . $data['ImageURL'] . '" class="productimg">
-                        //                 <input type="text" name="prodname" value="' . $data['ProductName'] . '" readonly>
-                        //                 <input type="text" name="price" value="' . $data['Price'] . '" readonly>
-                        //                 <button type="submit" value="Submit" name="get_prod" href="product_details.php" class="details-button">MORE DETAILS</button>
-                        //             </div>
-                        //         </form>
-                        //         ';
-                        //     }
-                        // }
+                        $display_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity, P.ProductStatus
+                        FROM Products P
+                        INNER JOIN Inventory I ON P.ProductID = I.ProductID";
+                        $results = mysqli_query($db, $display_query);
+                        $results = mysqli_query($db, $display_query);
+                        $row = mysqli_num_rows($results);
+                        if ($row > 0){
+                            while($data = mysqli_fetch_assoc($results)){
+                                $prodid = $data['ProductID'];
+                                $product_images_query = "SELECT PI.ImageURL
+                                FROM ProductImages PI
+                                INNER JOIN Products P ON PI.ProductID = P.ProductID
+                                WHERE P.ProductID = '$prodid'";
+                                $images = mysqli_query($db, $product_images_query);
+                                $img = mysqli_fetch_assoc($images);
+                                echo '
+                                <form action="product_details.php" method="post">
+                                    <div class="listing">
+                                        <img src="admin_area/' . $img['ImageURL'] . '" class="productimg">
+                                        <input type="text" name="prodid" value="' . $data['ProductID'] . '" readonly hidden>
+                                        <input type="text" name="prodname" value="' . $data['ProductName'] . '" readonly>
+                                        <input type="text" name="price" value="' . $data['Price'] . '" readonly>
+                                        <button type="submit" value="Submit" name="get_prod" href="product_details.php" class="details-button">MORE DETAILS</button>
+                                    </div>
+                                </form>
+                                ';
+                            }
+                        }
                     ?>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>PHP 100.00</h3>
-                        <p>Product Name</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>PHP 100.00</h3>
-                        <p>Product Name</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>PHP 100.00</h3>
-                        <p>Product Name</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>PHP 100.00</h3>
-                        <p>Product Name</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>PHP 100.00</h3>
-                        <p>Product Name</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>PHP 100.00</h3>
-                        <p>Product Name</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>PHP 100.00</h3>
-                        <p>Product Name</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
-                    <div class="listing">
-                        <img src="images/placeholder.png" class="placeholder">
-                        <h3>PHP 100.00</h3>
-                        <p>Product Name</p>
-                        <a href="" class="details-button">MORE DETAILS</a>
-                    </div>
                 </div>
                 <div class="pagination">
                     <ul class="page-numbers">
