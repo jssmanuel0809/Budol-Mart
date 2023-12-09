@@ -1,3 +1,8 @@
+.content{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+}
 .form_box {
     margin-top: -40px;
     width: 80%;
@@ -39,7 +44,7 @@
     font-size: 40px;
     margin-bottom: 15px;
 }
-input[type=text]{
+input[type=text], input[type=password]{
     padding: 5px 10px;
     border: 2px solid #3D4C6C;
     font-size: 14px;

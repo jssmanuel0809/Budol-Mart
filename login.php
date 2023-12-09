@@ -1,3 +1,30 @@
+<?php 
+    include('includes/server.php');
+    if (isset($_POST['login_user'])){
+        $username = mysqli_real_escape_string($db, $_POST['username']);
+        $password = mysqli_real_escape_string($db, $_POST['password']);
+    
+        if (count($errors) == 0) {
+            $password = md5($password);
+            $query = "SELECT * FROM Customers WHERE AccountName='$username' AND AccountPassword='$password'";
+            $results = mysqli_query($db, $query);
+            $data = mysqli_fetch_assoc($results);
+            if ($data){
+            if (mysqli_num_rows($results) == 1) {
+                $_SESSION['username'] = $data['AccountName'];
+                $_SESSION['status'] = "active";
+                $_SESSION["logged_in"] = true;
+                header('location: index.php');
+            }else {
+                array_push($errors, "Wrong username/password combination");
+            }
+            }
+            else{
+            array_push($errors, "Login error");
+            }
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

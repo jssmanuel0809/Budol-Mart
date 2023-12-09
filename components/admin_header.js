@@ -85,7 +85,7 @@ class Header extends HTMLElement {
                         <li><a href="orders.php">ORDERS</a></li>
                     </ul>
                 </nav>
-                <a href="logout.php" class="user">LOG OUT</a>
+                <a href="../includes/admin_logout.php" class="user">LOG OUT</a>
             </div>
         </header>
       `;

@@ -1,9 +1,13 @@
 <?php
 session_start();
-// print_r("server working");
 
 // initializing variables
-// $username = "";
+$admin = "";
+$admin_status = "";
+
+$username = "";
+$status = "";
+// $logged_in = "false";
 // $role = "";
 // $fullname = "";
 $errors = array();
@@ -13,7 +17,7 @@ $errors = array();
 // $selectedUName = "";
 
 // connect to the database
-$db = mysqli_connect('127.0.0.1', 'root', '202117752', 'BudolDB');
+$db = mysqli_connect('127.0.0.1', 'root', '', 'BudolDB');
 
 if (!$db) {
     die("Connection failed: " . mysqli_connect_error());

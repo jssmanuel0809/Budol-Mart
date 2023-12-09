@@ -1,3 +1,54 @@
+<?php 
+    include('includes/server.php');
+    if (isset($_POST['register_buyer'])) {
+        $name = mysqli_real_escape_string($db, $_POST['name']);
+        $email = mysqli_real_escape_string($db, $_POST['email']);
+        $phone = mysqli_real_escape_string($db, $_POST['phone']);
+        $username = mysqli_real_escape_string($db, $_POST['username']);
+        $password = mysqli_real_escape_string($db, $_POST['password']);
+        $confirmpw = mysqli_real_escape_string($db, $_POST['confirm']);
+
+        if ($password != $confirmpw) {
+            array_push($errors, "The two passwords do not match");
+        }
+
+        $user_check_query = "SELECT * FROM Customers WHERE AccountName='$username' LIMIT 1";
+        $result = mysqli_query($db, $user_check_query);
+        $user = mysqli_fetch_assoc($result);
+        
+        if ($user) {
+            if ($user['AccountName'] === $username) {
+              array_push($errors, "Username already exists");
+            }
+        }
+
+        if (count($errors) == 0) {
+          
+            $hashedpw = md5($password);
+            $query = "INSERT INTO Customers (AccountName, AccountPassword) 
+                    VALUES('$username', '$hashedpw')";
+            $working = mysqli_query($db, $query);
+
+            if ($working){
+                $select_acc = "SELECT * FROM Customers
+                WHERE AccountName = '$username'";
+                $result = mysqli_query($db, $select_acc);
+                $acc = mysqli_fetch_assoc($result);
+                $customerid = $acc['CustomerID'];
+
+                $insert_query = "INSERT INTO CustomerProfiles (CustomerID, CustomerName, EmailAddress, PhoneNumber)
+                VALUES ('$customerid', '$name', '$email', '$phone')";
+                $insert = mysqli_query($db, $insert_query);
+                if ($insert){
+                    $_SESSION['username'] = $username;
+                    $_SESSION['status'] = "active";
+                    $_SESSION['logged_in'] = true;
+                    header('location: index.php');
+                }
+            }
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,24 +73,24 @@
     <section class="authentication">
         <h3>Register</h3>
         <div class="box">
-            <form method="post" action="">
+            <form method="post" action="register.php">
                 <fieldset class="row">
-                    <input type="text" id="name" name="name" placeholder="Name">
+                    <input type="text" id="name" name="name" placeholder="Name" required>
                 </fieldset>
                 <fieldset class="row">
-                    <input type="text" id="email" name="email" placeholder="Email Address">
+                    <input type="text" id="email" name="email" placeholder="Email Address" required>
                 </fieldset>
                 <fieldset class="row">
-                    <input type="text" id="phone" name="phone" placeholder="Phone Number">
+                    <input type="text" id="phone" name="phone" placeholder="Phone Number" required>
                 </fieldset>
                 <fieldset class="row">
-                    <input type="text" id="username" name="username" placeholder="Username">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
                 </fieldset>
                 <fieldset class="row">
-                    <input type="password" id="password" name="password" placeholder="Password">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                 </fieldset>
                 <fieldset class="row">
-                    <input type="password" id="confirm" name="confirm" placeholder="Confirm Password">
+                    <input type="password" id="confirm" name="confirm" placeholder="Confirm Password" required>
                 </fieldset>
                 <button class="register-button" type="submit" name="register_buyer">REGISTER</button>
             </form>

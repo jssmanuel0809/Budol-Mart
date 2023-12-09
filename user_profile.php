@@ -1,9 +1,23 @@
+<?php 
+    include('includes/server.php');
+    $user = $_SESSION['username'];
+    $select_query = "SELECT * FROM Customers
+    WHERE AccountName = '$user'";
+    $results = mysqli_query($db, $select_query);
+    $data = mysqli_fetch_assoc($results);
+    $customerid = $data['CustomerID'];
+
+    $select_profile = "SELECT * FROM CustomerProfiles
+    WHERE CustomerID = '$customerid'";
+    $profile = mysqli_query($db, $select_profile);
+    $info = mysqli_fetch_assoc($profile);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>BUDOL | Products</title>
+        <title>BUDOL | User Profile</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
@@ -20,19 +34,25 @@
     <body>
 
         <!-- NAVIGATION BAR -->
-        <header-component></header-component>
+        <header-component username="<?php echo $_SESSION['username']; ?>" status="<?php echo $_SESSION['status']; ?>"></header-component>
 
         <section class="content">
-            <h1>USER PROFILE</h1>
-            <div class="form_box">
-                <div class="user_form">
-                    <h3>Username: Dummy</h3>
-                    <h3>Name: Dummy</h3>
-                    <h3>Email: D****2003@g****.com</h3>
-                    <h3>Contact #: 09*******67</h3>
-                    <h3>Address Line 1: Block 3 Lot 3, Dummy St., Dummy Subdivision</h3>
-                    <h3>Address Line 2: Barangay 111, Manila 1740, NCR, Philippines</h3>
-                    <button class="edit_button" type="submit" name="edit_profile">Edit</button>
+            <div class="">
+                <h1>USER PROFILE</h1>
+                <div class="form_box">
+                    <div class="user_form">
+                        <h3>Username: <?php echo $data['AccountName']?></h3>
+                        <label for="">Password: <input type="password" name="password" value=""></label>
+                        <label for="">Name: <input type="text" name="fullname" value="<?php echo $info['CustomerName']?>"></label>
+                        <label for="">Email: <input type="text" name="emailaddress" value="<?php echo $info['EmailAddress']?>"></label>
+                        <label for="">Phone Number: <input type="text" name="phone number" value="<?php echo $info['PhoneNumber']?>"></label>
+                        <button class="edit_button" type="submit" name="edit_profile">Save Changes</button>
+                    </div>
+                </div>
+                <div class="left">
+                    <a href="">Address</a>
+                    <!-- <a href="orders.php">Orders</a> -->
+                    <a href="includes/logout.php">Logout</a>
                 </div>
             </div>
         </section>

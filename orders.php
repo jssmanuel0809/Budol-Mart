@@ -1,3 +1,6 @@
+<?php 
+    include('includes/server.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,12 +16,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
+    <!-- COMPONENTS -->
     <script src="components/header.js" type="text/javascript" defer></script>
     <script src="components/filter.js" type="text/javascript" defer></script>
 </head>
 
 <body>
-    <header-component></header-component>
+
+    <header-component username="<?php echo $_SESSION['username']; ?>" status="<?php echo $_SESSION['status']; ?>"></header-component>
 
     <section id="order" class="order">
         <div class="order-box">

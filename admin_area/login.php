@@ -1,3 +1,29 @@
+<?php 
+    include('../includes/server.php');
+
+    if (isset($_POST['login_admin'])){
+        $username = mysqli_real_escape_string($db, $_POST['username']);
+        $password = mysqli_real_escape_string($db, $_POST['password']);
+    
+        $hashedpassword = md5($password);
+        $query = "SELECT * FROM ShopAdmin WHERE AdminAccount='$username' AND AdminPassword='$hashedpassword'";
+        $results = mysqli_query($db, $query);
+        $data = mysqli_fetch_assoc($results);
+        if ($data){
+        if (mysqli_num_rows($results) == 1) {
+            $_SESSION['admin'] = $data['AdminAccount'];
+            $_SESSION['admin_status'] = "active";
+            // $_SESSION["logged_in"] = true;
+            header('location: index.php');
+        }else {
+            array_push($errors, "Wrong username/password combination");
+        }
+        }
+        else{
+        array_push($errors, "Login error");
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,7 +48,7 @@
         <section class="authentication">
             <h3>Admin Portal</h3>
             <div class="box" id="box">
-                <form method="post" action="adminLogin.php">
+                <form method="post" action="login.php">
                     <input type="text" name="username" placeholder="username" required />
                     <input type="password" name="password" placeholder="password" required />
                     <button class="login-button" type="submit" name="login_admin">LOG IN</button>

@@ -23,7 +23,7 @@
     <body>
 
         <!-- NAVIGATION BAR -->
-        <header-component></header-component>
+        <header-component username="<?php echo $_SESSION['username']; ?>" status="<?php echo $_SESSION['status']; ?>"></header-component>
 
         <!-- PRODUCTS -->
         <!-- same lang class name ng section sa about, contact, index, tsaka products -->
