@@ -85,8 +85,8 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                <button class="icon-button" type="button" value="Submit" name="get_prod" href="product_details.php" class="details-button" onclick="showUnlistPopup()">
-                                                    <img src="../images/trash.png" alt="Unlist Icon" class="table-button" name="unlist_process">
+                                                <button class="icon-button" type="button" value="Submit" name="unlist_product" class="details-button" onclick="showUnlistPopup('. $prodid . ')">
+                                                    <img src="../images/trash.png" alt="Unlist Icon" class="table-button">
                                                 </button>
                                             </td>
                                         </form>
@@ -103,20 +103,24 @@
             <div class="overlay" id="overlay"></div>
             <div class="unlist-popup" id="unlistPopup">
                 <h2>Are you sure you want to<br>unlist this product?</h2>
-                <form action="../includes/unlist_product.php" method="post">
+                <form id="unlistForm" action="../includes/unlist_product.php" method="post">
                     <div class="popup-buttons">
                         <button class="cancel" onclick="hideUnlistPopup()">Cancel</button>
-                        <button class="unlist" type="submit" name="get_prod">Unlist</button>
+                        <button class="unlist" type="submit" name="unlist_product">Unlist</button>
                     </div>
                 </form>
             </div>
         </section>
 
         <script>
-            function showUnlistPopup() {
+            function showUnlistPopup(productID) {
                 var overlay = document.getElementById("overlay");
                 var unlistPopup = document.getElementById("unlistPopup");
-
+        
+                // Set the product ID in the form action
+                var form = document.getElementById("unlistForm");
+                form.action = "../includes/unlist_product.php?prodid=" + productID;
+        
                 overlay.style.display = "block";
                 unlistPopup.classList.add("active");
             }

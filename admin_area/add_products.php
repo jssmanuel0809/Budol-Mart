@@ -15,8 +15,9 @@ if (isset($_POST['add_products'])){
     $stocks = $_POST['stocks'];
     $date = new DateTime(date('m.d.y'));
     $dateUpd = $date->format('Y-m-d H:i:s');
-    $tagsInput = mysqli_real_escape_string($db, $_POST['tags']);
-    $tagsArray = explode(',', $tagsInput);
+    $tags = mysqli_real_escape_string($db, $_POST['tags']);
+    // $tagsInput = mysqli_real_escape_string($db, $_POST['tags']);
+    // $tagsArray = explode(',', $tagsInput);
 
 
     //IMAGE VALIDATION
@@ -33,6 +34,7 @@ if (isset($_POST['add_products'])){
         //     $imgext_val = "true";
         // }
     // }
+
     //INPUT VALIDATION
     //if all input is filled
 
@@ -62,8 +64,8 @@ if (isset($_POST['add_products'])){
         $srs = mysqli_fetch_assoc($result);
         $srsID = $srs['SeriesID'];
             
-        $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductType, BrandID, SeriesID, ProductStatus)
-        VALUES ('$prodname', '$price', '$description', '$type', '$brndID', '$srsID', '$status')";
+        $insert_query = "INSERT INTO Products (ProductName, Price, ProductDescription, ProductTags, ProductType, BrandID, SeriesID, ProductStatus)
+        VALUES ('$prodname', '$price', '$description', '$tags', '$type', '$brndID', '$srsID', '$status')";
         $working = mysqli_query($db, $insert_query);
 
         if($working){
@@ -77,12 +79,12 @@ if (isset($_POST['add_products'])){
             VALUES ('$prodID', '$stocks', '$dateUpd')";
             mysqli_query($db, $insert_query);
 
-            foreach ($tagsArray as $tag) {
-                $tag = mysqli_real_escape_string($db, $tag);
-                $tags_query = "INSERT INTO ProductTags (ProductID, TagName)
-                VALUES ('$prodID', '$tag')";
-                mysqli_query($db, $tags_query);
-            }
+            // foreach ($tagsArray as $tag) {
+            //     $tag = mysqli_real_escape_string($db, $tag);
+            //     $tags_query = "INSERT INTO ProductTags (ProductID, TagName)
+            //     VALUES ('$prodID', '$tag')";
+            //     mysqli_query($db, $tags_query);
+            // }
 
             //IMAGE VALIDATION
             if (isset($_FILES['images'])) {
@@ -190,19 +192,7 @@ if (isset($_POST['add_products'])){
                         </select>
                     <div class="product-image">
                         <label for="">Product Images</label><input type="file" accept="image/*" name="images[]" required multiple>
-                        <!-- <label for="">Product Image 4</label><input type="file" accept="image/*" name="images[]" multiple>
-                        <label for="">Product Image 7</label><input type="file" accept="image/*" name="images[]" multiple> -->
                     </div>
-                    <!-- <div class="product-image">
-                        <label for="">Product Image 2</label><input type="file" accept="image/*" name="images[]" multiple>
-                        <label for="">Product Image 5</label><input type="file" accept="image/*" name="images[]" multiple>
-                        <label for="">Product Image 8</label><input type="file" accept="image/*" name="images[]" multiple>
-                    </div>
-                    <div class="product-image">
-                        <label for="">Product Image 3</label><input type="file" accept="image/*" name="images[]" multiple>
-                        <label for="">Product Image 6</label><input type="file" accept="image/*" name="images[]" multiple>
-                        <label for="">Product Image 9</label><input type="file" accept="image/*" name="images[]" multiple>
-                    </div> -->
                     <button class="add_button" type="submit" name="add_products">Add Product</button>
                 </form>
             </div>

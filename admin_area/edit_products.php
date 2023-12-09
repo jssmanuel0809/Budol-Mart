@@ -7,7 +7,7 @@
         $selectedid = mysqli_real_escape_string($db, $_POST['prodid']);
         $selectedprod = mysqli_real_escape_string($db, $_POST['prodname']);
 
-        $product_details_query = "SELECT P.ProductID, P.ProductName, B.Brand, S.Series, P.Price, P.ProductDescription, P.ProductType, I.Quantity
+        $product_details_query = "SELECT P.ProductID, P.ProductName, B.Brand, S.Series, P.Price, P.ProductDescription, P.ProductTags, P.ProductType, I.Quantity
         FROM Products P
         INNER JOIN Inventory I ON P.ProductID = I.ProductID
         INNER JOIN Brands B ON P.BrandID = B.BrandID
@@ -29,22 +29,85 @@
     }
 
     if (isset($_POST['edit_products'])){
-        
+
+        $imgext_val = "false";
         $selectedid = mysqli_real_escape_string($db, $_POST['prodid']);
         $prodname = mysqli_real_escape_string($db, $_POST['prodname']);
         $price = $_POST['price'];
         $description = mysqli_real_escape_string($db, $_POST['desc']);
+        $tags = mysqli_real_escape_string($db, $_POST['tags']);
+        $type = $_POST['type'];
         $stocks = $_POST['stocks'];
 
+        $brand = mysqli_real_escape_string($db, $_POST['brand']);
+        $series = mysqli_real_escape_string($db, $_POST['series']);
+
+        $brands_query = "SELECT * FROM Brands
+        WHERE Brand = '$brand'";
+        $result = mysqli_query($db, $brands_query);
+        $brnd = mysqli_fetch_assoc($result);
+        $brndID = $brnd['BrandID'];
+
+        $series_query = "SELECT SeriesID FROM Series S
+        WHERE Series = '$series' AND BrandID = '$brndID'";
+        $result = mysqli_query($db, $series_query);
+        $srs = mysqli_fetch_assoc($result);
+        $srsID = $srs['SeriesID'];
+
         $update_query = "UPDATE Products
-        SET ProductName = '$prodname', Price = '$price', ProductDescription = '$description'
+        SET ProductName = '$prodname', Price = '$price', ProductDescription = '$description',
+        ProductTags = '$tags', ProductType = '$type', BrandID = '$brndID', SeriesID = '$srsID'
         WHERE ProductID = '$selectedid'";
         mysqli_query($db, $update_query);
 
         $update_query = "UPDATE Inventory
         SET Quantity = '$stocks'
         WHERE ProductID = '$selectedid'";
-        mysqli_query($db, $update_query);
+        mysqli_query($db, $update_query); 
+
+        //IMAGE VALIDATION
+        if (isset($_FILES['images'])) {
+            $originalSelectedID = mysqli_real_escape_string($db, $_POST['prodid']);
+            $images = $_FILES['images'];
+        
+            foreach ($images['tmp_name'] as $key => $tmp_name) {
+                $imgfile = $images['name'][$key];
+                $imgtemp = $tmp_name;
+        
+                $filename_sep = explode('.', $imgfile);
+                $file_ext = strtolower(end($filename_sep));
+        
+                $ext = array('jpeg', 'jpg', 'png');
+                if (in_array($file_ext, $ext)) {
+                    $imgext_val = "true"; // Move this line inside the loop
+                } else {
+                    $imgext_val = "false"; // Set it to false if the extension is not valid
+                }
+        
+                if ($imgext_val == "true") {
+                    $upload_image = "product_images/" . $imgfile;
+        
+                    if (move_uploaded_file($imgtemp, $upload_image)) {
+                        $insert_query = "INSERT INTO ProductImages (ProductID, ImageURL)
+                            VALUES ('$originalSelectedID', '$upload_image')";
+                        mysqli_query($db, $insert_query);
+                    } else {
+                        echo 'File upload failed with error code ' . $images['error'][$key];
+                    }
+                }
+            }
+        }
+
+        // IMAGE REMOVAL
+        if (isset($_POST['r_image'])) {
+            $selectedid = mysqli_real_escape_string($db, $_POST['prodid']);
+            $selectedImages = $_POST['r_image'];
+
+            foreach ($selectedImages as $removedImageID) {
+                $delete_query = "DELETE FROM ProductImages WHERE ProductID = '$selectedid' AND ImageID = '$removedImageID'";
+                mysqli_query($db, $delete_query);
+            }
+        }
 
         header('location: products.php');
     }
@@ -54,7 +117,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Add Products | BUDOL</title>
+        <title>Edit Products | BUDOL</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
@@ -84,7 +147,7 @@
                     <label for="">Product Price</label><input type="text" name="price" value="<?php echo $data['Price'] ?>"  required>
                     <label for="">Product Stocks</label><input type="text" name="stocks" value="<?php echo $data['Quantity'] ?>" required>
                     <label for="">Product Description</label><textarea rows="10" cols="50" class="product-desc" name="desc"  required><?php echo $data['ProductDescription'] ?></textarea>
-                    <!-- <label for="">Product Tags</label><input type="text" name="tags"> -->
+                    <label for="">Product Tags</label><input type="text" name="tags" value="<?php echo $data['ProductTags']; ?>">
                     <label for="">Product Type</label>
                         <select name="type" id="typeDropdown">
                             <option value="Regular" <?php echo ($type == 'Regular') ? 'selected' : ''; ?>>Regular</option>
@@ -107,34 +170,26 @@
                     <label for="">Product Series</label>
                         <select name="series" id="seriesDropdown">
                         </select>
-                    <?php
-                        $product_images_query = "SELECT ImageURL
-                        FROM ProductImages
-                        WHERE ProductID = '$selectedid'";
+                    <div class="product-image">
+                        <label for="">Add Product Images</label><input type="file" accept="image/*" name="images[]" multiple>
+                    </div>
+                    <div class="product-image">
+                        <!-- Checkbox list for image removal -->
+                        <label for="">Remove Product Images</label>
+                        <?php
+                        $product_images_query = "SELECT ImageID, ImageURL
+                            FROM ProductImages
+                            WHERE ProductID = '$selectedid'";
                         $images = mysqli_query($db, $product_images_query);
-                        while ($img = mysqli_fetch_assoc($images)){
+                        while ($img = mysqli_fetch_assoc($images)) {
                             echo '
                                 <div class="remove-images-button">
                                     <img src="' . $img['ImageURL'] . '" class="product_images">
-                                    <button class="unlist" type="button" onclick="removeImage(\'' . $img['ImageURL'] . '\')">Remove Image</button>
+                                    <input type="checkbox" name="r_image[]" value="' . $img['ImageID'] . '"> Remove Image
                                 </div>';
                         }
-                    ?>
-                    <!-- <div class="product-image">
-                        <label for="">Product Image 1</label><input type="file" name="imageone" value="<?php //$img['ImageURL']?>">
-                        <label for="">Product Image 4</label><input type="file" accept="image/*">
-                        <label for="">Product Image 7</label><input type="file" accept="image/*">
+                        ?>
                     </div>
-                    <div class="product-image">
-                        <label for="">Product Image 2</label><input type="file" accept="image/*">
-                        <label for="">Product Image 5</label><input type="file" accept="image/*">
-                        <label for="">Product Image 8</label><input type="file" accept="image/*">
-                    </div>
-                    <div class="product-image">
-                        <label for="">Product Image 3</label><input type="file" accept="image/*">
-                        <label for="">Product Image 6</label><input type="file" accept="image/*">
-                        <label for="">Product Image 9</label><input type="file" accept="image/*">
-                    </div> -->
                     <button class="add_button" type="submit" name="edit_products">Edit Product</button>
                 </form>
             </div>
@@ -142,45 +197,23 @@
 
         <script>
             $(document).ready(function () {
-                // Function to populate series dropdown based on selected brand
                 function populateSeriesDropdown() {
                     var selectedBrand = $("#brandDropdown").val();
-
-                    // Use AJAX to fetch series options from the server
                     $.ajax({
-                        url: '../includes/get_series.php',  // Replace with the actual PHP script to fetch series
+                        url: '../includes/get_series.php',
                         type: 'POST',
                         data: { brand: selectedBrand,
                             series: '<?php echo $series; ?>' },
                         success: function (response) {
-                            // Update the series dropdown with new options
                             $("#seriesDropdown").html(response);
                         }
                     });
                 }
-
-                // Event listener for brand dropdown change
                 $("#brandDropdown").on("change", function () {
-                    // Call the function to populate series dropdown on brand change
                     populateSeriesDropdown();
                 });
-
-                // Initial population of series dropdown when the page loads
                 populateSeriesDropdown();
             });
-
-            function removeImage(imageURL) {
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'remove_image.php', true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        // Handle the response data if needed
-                        console.log(xhr.responseText);
-                    }
-                };
-                xhr.send('imageURL=' + encodeURIComponent(imageURL));
-            }
         </script>
 
     </body>
