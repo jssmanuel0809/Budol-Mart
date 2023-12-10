@@ -1,5 +1,20 @@
 <?php 
     include('includes/server.php');
+    // Number of products to display per page
+    $productsPerPage = 8;
+
+    // Get the current page number from the URL
+    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+    // Calculate the offset based on the current page
+    $offset = ($currentPage - 1) * $productsPerPage;
+
+    $page_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity
+    FROM Products P
+    INNER JOIN Inventory I ON P.ProductID = I.ProductID
+    WHERE P.ProductStatus = 'Active'";
+    $page_results = mysqli_query($db, $page_query);
+    $pages = mysqli_num_rows($page_results);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +64,8 @@
                         $display_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity
                         FROM Products P
                         INNER JOIN Inventory I ON P.ProductID = I.ProductID
-                        WHERE P.ProductStatus = 'Active'";
+                        WHERE P.ProductStatus = 'Active'
+                        LIMIT $offset, $productsPerPage";
                         $results = mysqli_query($db, $display_query);
                         $row = mysqli_num_rows($results);
                         if ($row > 0){
@@ -78,12 +94,15 @@
                 </div>
                 <div class="pagination">
                     <ul class="page-numbers">
-                    <li class="active"><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">...</a></li>
-                      <img src="images/next.png" alt="Next Icon" class="page">
-                      <img src="images/lastpage.png" alt="Last Page Icon" class="page">
+                        <?php
+                        // Calculate the total number of pages
+                        $totalPages = ceil($pages / $productsPerPage);
+
+                        // Display page numbers and links
+                        for ($i = 1; $i <= $totalPages; $i++) {
+                            echo '<li' . ($currentPage == $i ? ' class="active"' : '') . '><a href="?page=' . $i . '">' . $i . '</a></li>';
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
