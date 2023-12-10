@@ -27,7 +27,7 @@
 
         <section class="content">
             <div class="box">
-                <p>Indulge in the captivating world of Budol, where innovation meets<br>
+                <p class="quote">Indulge in the captivating world of Budol, where innovation meets<br>
                     excitement! Budol seamlessly blends the thrill of ecommerce with<br>
                     the charm of a retail shop, offering a unique and delightful<br>
                     shopping experience. Immerse yourself in the mystery and<br>
