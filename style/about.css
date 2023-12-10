@@ -1,0 +1,33 @@
+.content{
+    display: flex;
+}
+#slider-container {
+    position: relative;
+  }
+  
+  .slider-image {
+    width: 100%;
+    height: auto;
+    display: none;
+  }
+  
+  #prev-btn, #next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  #prev-btn {
+    left: 10px;
+  }
+  
+  #next-btn {
+    right: 10px;
+  }

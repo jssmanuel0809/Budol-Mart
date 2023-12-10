@@ -17,7 +17,7 @@ class Header extends HTMLElement {
         orderElement = '<li><a href="orders.php">ORDERS</a></li>';
         loginElement = '<a href="user_profile.php" class="user">  ' + username +'</a>';
       }
-      else if (session_status == ""){
+      else {
         loginElement = '<a href="login.php" class="user">LOG IN</a>';
       }
   

@@ -17,16 +17,38 @@
         <!-- COMPONENTS -->
         <script src="components/header.js" type="text/javascript" defer></script>
         <script src="components/footer.js" type="text/javascript" defer></script>
+        <script src="components/slider.js" type="text/javascript" defer></script>
     </head>
     <body>
 
         <!-- NAVIGATION BAR -->
         <header-component username="<?php echo $_SESSION['username']; ?>" status="<?php echo $_SESSION['status']; ?>"></header-component>
 
-        <!-- ABOUT -->
-        <!-- same lang class name ng section sa about, contact, index, tsaka products -->
         <section class="content">
-            
+            <div class="box">
+                <p>Indulge in the captivating world of Budol, where<br>
+                    innovation meets excitement! Budol seamlessly<br> 
+                    blends the thrill of ecommerce with the charm of a<br>
+                    retail shop, offering a unique and delightful shopping<br>
+                    experience. Immerse yourself in the mystery and<br>
+                    anticipation as Budol specializes in selling blind<br> 
+                    boxes, each a treasure trove waiting to be<br> 
+                    discovered. Elevating your online shopping journey,<br> 
+                    our dedicated team ensures a seamless and efficient<br> 
+                    system for the shop, guaranteeing a hassle-free and<br> 
+                    enjoyable exploration of surprises. Unleash the joy of<br> 
+                    Budol and let the adventure unfold with every click!</p>
+                
+                    <div id="slider-container">
+                    <img class="slider-image" src="images/img1.jpg" alt="Image 1">
+                    <img class="slider-image" src="images/img2.jpg" alt="Image 2">
+                    <img class="slider-image" src="images/img3.jpg" alt="Image 3">
+                    <!-- Add more images as needed -->
+
+                    <button id="prev-btn" onclick="changeSlide(-1)">&#60;</button>
+                    <button id="next-btn" onclick="changeSlide(1)">&#62;</button>
+                    </div>
+            </div>
         </section>
 
         <!-- FOOTER -->
