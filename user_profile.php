@@ -22,7 +22,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
         <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="style/user_edit.css">
+        <link rel="stylesheet" href="style/user-profile.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
         <header-component username="<?php echo $_SESSION['username']; ?>" status="<?php echo $_SESSION['status']; ?>"></header-component>
 
         <section class="content">
-            <div class="">
+            <div class="box">
                 <h1>USER PROFILE</h1>
                 <div class="form_box">
                     <div class="user_form">
@@ -46,13 +46,15 @@
                         <label for="">Name: <input type="text" name="fullname" value="<?php echo $info['CustomerName']?>"></label>
                         <label for="">Email: <input type="text" name="emailaddress" value="<?php echo $info['EmailAddress']?>"></label>
                         <label for="">Phone Number: <input type="text" name="phone number" value="<?php echo $info['PhoneNumber']?>"></label>
+                        <div class="edit">
                         <button class="edit_button" type="submit" name="edit_profile">Save Changes</button>
+                        <a href="" class="address">Address: City</a>
+                        </div>
+
+                        <div class="left">
+                        <a href="includes/logout.php">Logout</a>
+                        </div>
                     </div>
-                </div>
-                <div class="left">
-                    <a href="">Address</a>
-                    <!-- <a href="orders.php">Orders</a> -->
-                    <a href="includes/logout.php">Logout</a>
                 </div>
             </div>
         </section>

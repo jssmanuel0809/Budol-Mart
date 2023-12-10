@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
         <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="style/about.css">
+        <link rel="stylesheet" href="style/about-style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
@@ -56,7 +56,8 @@
                     <img src="images/aira.jpeg" alt="Image-first" class="Image-first">
                 </div>
                 <div class="image-text">
-                    <h3>Text for Image 1</h3>
+                    <h3 class="name">Aira Bucu</h3>
+                    <p class="details">UI & UX Designer</p>
                 </div>
             </div>
 
@@ -65,7 +66,8 @@
                     <img src="images/jemi.jpg" alt="Image-middle">
                 </div>
                 <div class="image-text">
-                    <h3>Text for Image 2</h3>
+                    <h3 class="name">Jemima Manuel</h3>
+                    <p class="details">Back-end Developer</p>
                 </div>
             </div>
 
@@ -74,7 +76,8 @@
                     <img src="images/aly.jpg" alt="Image-last">
                 </div>
                 <div class="image-text">
-                    <h3>Text for Image 3</h3>
+                    <h3 class="name">Alyzah Ebora</h3>
+                    <p class="details">UI & UX Designer</p>
                 </div>
             </div>
         </section>

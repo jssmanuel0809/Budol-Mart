@@ -1,7 +1,8 @@
 .content{
-    margin-top: 100px;
     display: flex;
-    flex-direction: row;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    height: 100vh;
 }
 .form_box {
     margin-top: -40px;
@@ -17,6 +18,10 @@
     border-radius: 20px;
     border: 3px solid #3D4C6C;
     box-shadow: rgba(0, 0, 0, 0.16) 2px 2px 4px;
+    display: flex;
+    flex-direction: column;
+    width: 150%;
+    margin: 35px;
 }
 .form_box label{
     font-family: 'Darker Grotesque', sans-serif;
@@ -38,11 +43,9 @@
     margin-left: 40px;
 }
 .content h1{
-    margin-top: 80px;
-    margin-left: 100px;
     font-family: 'Righteous', sans-serif;
     font-size: 40px;
-    margin-bottom: 15px;
+    padding: 5%;
 }
 input[type=text], input[type=password]{
     padding: 5px 10px;
@@ -59,13 +62,6 @@ input[type=text], input[type=password]{
     border-radius: 10px;
     resize: none;
 }
-.user_form{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 35px;
-    margin-left: 180px; 
-}
 label{
     padding: 10px;
 }
@@ -77,8 +73,8 @@ select{
     border-radius: 10px;
 }
 
-.save_button {
-    width: 100px;
+.edit_button {
+    width: 34%;
     margin-top: 15px; 
     align-self: flex-end;
     text-decoration: none;
@@ -93,20 +89,27 @@ select{
     text-align: center;
     cursor: pointer;
 }
-
-.edit_button {
-    width: 100px;
-    margin-top: 15px; 
-    align-self: flex-end;
+.box{
+    display: flex;
+    flex-direction: column;
+}
+.address {
     text-decoration: none;
-    border: 3px solid #95A9CB;
-    background-color: #E4E9F2;
-    color: #3D4C6C;
-    border-radius: 15px;
-    padding: 10px 20px;
     font-family: 'Darker Grotesque', sans-serif;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 20px;
-    text-align: center;
-    cursor: pointer;
+    margin-left: 40px;
+    color: #3D4C6C;
+}
+.edit{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+}
+.left a{
+    text-decoration: none;
+    font-size: 30px;
+    color: #fb593c;
+    font-weight: bolder;
 }
