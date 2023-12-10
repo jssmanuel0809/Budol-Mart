@@ -1,8 +1,17 @@
-.content{
-    display: flex;
+.box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 7%;
+}
+p{
+  font-size: 35px;
+  margin-right: 6%;
 }
 #slider-container {
     position: relative;
+    width: 40%;
   }
   
   .slider-image {
@@ -30,4 +39,26 @@
   
   #next-btn {
     right: 10px;
+  }
+  .image-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .circular-image .Image-first{
+    width: 17%;
+  }
+  .circular-image img {
+    width: 24%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+  
+  .image-text {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #333;
+  }
+  .lower{
+    display: flex;
   }
