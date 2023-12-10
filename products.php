@@ -46,9 +46,10 @@
                 <div class="browsing-items">
                     <!-- PHP FUNCTION FOR DISPLAY (uncomment pag connected na sa server)-->
                     <?php
-                        $display_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity, P.ProductStatus
+                        $display_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity
                         FROM Products P
-                        INNER JOIN Inventory I ON P.ProductID = I.ProductID";
+                        INNER JOIN Inventory I ON P.ProductID = I.ProductID
+                        WHERE P.ProductStatus = 'Active'";
                         $results = mysqli_query($db, $display_query);
                         $row = mysqli_num_rows($results);
                         if ($row > 0){

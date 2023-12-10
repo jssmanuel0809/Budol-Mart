@@ -10,14 +10,14 @@
             $results = mysqli_query($db, $query);
             $data = mysqli_fetch_assoc($results);
             if ($data){
-            if (mysqli_num_rows($results) == 1) {
-                $_SESSION['username'] = $data['AccountName'];
-                $_SESSION['status'] = "active";
-                $_SESSION["logged_in"] = true;
-                header('location: index.php');
-            }else {
-                array_push($errors, "Wrong username/password combination");
-            }
+                if (mysqli_num_rows($results) == 1) {
+                    $_SESSION['username'] = $data['AccountName'];
+                    $_SESSION['status'] = "active";
+                    $_SESSION["logged_in"] = true;
+                    header('location: index.php');
+                }else {
+                    array_push($errors, "Wrong username/password combination");
+                }
             }
             else{
             array_push($errors, "Login error");

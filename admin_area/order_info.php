@@ -1,31 +1,26 @@
 <?php 
-    include('includes/server.php');
-    $user = $_SESSION['username'];
-    $select_query = "SELECT * FROM Customers
-    WHERE AccountName = '$user'";
-    $results = mysqli_query($db, $select_query);
-    $data = mysqli_fetch_assoc($results);
-    $customerid = $data['CustomerID'];
-
-    $select_profile = "SELECT * FROM CustomerProfiles
-    WHERE CustomerID = '$customerid'";
-    $profile = mysqli_query($db, $select_profile);
-    $info = mysqli_fetch_assoc($profile);
+    include('../includes/server.php');
 
     $shipping = 200;
     $total = 0;
 
-    if (isset($_POST['get_order'])){
-        $selectedProducts = $_POST['selected_products'] ?? [];
-        $productIds = $_POST['product_ids'] ?? [];
+    if (isset($_POST['order_info'])){
+        $orderid = $_POST['orderid'];
 
-        if (!empty($selectedProducts)) {
-            // Query to fetch rows based on selected products
-            $query = "SELECT * FROM ShoppingCart
-            WHERE ProductID IN (" . implode(',', $selectedProducts) . ")
-            AND CustomerID = '$customerid'";
-            $result = mysqli_query($db, $query);
-        }
+        $select_order = "SELECT * FROM Orders
+        WHERE OrderID = '$orderid'";
+        $fetch_order = mysqli_query($db, $select_order);
+        $order = mysqli_fetch_assoc($fetch_order);
+        $customer_id = $order['CustomerID'];
+
+        $select_profile = "SELECT * FROM CustomerProfiles
+        WHERE CustomerID = '$customer_id'";
+        $profile = mysqli_query($db, $select_profile);
+        $info = mysqli_fetch_assoc($profile);
+
+        $select_details = "SELECT * FROM OrderDetails
+        WHERE OrderID = '$orderid'";
+        $fetch_detail = mysqli_query($db, $select_details);
     }
 ?>
 <!DOCTYPE html>
@@ -37,15 +32,15 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
-        <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="style/order_summary.css">
+        <link rel="stylesheet" href="../style/style.css">
+        <link rel="stylesheet" href="../style/order_summary.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
         <!-- COMPONENTS -->
-        <script src="components/header.js" type="text/javascript" defer></script>
-        <script src="components/footer.js" type="text/javascript" defer></script>
+        <script src="../components/admin_header.js" type="text/javascript" defer></script>
+        <script src="../components/footer.js" type="text/javascript" defer></script>
     </head>
     <body>
 
@@ -57,9 +52,8 @@
         <section id="profile" class="profile">
             <div class="product-box">
                 <div class="text_content">
-                    <form action="includes/create_order.php" method="post">
                         <input type="hidden" name="customer_id" value="<?php echo $customerid; ?>">
-                        <h1>Order Summary</h1>
+                        <h1>Order # <?php echo $orderid;?> </h1>
                         <table class="order-table">
                             <!-- HEADER  -->
                             <tr class="table-header">
@@ -69,31 +63,28 @@
                             </tr>
                             <!-- LAMAN NG TABLE -->
                             <?php
-                                $row = mysqli_num_rows($result);
+                                $row = mysqli_num_rows($fetch_detail);
                                 if ($row > 0){
-                                    while($data = mysqli_fetch_assoc($result)){
-                                        $prodid = $data['ProductID'];
-                                        $qty = $data['Quantity'];
-                                        $product_query = "SELECT PI.ImageURL, P.ProductName, (P.Price * SC.Quantity) AS 'TOTAL'
+                                    while($detail = mysqli_fetch_assoc($fetch_detail)){
+                                        $prodid = $detail['ProductID'];
+                                        $qty = $detail['Quantity'];
+                                        $product_query = "SELECT PI.ImageURL, P.ProductName
                                         FROM Products P
                                         INNER JOIN ProductImages PI ON PI.ProductID = P.ProductID
-                                        INNER JOIN ShoppingCart SC ON P.ProductID = SC.ProductID
-                                        WHERE P.ProductID = '$prodid' AND SC.CustomerID = '$customerid'";
+                                        WHERE P.ProductID = '$prodid'";
                                         $prod_info = mysqli_query($db, $product_query);
-                                        $cart_info = mysqli_fetch_assoc($prod_info);
+                                        $order_info = mysqli_fetch_assoc($prod_info);
                                         echo '
-                                            <input type="hidden" name="product_ids[]" value="' . $prodid . '">
-                                            <input type="hidden" name="quantities[]" value="' . $qty . '">
                                             <tr>
                                                 <td>
-                                                    <img src="admin_area/'.$cart_info['ImageURL'].'" alt="Product Icon" class="product-img">
+                                                    <img src="'.$order_info['ImageURL'].'" alt="Product Icon" class="product-img">
                                                 </td>
-                                                <td>'.$cart_info['ProductName'].'</td>
+                                                <td>'.$order_info['ProductName'].'</td>
                                                 <td>'.$qty.'</td>
-                                                <td id="price-' . $prodid . '">P ' . $cart_info['TOTAL'] . '</td>
+                                                <td id="price-' . $prodid . '">P ' . $detail['ProductPrice'] . '</td>
                                             </tr>
                                         ';
-                                        $total += $cart_info['TOTAL'];
+                                        $total += $detail['ProductPrice'];
 
                                     }
                                 }
@@ -114,15 +105,13 @@
                             <div class="overall_total">
                                 <table>
                                     <tr>
-                                        <?php $amount = $total + $shipping;?>
+                                        <?php $amount = $order['TotalPrice'];?>
                                         <input type="hidden" name="amount" value="<?php echo $amount; ?>">
                                         <td>Total</td>
                                         <td class="price">P <?php echo $amount?></td>
                                     </tr>
                                 </table>
                             </div>
-                            <button class="add_button" type="submit" name="create_order">Order</button>
-                        </form>
                 </div>
             </div>
 

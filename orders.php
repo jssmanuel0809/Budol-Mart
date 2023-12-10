@@ -1,5 +1,11 @@
 <?php 
     include('includes/server.php');
+    $user = $_SESSION['username'];
+    $select_query = "SELECT * FROM Customers
+    WHERE AccountName = '$user'";
+    $results = mysqli_query($db, $select_query);
+    $data = mysqli_fetch_assoc($results);
+    $customerid = $data['CustomerID'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,38 +64,57 @@
             <tbody>
                 <!-- to be deleted na part, placeholder lang kung gumagana -->
                 <!-- Sample row -->
-                <tr>
-                    <td>#111</td>
-                    <td>November 21, 2023</td>
-                    <td>100 PHP</td>
-                    <td>Shipped</td>
-                    <td>December 1, 2023</td>
-                </tr>
+                <?php
+                    $select_order = "SELECT * FROM Orders
+                    WHERE CustomerID = '$customerid'";
+                    $order_results = mysqli_query($db, $select_order);
+                    $row = mysqli_num_rows($order_results);
+                    if ($row > 0){
+                        while($order_info = mysqli_fetch_assoc($order_results)){
+                            $id = $order_info['OrderID'];
+                            $date = $order_info['OrderDate'];
+                            $price = $order_info['TotalPrice'];
+                            $status = $order_info['OrderStatus'];
+                            $eta = $order_info['ETA'];
+                            echo '
+                            <tr>
+                                <form action="order_info.php" method="post">
+                                    <input type="hidden" name="orderid" value="' . $id . '">
+                                    <td><button type="submit" name="order_info" href="order_info.php"># '. $id .'</a></td>
+                                </form>
+                                <td>'. $date .'</td>
+                                <td>PHP '. $price .'</td>
+                                <td>'. $status .'</td>
+                                <td>'. $eta .'</td>
+                            </tr>';
+                        }
+                    }
+                ?>
             </tbody>
         </table>
     </div>
 
-    <button id="addOrderButton">Add Order</button>
+    <!-- <button id="addOrderButton">Add Order</button> -->
 
     <script>
-        document.getElementById('addOrderButton').addEventListener('click', function () {
-            // Sample order details (replace with dynamic data)
-            const orderDetails = ['#112', 'December 1, 2023', '150 PHP', 'Processing', 'December 10, 2023'];
+        // document.getElementById('addOrderButton').addEventListener('click', function () {
+        //     // Sample order details (replace with dynamic data)
+        //     const orderDetails = ['#112', 'December 1, 2023', '150 PHP', 'Processing', 'December 10, 2023'];
 
-            // Create a new row
-            const newRow = document.createElement('tr');
+        //     // Create a new row
+        //     const newRow = document.createElement('tr');
 
-            // Append order details as columns to the new row
-            orderDetails.forEach(detail => {
-                const column = document.createElement('td');
-                column.innerHTML = detail;
-                newRow.appendChild(column);
-            });
+        //     // Append order details as columns to the new row
+        //     orderDetails.forEach(detail => {
+        //         const column = document.createElement('td');
+        //         column.innerHTML = detail;
+        //         newRow.appendChild(column);
+        //     });
 
-            // Append the new row to the table body
-            const tableBody = document.querySelector('.order-box-contents tbody');
-            tableBody.appendChild(newRow);
-        });
+        //     // Append the new row to the table body
+        //     const tableBody = document.querySelector('.order-box-contents tbody');
+        //     tableBody.appendChild(newRow);
+        // });
     </script>
 </body>
 

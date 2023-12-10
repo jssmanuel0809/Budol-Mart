@@ -11,6 +11,19 @@
     WHERE CustomerID = '$customerid'";
     $profile = mysqli_query($db, $select_profile);
     $info = mysqli_fetch_assoc($profile);
+
+    if (isset($_POST['edit_profile'])){
+        $name = mysqli_real_escape_string($db, $_POST['fullname']);
+        $email = mysqli_real_escape_string($db, $_POST['email']);
+        $phone = mysqli_real_escape_string($db, $_POST['phone']);
+
+        $update_query = "UPDATE CustomerProfiles
+        SET CustomerName = '$name', EmailAddress = '$email', PhoneNumber = '$phone'
+        WHERE CustomerID = '$customerid'";
+        mysqli_query($db, $update_query);
+
+        header('refresh: 0');
+    } 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,15 +53,15 @@
             <div class="box">
                 <h1>USER PROFILE</h1>
                 <div class="form_box">
-                    <div class="user_form">
+                    <form class="user_form" method="post" action="user_profile.php">
                         <h3>Username: <?php echo $data['AccountName']?></h3>
-                        <label for="">Password: <input type="password" name="password" value=""></label>
+                        <!-- <label for="">Password: <input type="password" name="password" value=""></label> -->
                         <label for="">Name: <input type="text" name="fullname" value="<?php echo $info['CustomerName']?>"></label>
                         <label for="">Email: <input type="text" name="emailaddress" value="<?php echo $info['EmailAddress']?>"></label>
                         <label for="">Phone Number: <input type="text" name="phone number" value="<?php echo $info['PhoneNumber']?>"></label>
                         <div class="edit">
                         <button class="edit_button" type="submit" name="edit_profile">Save Changes</button>
-                        <a href="" class="address">Address: City</a>
+                        <a href="user_address.php" class="address">Address: <?php echo $info['City']?></a>
                         </div>
 
                         <div class="left">
