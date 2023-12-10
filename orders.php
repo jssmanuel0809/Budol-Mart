@@ -1,5 +1,6 @@
 <?php 
     include('includes/server.php');
+    include('includes/protect.php');
     $user = $_SESSION['username'];
     $select_query = "SELECT * FROM Customers
     WHERE AccountName = '$user'";

@@ -1,5 +1,6 @@
 <?php
     include('../includes/server.php');
+    include('../includes/admin_protections.php');
 
     //ADD CATEGORIES FUNCTION
     if (isset($_POST['add_categories'])){

@@ -1,3 +1,7 @@
+<?php
+include('../includes/server.php');
+include('../includes/admin_protections.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,5 +1,6 @@
 <?php 
     include('../includes/server.php');
+    include('../includes/admin_protections.php');
 
     $shipping = 200;
     $total = 0;

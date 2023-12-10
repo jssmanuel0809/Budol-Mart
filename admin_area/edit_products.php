@@ -1,5 +1,6 @@
 <?php
     include('../includes/server.php');
+    include('../includes/admin_protections.php');
 
     //PRODUCT DETAILS PHP CODE
     if (isset($_POST['get_prod'])){
