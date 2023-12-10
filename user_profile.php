@@ -62,7 +62,10 @@
                         <label for="">Phone Number: <input type="text" name="phone number" value="<?php echo $info['PhoneNumber']?>"></label>
                         <div class="edit">
                         <button class="edit_button" type="submit" name="edit_profile">Save Changes</button>
-                        <a href="user_address.php" class="address">Address: <?php echo $info['City']?></a>
+                            <div class="user_links">
+                                <a href="user_address.php" class="address">Address: <?php echo $info['City']?></a>
+                                <a href="change_password.php" class="address">Change Password</a>
+                            </div>
                         </div>
 
                         <div class="left">

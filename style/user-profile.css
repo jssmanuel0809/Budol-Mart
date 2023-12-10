@@ -107,6 +107,10 @@ select{
     align-items: center;
     justify-content: space-between;
 }
+.user_links{
+    display: flex;
+    flex-direction: column;
+}
 .left a{
     text-decoration: none;
     font-size: 30px;
