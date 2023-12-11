@@ -29,7 +29,7 @@ include('../includes/admin_protections.php');
     <section id="order" class="order">
         <div class="order-box">
             <h1>Orders</h1>
-            <div class="filters">
+            <!-- <div class="filters">
                 <form id="search" method="post" action="search.php">
                     <input type="text" name="searching" placeholder="SEARCH">
                 </form>
@@ -41,7 +41,7 @@ include('../includes/admin_protections.php');
                         <a href="#" class="filter-option" data-value="completed">Completed</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 

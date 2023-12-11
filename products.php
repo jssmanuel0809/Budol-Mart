@@ -45,7 +45,7 @@
         <!-- SELLER HOME PAGE -->
         <section id="profile" class="profile">
             <div class="browse-box">
-                <div class="filter-section">
+                <!-- <div class="filter-section">
                     <div class="text-box">
                         <div class="filter-box">
                             <h2>Filter</h2>
@@ -79,7 +79,7 @@
                                 <button id="saveButton" class="save-btn">Save</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="product-display">
                 <div class="browsing-items">
                     <!-- PHP FUNCTION FOR DISPLAY (uncomment pag connected na sa server)-->
