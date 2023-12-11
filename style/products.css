@@ -10,6 +10,9 @@
 }
 .browse-box{
     margin-top: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 .icon-button {
     text-decoration: none;
@@ -36,6 +39,8 @@
     text-align: left;
     margin-top: 20px;
     display: flex;
+    background-color: white;
+    width: 20%;
 }
 .filter-section h2 {
     font-family: 'Darker Grotesque', sans-serif;
@@ -49,7 +54,7 @@
 }
 .browsing-items {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     margin: 0 auto;
     margin-top: 20px;
@@ -133,3 +138,8 @@ input[name="price"] {
     width: 20px;
     height: 20px;
   }
+.product-display{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}

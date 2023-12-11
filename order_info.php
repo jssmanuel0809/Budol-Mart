@@ -59,7 +59,7 @@
             <div class="product-box">
                 <div class="text_content">
                         <input type="hidden" name="customer_id" value="<?php echo $customerid; ?>">
-                        <h1>Order # <?php echo $orderid;?> </h1>
+                        <h1>Order # <?php echo $orderid . ': ' . $order['OrderStatus']?> </h1>
                         <table class="order-table">
                             <!-- HEADER  -->
                             <tr class="table-header">

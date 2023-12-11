@@ -1,7 +1,7 @@
 <?php 
     include('includes/server.php');
     // Number of products to display per page
-    $productsPerPage = 8;
+    $productsPerPage = 6;
 
     // Get the current page number from the URL
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -58,6 +58,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="product-display">
                 <div class="browsing-items">
                     <!-- PHP FUNCTION FOR DISPLAY (uncomment pag connected na sa server)-->
                     <?php
@@ -104,6 +105,7 @@
                         }
                         ?>
                     </ul>
+                </div>
                 </div>
             </div>
         </section>
