@@ -71,7 +71,8 @@
                     <form method="post" action="includes/add_cart.php">
                         <div class="text_content">
                             <input type="text" name="prodid" value="' . $data['ProductID'] . '" readonly hidden>
-                            <input type="text" name="prodname" value="' . $data['ProductName'] . '" readonly>
+                            <input type="text" name="prodname" value="' . $data['ProductName'] . '" readonly hidden>
+                            <h2>' . $data['ProductName'] . '</h4>
                             <h4>' . $data['Series'] . '</h4>
                             <h5>' . $data['Brand'] . '</h5>
                             <h3>PHP ' . $data['Price'] . '</h3>
