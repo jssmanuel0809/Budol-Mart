@@ -76,7 +76,7 @@ class Header extends HTMLElement {
         </head>
         <header class="header">
             <div class="header-content">
-                <a href="index.php" class="logo">BUDOL!</a>
+                <a href="products.php" class="logo">BUDOL!</a>
             </div>
             <div class="header-content">
                 <nav>
