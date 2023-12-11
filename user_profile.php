@@ -58,20 +58,19 @@
                         <h3>Username: <?php echo $data['AccountName']?></h3>
                         <!-- <label for="">Password: <input type="password" name="password" value=""></label> -->
                         <label for="">Name: <input type="text" name="fullname" value="<?php echo $info['CustomerName']?>"></label>
-                        <label for="">Email: <input type="text" name="emailaddress" value="<?php echo $info['EmailAddress']?>"></label>
-                        <label for="">Phone Number: <input type="text" name="phone number" value="<?php echo $info['PhoneNumber']?>"></label>
+                        <label for="">Email: <input type="text" name="email" value="<?php echo $info['EmailAddress']?>"></label>
+                        <label for="">Phone Number: <input type="text" name="phone" value="<?php echo $info['PhoneNumber']?>"></label>
                         <div class="edit">
-                        <button class="edit_button" type="submit" name="edit_profile">Save Changes</button>
+                            <button class="edit_button" type="submit" name="edit_profile">Save Changes</button>
                             <div class="user_links">
                                 <a href="user_address.php" class="address">Address: <?php echo $info['City']?></a>
                                 <a href="change_password.php" class="address">Change Password</a>
                             </div>
                         </div>
-
                         <div class="left">
-                        <a href="includes/logout.php">Logout</a>
+                            <a href="includes/logout.php">Logout</a>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </section>

@@ -37,7 +37,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
         <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="style/user_edit.css">
+        <link rel="stylesheet" href="style/user-profile.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
@@ -61,12 +61,14 @@
                         <label for="">City: <input type="text" name="city" value="<?php echo $info['City']?>"></label>
                         <label for="">Province: <input type="text" name="province" value="<?php echo $info['Province']?>"></label>
                         <button class="edit_button" type="submit" name="edit_address">Save Changes</button>
+                        <div class="user_links">
+                            <a href="user_profile.php" class="address">Profile</a>
+                        </div>
+                        <div class="left">
+                        <a href="includes/logout.php">Logout</a>
+                        </div>
                     </form>
-                </div>
-                <div class="left">
-                    <a href="user_profile.php">User Profile</a>
-                    <!-- <a href="orders.php">Orders</a> -->
-                    <a href="includes/logout.php">Logout</a>
+                    
                 </div>
             </div>
         </section>
