@@ -27,7 +27,7 @@
     transition: height 0.3s ease; /* Add smooth transition for height changes */
 }
 
-input[type="text"], input[type="password"]{
+input[type="text"], input[type="password"], input[type="email"]{
     width: 350px;
     height: 45px;
     font-size: 20px;

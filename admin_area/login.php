@@ -38,12 +38,9 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
-
-        <script src="../components/admin_header.js" type="text/javascript" defer></script>
     </head>
 
     <body>
-        <header-component></header-component>
         <!-- LOGIN CONTENT -->
         <section class="authentication">
             <h3>Admin Portal</h3>

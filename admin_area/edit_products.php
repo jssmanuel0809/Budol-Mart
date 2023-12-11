@@ -145,10 +145,10 @@
                     <?php //include('../includes/errors.php') ?>
                     <input type="text" name="prodid" value="<?php echo $selectedid ?>" readonly hidden>
                     <label for="">Product Name</label><input type="text" name="prodname" value="<?php echo $data['ProductName'] ?>" required>
-                    <label for="">Product Price</label><input type="text" name="price" value="<?php echo $data['Price'] ?>"  required>
-                    <label for="">Product Stocks</label><input type="text" name="stocks" value="<?php echo $data['Quantity'] ?>" required>
+                    <label for="">Product Price</label><input type="number" name="price" value="<?php echo $data['Price'] ?>"  required>
+                    <label for="">Product Stocks</label><input type="number" name="stocks" value="<?php echo $data['Quantity'] ?>" required>
                     <label for="">Product Description</label><textarea rows="10" cols="50" class="product-desc" name="desc"  required><?php echo $data['ProductDescription'] ?></textarea>
-                    <label for="">Product Tags</label><input type="text" name="tags" value="<?php echo $data['ProductTags']; ?>">
+                    <label for="">Product Tags</label><input type="text" name="tags" value="<?php echo $data['ProductTags']; ?>" pattern="^[^\s]+(?:,[^\s]+)*$">
                     <label for="">Product Type</label>
                         <select name="type" id="typeDropdown">
                             <option value="Regular" <?php echo ($type == 'Regular') ? 'selected' : ''; ?>>Regular</option>

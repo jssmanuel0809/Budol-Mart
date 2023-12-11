@@ -166,10 +166,10 @@ if (isset($_POST['add_products'])){
                 <form class="products_form" action="add_products.php" method="post" enctype="multipart/form-data">
                     <?php //include('../includes/errors.php') ?>
                     <label for="">Product Name</label><input type="text" name="prodname" required>
-                    <label for="">Product Price</label><input type="text" name="price" required>
-                    <label for="">Product Stocks</label><input type="text" name="stocks" required>
+                    <label for="">Product Price</label><input type="number" name="price" required>
+                    <label for="">Product Stocks</label><input type="number" name="stocks" required>
                     <label for="">Product Description</label><textarea rows="10" cols="50" class="product-desc" name="desc" required></textarea>
-                    <label for="">Product Tags</label><input type="text" name="tags">
+                    <label for="">Product Tags</label><input type="text" name="tags" pattern="^[^\s]+(?:,[^\s]+)*$">
                     <label for="">Product Type</label>
                         <select name="type">
                             <option value="Regular">Regular</option>

@@ -78,19 +78,19 @@
                     <input type="text" id="name" name="name" placeholder="Name" required>
                 </fieldset>
                 <fieldset class="row">
-                    <input type="text" id="email" name="email" placeholder="Email Address" required>
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
                 </fieldset>
                 <fieldset class="row">
-                    <input type="text" id="phone" name="phone" placeholder="Phone Number" required>
+                    <input type="text" id="phone" name="phone" placeholder="Phone Number" pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number" required>
                 </fieldset>
                 <fieldset class="row">
-                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <input type="text" id="username" name="username" placeholder="Username" minlength="6" required>
                 </fieldset>
                 <fieldset class="row">
-                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <input type="password" id="password" name="password" placeholder="Password" minlength="6" pattern="[a-zA-Z0-9]+" title="Special characters are not allowed" required>
                 </fieldset>
                 <fieldset class="row">
-                    <input type="password" id="confirm" name="confirm" placeholder="Confirm Password" required>
+                    <input type="password" id="confirm" name="confirm" placeholder="Confirm Password" minlength="6" pattern="[a-zA-Z0-9]+" title="Special characters are not allowed" required>
                 </fieldset>
                 <button class="register-button" type="submit" name="register_buyer">REGISTER</button>
             </form>

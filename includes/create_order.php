@@ -7,7 +7,7 @@
         $amount = $_POST['amount'];
         $items = count($product_ids);
         $date = new DateTime(date('m.d.y'));
-        $dateOrd = $date->format('Y-m-d H:i');
+        $dateOrd = $date->format('Y-m-d');
         $dateSevenDaysLater = $date->modify('+7 days');
         $eta = $dateSevenDaysLater->format('Y-m-d');
         $status = mysqli_real_escape_string($db, "Preparing Order");

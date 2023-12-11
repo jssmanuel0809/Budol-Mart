@@ -46,9 +46,6 @@
         <section id="profile" class="profile">
             <div class="browse-box">
                 <div class="filter-section">
-                    <a href="#" class="icon-button">
-                        <img src="images/menu.png" alt="Filter Icon" class="menu-filter">
-                    </a>
                     <div class="text-box">
                         <div class="filter-box">
                             <h2>Filter</h2>
