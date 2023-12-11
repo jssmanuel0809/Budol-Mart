@@ -13,6 +13,7 @@
         $fetch_order = mysqli_query($db, $select_order);
         $order = mysqli_fetch_assoc($fetch_order);
         $customer_id = $order['CustomerID'];
+        $curr_status = $order['OrderStatus'];
 
         $select_profile = "SELECT * FROM CustomerProfiles
         WHERE CustomerID = '$customer_id'";
@@ -22,6 +23,18 @@
         $select_details = "SELECT * FROM OrderDetails
         WHERE OrderID = '$orderid'";
         $fetch_detail = mysqli_query($db, $select_details);
+    }
+
+    if (isset($_POST['update_order'])){
+        $order = $_POST['order'];
+        $status = mysqli_real_escape_string($db, $_POST['status']);
+        print_r($status);
+
+        $update_query = "UPDATE Orders SET OrderStatus = '$status' WHERE OrderID = '$order'";
+        mysqli_query($db, $update_query);
+        print_r($update_query);
+
+        header('location: orders.php');
     }
 ?>
 <!DOCTYPE html>
@@ -53,9 +66,19 @@
         <section id="profile" class="profile">
             <div class="product-box">
                 <div class="text_content">
-                        <input type="hidden" name="customer_id" value="<?php echo $customerid; ?>">
-                        <h1>Order # <?php echo $orderid . ': <a href="status_orders.php">' . $order['OrderStatus'] . '</a>'?> </h1>
+                        <h1>Order # <?php echo $orderid?></h1>
                         <table class="order-table">
+                            <form action="order_info.php" method="post">
+                                <input type="hidden" name="order" value="<?php echo $orderid; ?>">
+                                <label for="selectOption">Order Status:</label>
+                                <select id="selectOption" name="status">
+                                    <option value="Preparing Order" <?php echo ($curr_status == 'Preparing Order') ? 'selected' : ''; ?>>Preparing Order</option>
+                                    <option value="Packed" <?php echo ($curr_status == 'Packed') ? 'selected' : ''; ?>>Packed</option>
+                                    <option value="Shipped" <?php echo ($curr_status == 'Shipped') ? 'selected' : ''; ?>>Shipped</option>
+                                </select>
+
+                                <button type="submit" name="update_order">Submit</button>
+                            </form>
                             <!-- HEADER  -->
                             <tr class="table-header">
                                 <th>Image</th>
