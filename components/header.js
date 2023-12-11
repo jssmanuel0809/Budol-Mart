@@ -93,9 +93,7 @@ class Header extends HTMLElement {
         <header class="header">
             <div class="header-content">
                 <a href="index.php" class="logo">BUDOL!</a>
-                <form id="search" method="post" action="search.php">
-                    <input type="text" name="search" placeholder="SEARCH">
-                </form>
+                
             </div>
             <div class="header-content">
                 <nav>
