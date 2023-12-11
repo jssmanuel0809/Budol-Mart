@@ -1,7 +1,7 @@
 <?php 
     include('includes/server.php');
     // Number of products to display per page
-    $productsPerPage = 6;
+    $productsPerPage = 8;
 
     // Get the current page number from the URL
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;

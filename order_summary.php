@@ -113,16 +113,20 @@
                                 </table>
                             </div>
                             <div class="overall_total">
-                                <table>
-                                    <tr>
-                                        <?php $amount = $total + $shipping;?>
-                                        <input type="hidden" name="amount" value="<?php echo $amount; ?>">
-                                        <td>Total</td>
-                                        <td class="price">P <?php echo $amount?></td>
-                                    </tr>
-                                </table>
+                                <div class="upper">
+                                    <table>
+                                        <tr>
+                                            <?php $amount = $total + $shipping;?>
+                                            <input type="hidden" name="amount" value="<?php echo $amount; ?>">
+                                            <td>Total</td>
+                                            <td class="price">P <?php echo $amount?></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="lower">
+                                    <button class="add_button" type="submit" name="create_order">Order</button>
+                                </div>
                             </div>
-                            <button class="add_button" type="submit" name="create_order">Order</button>
                         </form>
                 </div>
             </div>
