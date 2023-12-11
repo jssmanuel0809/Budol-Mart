@@ -49,9 +49,34 @@
                     <div class="text-box">
                         <div class="filter-box">
                             <h2>Filter</h2>
-                        </div>
-                        <div class="sort-box">
                             <p>Sort by: alphabetically, A-Z</p>
+
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="checkbox1">
+                                <label for="checkbox1">Checkbox 1</label>
+
+                                <input type="checkbox" id="checkbox2">
+                                <label for="checkbox2">Checkbox 2</label>
+
+                                <input type="checkbox" id="checkbox3">
+                                <label for="checkbox3">Checkbox 3</label>
+
+                                <input type="checkbox" id="checkbox4">
+                                <label for="checkbox4">Checkbox 4</label>
+
+                                <input type="checkbox" id="checkbox5">
+                                <label for="checkbox5">Checkbox 5</label>
+
+                                <input type="checkbox" id="checkbox6">
+                                <label for="checkbox6">Checkbox 6</label>
+
+                                <input type="checkbox" id="checkbox7">
+                                <label for="checkbox7">Checkbox 7</label>
+
+                                <input type="checkbox" id="checkbox8">
+                                <label for="checkbox8">Checkbox 8</label>
+                            </div>
+                                <button id="saveButton" class="save-btn">Save</button>
                         </div>
                     </div>
                 </div>

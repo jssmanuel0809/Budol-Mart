@@ -30,7 +30,9 @@
     margin-top: 10px;
 }
 .filter-box{
-    margin-left: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .sort-box{
     margin-left: -25px;
@@ -41,11 +43,13 @@
     display: flex;
     background-color: white;
     width: 20%;
+    justify-content: space-around;
 }
 .filter-section h2 {
     font-family: 'Darker Grotesque', sans-serif;
     font-size: 27px;
     font-weight: 800;
+    margin-right: 25px;
 }
 .filter-section p {
     font-family: 'Darker Grotesque', sans-serif;
@@ -142,4 +146,26 @@ input[name="price"] {
     display: flex;
     flex-direction: column;
     width: 70%;
+}
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="checkbox"] {
+    margin-bottom: 10px;
+}
+
+.save-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background-color: #45a049;
 }
