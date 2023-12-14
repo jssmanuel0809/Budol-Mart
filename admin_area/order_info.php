@@ -26,7 +26,6 @@
     }
 
     if (isset($_POST['update_order'])){
-        print_r("submitted");
 
         $order = $_POST['order'];
         $status = mysqli_real_escape_string($db, $_POST['status']);
@@ -36,7 +35,7 @@
         mysqli_query($db, $update_query);
         print_r($update_query);
 
-        // header('location: orders.php');
+        header('location: orders.php');
     }
 ?>
 <!DOCTYPE html>
@@ -69,8 +68,7 @@
             <div class="product-box">
                 <div class="text_content">
                         <h1>Order # <?php echo $orderid?></h1>
-                        <table class="order-table">
-                            <form action="order_info.php" method="post">
+                        <form action="order_info.php" method="post">
                                 <input type="hidden" name="order" value="<?php echo $orderid; ?>">
                                 <label for="selectOption">Order Status:</label>
                                 <select id="selectOption" name="status">
@@ -80,6 +78,8 @@
                                 </select>
                                 <button type="submit" name="update_order" class="submit">Submit</button>
                             </form>
+                        <table class="order-table">
+                            
                             <!-- HEADER  -->
                             <tr class="table-header">
                                 <th>Image</th>

@@ -14,7 +14,7 @@
             $_SESSION['admin'] = $data['AdminAccount'];
             $_SESSION['admin_status'] = "active";
             // $_SESSION["logged_in"] = true;
-            header('location: products.php');
+            header('location: index.php');
         }else {
             array_push($errors, "Wrong username/password combination");
         }
