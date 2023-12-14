@@ -39,7 +39,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
         <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="style/order_summary.css">
+        <link rel="stylesheet" href="style/order-summary.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
@@ -81,7 +81,7 @@
                                         $prod_info = mysqli_query($db, $product_query);
                                         $order_info = mysqli_fetch_assoc($prod_info);
                                         echo '
-                                            <tr>
+                                            <tr class="product-contents">
                                                 <td>
                                                     <img src="admin_area/'.$order_info['ImageURL'].'" alt="Product Icon" class="product-img">
                                                 </td>

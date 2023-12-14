@@ -39,7 +39,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
         <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="style/order_summary.css">
+        <link rel="stylesheet" href="style/order-summary.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
@@ -85,7 +85,7 @@
                                         echo '
                                             <input type="hidden" name="product_ids[]" value="' . $prodid . '">
                                             <input type="hidden" name="quantities[]" value="' . $qty . '">
-                                            <tr>
+                                            <tr class="product-contents">
                                                 <td>
                                                     <img src="admin_area/'.$cart_info['ImageURL'].'" alt="Product Icon" class="product-img">
                                                 </td>
@@ -123,9 +123,9 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="lower">
+                            </div>
+                            <div class="lower">
                                     <button class="add_button" type="submit" name="create_order">Order</button>
-                                </div>
                             </div>
                         </form>
                 </div>
