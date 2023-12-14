@@ -161,7 +161,6 @@ if (isset($_POST['add_products'])){
         <header-component></header-component>
 
         <section class="content">
-            <h1>ADD PRODUCTS</h1>
             <div class="form_box">
                 <form class="products_form" action="add_products.php" method="post" enctype="multipart/form-data">
                     <?php //include('../includes/errors.php') ?>

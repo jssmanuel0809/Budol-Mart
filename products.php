@@ -45,76 +45,41 @@
         <!-- SELLER HOME PAGE -->
         <section id="profile" class="profile">
             <div class="browse-box">
-                <!-- <div class="filter-section">
-                    <div class="text-box">
-                        <div class="filter-box">
-                            <h2>Filter</h2>
-                            <p>Sort by: alphabetically, A-Z</p>
-
-                            <div class="checkbox-container">
-                                <input type="checkbox" id="checkbox1">
-                                <label for="checkbox1">Checkbox 1</label>
-
-                                <input type="checkbox" id="checkbox2">
-                                <label for="checkbox2">Checkbox 2</label>
-
-                                <input type="checkbox" id="checkbox3">
-                                <label for="checkbox3">Checkbox 3</label>
-
-                                <input type="checkbox" id="checkbox4">
-                                <label for="checkbox4">Checkbox 4</label>
-
-                                <input type="checkbox" id="checkbox5">
-                                <label for="checkbox5">Checkbox 5</label>
-
-                                <input type="checkbox" id="checkbox6">
-                                <label for="checkbox6">Checkbox 6</label>
-
-                                <input type="checkbox" id="checkbox7">
-                                <label for="checkbox7">Checkbox 7</label>
-
-                                <input type="checkbox" id="checkbox8">
-                                <label for="checkbox8">Checkbox 8</label>
-                            </div>
-                                <button id="saveButton" class="save-btn">Save</button>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="product-display">
-                <div class="browsing-items">
-                    <!-- PHP FUNCTION FOR DISPLAY (uncomment pag connected na sa server)-->
-                    <?php
-                        $display_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity
-                        FROM Products P
-                        INNER JOIN Inventory I ON P.ProductID = I.ProductID
-                        WHERE P.ProductStatus = 'Active'
-                        LIMIT $offset, $productsPerPage";
-                        $results = mysqli_query($db, $display_query);
-                        $row = mysqli_num_rows($results);
-                        if ($row > 0){
-                            while($data = mysqli_fetch_assoc($results)){
-                                $prodid = $data['ProductID'];
-                                $product_images_query = "SELECT PI.ImageURL
-                                FROM ProductImages PI
-                                INNER JOIN Products P ON PI.ProductID = P.ProductID
-                                WHERE P.ProductID = '$prodid'";
-                                $images = mysqli_query($db, $product_images_query);
-                                $img = mysqli_fetch_assoc($images);
-                                echo '
-                                <form action="product_details.php" method="post">
-                                    <div class="listing">
-                                        <img src="admin_area/' . $img['ImageURL'] . '" class="productimg">
-                                        <input type="text" name="prodid" value="' . $data['ProductID'] . '" readonly hidden>
-                                        <input type="text" name="prodname" value="' . $data['ProductName'] . '" readonly>
-                                        <input type="text" name="price" value="' . $data['Price'] . '" readonly>
-                                        <button type="submit" value="Submit" name="get_prod" href="product_details.php" class="details-button">MORE DETAILS</button>
-                                    </div>
-                                </form>
-                                ';
+                    <div class="browsing-items">
+                        <!-- PHP FUNCTION FOR DISPLAY (uncomment pag connected na sa server)-->
+                        <?php
+                            $display_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity
+                            FROM Products P
+                            INNER JOIN Inventory I ON P.ProductID = I.ProductID
+                            WHERE P.ProductStatus = 'Active'
+                            LIMIT $offset, $productsPerPage";
+                            $results = mysqli_query($db, $display_query);
+                            $row = mysqli_num_rows($results);
+                            if ($row > 0){
+                                while($data = mysqli_fetch_assoc($results)){
+                                    $prodid = $data['ProductID'];
+                                    $product_images_query = "SELECT PI.ImageURL
+                                    FROM ProductImages PI
+                                    INNER JOIN Products P ON PI.ProductID = P.ProductID
+                                    WHERE P.ProductID = '$prodid'";
+                                    $images = mysqli_query($db, $product_images_query);
+                                    $img = mysqli_fetch_assoc($images);
+                                    echo '
+                                    <form action="product_details.php" method="post">
+                                        <div class="listing">
+                                            <img src="admin_area/' . $img['ImageURL'] . '" class="productimg">
+                                            <input type="text" name="prodid" value="' . $data['ProductID'] . '" readonly hidden>
+                                            <input type="text" name="prodname" value="' . $data['ProductName'] . '" readonly>
+                                            <input type="text" name="price" value="' . $data['Price'] . '" readonly>
+                                            <button type="submit" value="Submit" name="get_prod" href="product_details.php" class="details-button">MORE DETAILS</button>
+                                        </div>
+                                    </form>
+                                    ';
+                                }
                             }
-                        }
-                    ?>
-                </div>
+                        ?>
+                    </div>
                 <div class="pagination">
                     <ul class="page-numbers">
                         <?php

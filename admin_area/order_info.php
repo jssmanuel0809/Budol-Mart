@@ -26,6 +26,8 @@
     }
 
     if (isset($_POST['update_order'])){
+        print_r("submitted");
+
         $order = $_POST['order'];
         $status = mysqli_real_escape_string($db, $_POST['status']);
         print_r($status);
@@ -34,7 +36,7 @@
         mysqli_query($db, $update_query);
         print_r($update_query);
 
-        header('location: orders.php');
+        // header('location: orders.php');
     }
 ?>
 <!DOCTYPE html>
@@ -47,7 +49,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- LINKS -->
         <link rel="stylesheet" href="../style/style.css">
-        <link rel="stylesheet" href="../style/order_summary.css">
+        <link rel="stylesheet" href="../style/order-summary.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Righteous&family=VT323&display=swap" rel="stylesheet">
@@ -76,8 +78,7 @@
                                     <option value="Packed" <?php echo ($curr_status == 'Packed') ? 'selected' : ''; ?>>Packed</option>
                                     <option value="Shipped" <?php echo ($curr_status == 'Shipped') ? 'selected' : ''; ?>>Shipped</option>
                                 </select>
-
-                                <button type="submit" name="update_order">Submit</button>
+                                <button type="submit" name="update_order" class="submit">Submit</button>
                             </form>
                             <!-- HEADER  -->
                             <tr class="table-header">
@@ -99,7 +100,7 @@
                                         $prod_info = mysqli_query($db, $product_query);
                                         $order_info = mysqli_fetch_assoc($prod_info);
                                         echo '
-                                            <tr>
+                                            <tr class="product-contents">
                                                 <td>
                                                     <img src="'.$order_info['ImageURL'].'" alt="Product Icon" class="product-img">
                                                 </td>
