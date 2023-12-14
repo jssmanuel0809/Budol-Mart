@@ -71,14 +71,14 @@
                         <form action="order_info.php" method="post">
                                 <input type="hidden" name="order" value="<?php echo $orderid; ?>">
                                 <label for="selectOption">Order Status:</label>
-                                <select id="selectOption" name="status">
+                                <select id="selectOption" name="status" class="status">
                                     <option value="Preparing Order" <?php echo ($curr_status == 'Preparing Order') ? 'selected' : ''; ?>>Preparing Order</option>
                                     <option value="Packed" <?php echo ($curr_status == 'Packed') ? 'selected' : ''; ?>>Packed</option>
                                     <option value="Shipped" <?php echo ($curr_status == 'Shipped') ? 'selected' : ''; ?>>Shipped</option>
                                 </select>
                                 <button type="submit" name="update_order" class="submit">Submit</button>
                             </form>
-                        <table class="order-table">
+                        <table class="order-table-admin">
                             
                             <!-- HEADER  -->
                             <tr class="table-header">

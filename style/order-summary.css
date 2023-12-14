@@ -6,6 +6,7 @@
 }
 .table-header{
     display: flex;
+    margin: 5%;
 }
 
 .text_content {
@@ -16,7 +17,7 @@
     justify-content: space-between;
 }
 
-.order-table {
+.order-table-admin {
     margin-top: -50px;
     width: 100%;
     border-collapse: collapse;
@@ -38,16 +39,16 @@
     padding: 0px 10%;
 }
 
-.order-table th {
+.order-table-admin th {
     color: #3D4C6C;
-    padding: 5% 14%;
+    padding: 1% 14%;
     font-family: 'Darker Grotesque', sans-serif;
     font-weight: 700;
     font-size: 20px;
     border-bottom: 2px solid #3D4C6C;
 }
 
-.order-table td {
+.order-table-admin td {
     padding: 10px;
     text-align: center;
     font-size: 20px;
@@ -79,10 +80,10 @@
     text-align: right; 
 }
 
-.order-table td:last-child{
+.order-table-admin td:last-child{
     text-align: right;
 }
-.order-table th:last-child{
+.order-table-admin th:last-child{
     text-align: center;
 }
 
@@ -187,12 +188,11 @@ button{
 #selectOption {
     background-color: #F6B185; /* Background color for the dropdown */
     color: #FCF1E6; /* Text color for the dropdown */
-    font-family: 'Dongle', sans-serif; /* Font family for the dropdown */
     font-weight: bold; /* Font weight for the dropdown */
-    font-size: 16px; /* Font size for the dropdown */
-    padding: 5px; /* Padding for the dropdown */
-    border-radius: 25px; /* Border radius for the dropdown */
+    font-size: 30px; /* Font size for the dropdown */
+    border-radius: 15px; /* Border radius for the dropdown */
     border: 2px solid #3D4C6C; /* Border color for the dropdown */
+    margin: 10px;
 }
 
 /* Hover effect for the select dropdown */
@@ -200,4 +200,14 @@ button{
     background-color: #3D4C6C; /* Background color on hover */
     color: #FCF1E6; /* Text color on hover */
     cursor: pointer; /* Change cursor on hover */
+}
+
+form{
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    margin-left: 4%;
+}
+button .submit{
+    font-size: 10px;
 }
