@@ -65,12 +65,32 @@
 }
 .listing {
     background-color: #95A9CB;
-    padding: 40px 45px 15px;
+    padding: 20px; /* Adjust the padding values as needed */
     color: #FCF1E6;
     border-radius: 20px;
 }
 
-/* changed from h3 & p to input boxes for php */
+.listing input[name="prodname"],
+.listing input[name="price"] {
+    width: 100%; /* Set width to 100% to fit within the container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    text-align: justify; /* Center the text within the box */
+    overflow: hidden; /* Hide any overflowing content */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    text-overflow: ellipsis; /* Display an ellipsis (...) when text overflows */
+
+    /* Remove background color */
+    background-color: transparent;
+    border: none;
+
+    /* Customize font and color */
+    font-family: 'Righteous', sans-serif; /* Replace 'Your Font Here' with the desired font family */
+    font-size: 16px; /* Adjust font size as needed */
+    color: #fff; /* Set the text color */
+}
+/* 
+
+
 input[name="prodname"] {
     background-color: transparent;
     border: none;
@@ -79,8 +99,8 @@ input[name="prodname"] {
     font-weight: bold;
     font-size: 23px;
     letter-spacing: 2px;
-}
-
+} *
+/* 
 input[name="price"] {
     background-color: transparent;
     border: none;
@@ -88,10 +108,14 @@ input[name="price"] {
     font-family: 'Righteous', sans-serif;
     font-size: 18px;
 }
-.listing .productimg{
-    width: 200px;
-    height: 200px;
+**/ 
+.listing .productimg {
+    width: 200px; /* Set a fixed width */
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    border-radius: 5px; /* Add rounded corners if desired */
 }
+
 .details-button {
     display: inline-block;
     text-decoration: none;
@@ -122,14 +146,14 @@ input[name="price"] {
 }
 .page-numbers a {
     text-decoration: none;
-    font-size: 18px;
-    font-family: 'Darker Grotesque', sans-serif;
     font-weight: 800;
+    color: #3D4C6C;
+    font-size: 25px;
 }
 .page-numbers li.active a {
-    border: 3px solid black;
+    border: 3px solid #95A9CB;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 0px 14px;
   }
 
   .page{
@@ -146,7 +170,7 @@ input[name="price"] {
 .product-display{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 50%;
 }
 .checkbox-container {
     display: flex;

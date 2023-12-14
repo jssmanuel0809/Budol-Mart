@@ -49,30 +49,27 @@
     }
     
     .circular-image .Image-first{
-      width: 17%;
+      width: 30%;
     }
     .circular-image{
       display: flex;
       justify-content: center
     }
     .circular-image img {
-      width: 24%;
+      width: 40%;
       border-radius: 50%;
       object-fit: cover;
   }
     
-    .image-text {
-      font-family: 'Arial', sans-serif;
-      font-size: 14px;
-      color: #333;
-    }
-    .lower{
-      display: flex;
-      padding-top: 5%;
-    }
-    .name{
-        text-align: center;
-    }
-    .details{
-        text-align: center;
-    }
+  .lower{
+    display: flex;
+    padding-top: 5%;
+  }
+  .name{
+      text-align: center;
+      font-size: 35px;
+  }
+  .details{
+      text-align: center;
+      font-size: 25px;
+  }
