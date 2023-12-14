@@ -184,3 +184,20 @@ button{
     align-items: center;
     justify-content: center;
 }
+#selectOption {
+    background-color: #F6B185; /* Background color for the dropdown */
+    color: #FCF1E6; /* Text color for the dropdown */
+    font-family: 'Dongle', sans-serif; /* Font family for the dropdown */
+    font-weight: bold; /* Font weight for the dropdown */
+    font-size: 16px; /* Font size for the dropdown */
+    padding: 5px; /* Padding for the dropdown */
+    border-radius: 25px; /* Border radius for the dropdown */
+    border: 2px solid #3D4C6C; /* Border color for the dropdown */
+}
+
+/* Hover effect for the select dropdown */
+#selectOption:hover {
+    background-color: #3D4C6C; /* Background color on hover */
+    color: #FCF1E6; /* Text color on hover */
+    cursor: pointer; /* Change cursor on hover */
+}
