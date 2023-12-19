@@ -25,8 +25,6 @@ include('../includes/admin_protections.php');
         <!-- NAVIGATION BAR -->
         <header-component></header-component>
 
-        <!-- SHOP -->
-        <!-- same lang class name ng section sa about, contact, index, tsaka products -->
         <section class="content">
             <div class="admin-buttons">
                 <a href="add_products.php"><button>Add Products</button></a>
@@ -51,8 +49,7 @@ include('../includes/admin_protections.php');
                         <th>Edit</th>
                         <th>Unlist</th>
                     </tr>
-                    <!-- LAMAN NG TABLE -->
-
+                    <!-- TABLE -->
                     <!-- PHP FUNCTION FOR DISPLAY (uncomment pag connected na sa server)-->
                     <?php
                         $display_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity, P.ProductStatus
@@ -117,15 +114,11 @@ include('../includes/admin_protections.php');
             function showUnlistPopup(productID) {
                 var overlay = document.getElementById("overlay");
                 var unlistPopup = document.getElementById("unlistPopup");
-        
-                // Set the product ID in the form action
                 var form = document.getElementById("unlistForm");
                 form.action = "../includes/unlist_product.php?prodid=" + productID;
-        
                 overlay.style.display = "block";
                 unlistPopup.classList.add("active");
-            }
-
+            } 
             function hideUnlistPopup() {
                 var overlay = document.getElementById("overlay");
                 var unlistPopup = document.getElementById("unlistPopup");

@@ -1,12 +1,7 @@
 <?php 
     include('includes/server.php');
-    // Number of products to display per page
     $productsPerPage = 6;
-
-    // Get the current page number from the URL
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-
-    // Calculate the offset based on the current page
     $offset = ($currentPage - 1) * $productsPerPage;
 
     $page_query = "SELECT P.ProductID, P.ProductName, P.Price, I.Quantity
@@ -41,8 +36,6 @@
         <header-component username="<?php echo $_SESSION['username']; ?>" status="<?php echo $_SESSION['status']; ?>"></header-component>
 
         <!-- PRODUCTS -->
-        <!-- same lang class name ng section sa about, contact, index, tsaka products -->
-        <!-- SELLER HOME PAGE -->
         <section id="profile" class="profile">
             <div class="browse-box">
                 <div class="product-display">
@@ -83,10 +76,7 @@
                 <div class="pagination">
                     <ul class="page-numbers">
                         <?php
-                        // Calculate the total number of pages
                         $totalPages = ceil($pages / $productsPerPage);
-
-                        // Display page numbers and links
                         for ($i = 1; $i <= $totalPages; $i++) {
                             echo '<li' . ($currentPage == $i ? ' class="active"' : '') . '><a href="?page=' . $i . '">' . $i . '</a></li>';
                         }
@@ -99,8 +89,5 @@
         <section class="content">
             
         </section>
-
-        <!-- FOOTER -->
-        <!-- <footer-component></footer-component> -->
     </body>
 </html>

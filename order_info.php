@@ -53,8 +53,6 @@
         <!-- NAVIGATION BAR -->
         <header-component username="<?php echo $_SESSION['username']; ?>" status="<?php echo $_SESSION['status']; ?>"></header-component>
 
-        <!-- same lang class name ng section sa about, contact, index, tsaka products -->
-        <!-- PRODUCTS -->
         <section id="profile" class="profile">
             <div class="product-box">
                 <div class="text_content">
@@ -67,7 +65,7 @@
                                 <th>Name</th>
                                 <th>Price</th>
                             </tr>
-                            <!-- LAMAN NG TABLE -->
+                            <!-- TABLE -->
                             <?php
                                 $row = mysqli_num_rows($fetch_detail);
                                 if ($row > 0){
@@ -125,7 +123,7 @@
                 <div class="text_content">
                     <h1>Customer Information</h1>
                     <table class="customer_info">
-                        <!-- LAMAN NG TABLE -->
+                        <!-- TABLE -->
                         <tr>
                             <th>SHIPPING ADDRESS</th>
                             <th>BILLING ADDRESS</th>
@@ -153,8 +151,5 @@
                 </div>
             </div>
         </section>
-
-        <!-- FOOTER -->
-        <!-- <footer-component></footer-component> -->
     </body>
 </html>

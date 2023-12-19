@@ -58,10 +58,6 @@
                 <div class="reg-link">
                     <p>Not yet registered? Register <a href="register.php">HERE</a>.</p>
                 </div>
-                <!-- <a class="forgot" href="">FORGOTTEN PASSWORD?</a> -->
-                <!-- <hr class="solid">
-                <button id="toggleButton" onclick="toggleContainer()">CREATE <br> ACCOUNT</button>
-                <div id="buttonContainer"></div> -->                
             </div>
         </section>
 

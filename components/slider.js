@@ -14,5 +14,4 @@ function changeSlide(direction) {
   showSlide(currentSlide + direction);
 }
 
-// Show the initial slide
 showSlide(currentSlide);

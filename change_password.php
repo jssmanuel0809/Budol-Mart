@@ -13,16 +13,13 @@
         $current = mysqli_real_escape_string($db, $_POST['current']);
         $new = mysqli_real_escape_string($db, $_POST['new']);
         $retyped = mysqli_real_escape_string($db, $_POST['retyped']);
-
         $curr = md5($current);
         if ($data['AccountPassword'] != $curr) {
             array_push($errors, "Incorrent password.");
         }
-
         if ($new != $retyped) {
             array_push($errors, "The two passwords do not match");
         }
-
         if (count($errors) == 0){
             $hashedpw = md5($new);
             $update_query = "UPDATE Customers

@@ -10,8 +10,6 @@ $customerid = $data['CustomerID'];
 if (isset($_POST['product_id']) && isset($_POST['quantity'])) {
     $product_id = $_POST['product_id'];
     $quantity = $_POST['quantity'];
-
-    // Update the quantity in the ShoppingCart table
     $update_query = "UPDATE ShoppingCart SET Quantity = '$quantity' WHERE ProductID = '$product_id' AND CustomerID = '$customerid'";
     mysqli_query($db, $update_query);
 }

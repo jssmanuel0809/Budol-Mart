@@ -35,19 +35,6 @@
     <section id="order" class="order">
         <div class="order-box">
             <h1>Orders</h1>
-            <!-- <div class="filters">
-                <form id="search" method="post" action="search.php">
-                    <input type="text" name="searching" placeholder="SEARCH">
-                </form>
-                <div class="dropdown">
-                    <button id="filterButton" class="button">Filter: All</button>
-                    <div class="dropdown-content">
-                        <a href="#" class="filter-option" data-value="all">All Orders</a>
-                        <a href="#" class="filter-option" data-value="pending">Pending</a>
-                        <a href="#" class="filter-option" data-value="completed">Completed</a>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </section>
 
@@ -63,8 +50,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- to be deleted na part, placeholder lang kung gumagana -->
-                <!-- Sample row -->
                 <?php
                     $select_order = "SELECT * FROM Orders
                     WHERE CustomerID = '$customerid'";
@@ -94,29 +79,6 @@
             </tbody>
         </table>
     </div>
-
-    <!-- <button id="addOrderButton">Add Order</button> -->
-
-    <script>
-        // document.getElementById('addOrderButton').addEventListener('click', function () {
-        //     // Sample order details (replace with dynamic data)
-        //     const orderDetails = ['#112', 'December 1, 2023', '150 PHP', 'Processing', 'December 10, 2023'];
-
-        //     // Create a new row
-        //     const newRow = document.createElement('tr');
-
-        //     // Append order details as columns to the new row
-        //     orderDetails.forEach(detail => {
-        //         const column = document.createElement('td');
-        //         column.innerHTML = detail;
-        //         newRow.appendChild(column);
-        //     });
-
-        //     // Append the new row to the table body
-        //     const tableBody = document.querySelector('.order-box-contents tbody');
-        //     tableBody.appendChild(newRow);
-        // });
-    </script>
 </body>
 
 </html>

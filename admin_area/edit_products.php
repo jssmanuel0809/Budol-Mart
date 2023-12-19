@@ -142,7 +142,7 @@
             <h1>EDIT PRODUCTS</h1>
             <div class="form_box">
                 <form class="products_form" action="edit_products.php" method="post" enctype="multipart/form-data">
-                    <?php //include('../includes/errors.php') ?>
+                    <?php include('../includes/errors.php') ?>
                     <input type="text" name="prodid" value="<?php echo $selectedid ?>" readonly hidden>
                     <label for="">Product Name</label><input type="text" name="prodname" value="<?php echo $data['ProductName'] ?>" required>
                     <label for="">Product Price</label><input type="number" name="price" value="<?php echo $data['Price'] ?>"  required>

@@ -17,27 +17,6 @@ if (isset($_POST['add_products'])){
     $date = new DateTime(date('m.d.y'));
     $dateUpd = $date->format('Y-m-d H:i:s');
     $tags = mysqli_real_escape_string($db, $_POST['tags']);
-    // $tagsInput = mysqli_real_escape_string($db, $_POST['tags']);
-    // $tagsArray = explode(',', $tagsInput);
-
-
-    //IMAGE VALIDATION
-    // if (isset($_FILES['images'])){
-        // $imageone = $_FILES['imageone'];
-        // $imgonefile = $imageone['name'];
-        // $imgonetemp = $imageone['tmp_name'];
-    
-        // $filename_sep = explode('.', $imgonefile);
-        // $file_ext = strtolower(end($filename_sep));
-    
-        // $ext = array('jpeg', 'jpg', 'png');
-        // if(in_array($file_ext, $ext)){
-        //     $imgext_val = "true";
-        // }
-    // }
-
-    //INPUT VALIDATION
-    //if all input is filled
 
     //DUPLICATE PRODUCTS VALIDATION
     $products_check_query = "SELECT *
@@ -80,13 +59,6 @@ if (isset($_POST['add_products'])){
             VALUES ('$prodID', '$stocks', '$dateUpd')";
             mysqli_query($db, $insert_query);
 
-            // foreach ($tagsArray as $tag) {
-            //     $tag = mysqli_real_escape_string($db, $tag);
-            //     $tags_query = "INSERT INTO ProductTags (ProductID, TagName)
-            //     VALUES ('$prodID', '$tag')";
-            //     mysqli_query($db, $tags_query);
-            // }
-
             //IMAGE VALIDATION
             if (isset($_FILES['images'])) {
                 $images = $_FILES['images'];
@@ -116,18 +88,6 @@ if (isset($_POST['add_products'])){
                     }
                 }
             }
-
-            // if ($imgext_val == "true") {
-            //     $upload_image = "product_images/".$imgonefile;
-
-            //     if (move_uploaded_file($imgonetemp, $upload_image)) {
-            //         $insert_query = "INSERT INTO ProductImages (ProductID, ImageURL)
-            //         VALUES ('$prodID', '$upload_image')";
-            //         mysqli_query($db, $insert_query);
-            //     } else {
-            //         echo 'File upload failed with error code ' . $_FILES['imageone']['error'];
-            //     }
-            // }
         }
 
         header('location: products.php');
@@ -163,7 +123,7 @@ if (isset($_POST['add_products'])){
         <section class="content">
             <div class="form_box">
                 <form class="products_form" action="add_products.php" method="post" enctype="multipart/form-data">
-                    <?php //include('../includes/errors.php') ?>
+                    <?php include('../includes/errors.php') ?>
                     <label for="">Product Name</label><input type="text" name="prodname" required>
                     <label for="">Product Price</label><input type="number" name="price" required>
                     <label for="">Product Stocks</label><input type="number" name="stocks" required>
@@ -200,29 +160,20 @@ if (isset($_POST['add_products'])){
 
         <script>
             $(document).ready(function () {
-                // Function to populate series dropdown based on selected brand
                 function populateSeriesDropdown() {
                     var selectedBrand = $("#brandDropdown").val();
-
-                    // Use AJAX to fetch series options from the server
                     $.ajax({
-                        url: '../includes/get_series.php',  // Replace with the actual PHP script to fetch series
+                        url: '../includes/get_series.php',
                         type: 'POST',
                         data: { brand: selectedBrand },
                         success: function (response) {
-                            // Update the series dropdown with new options
                             $("#seriesDropdown").html(response);
                         }
                     });
                 }
-
-                // Event listener for brand dropdown change
                 $("#brandDropdown").on("change", function () {
-                    // Call the function to populate series dropdown on brand change
                     populateSeriesDropdown();
                 });
-
-                // Initial population of series dropdown when the page loads
                 populateSeriesDropdown();
             });
         </script>

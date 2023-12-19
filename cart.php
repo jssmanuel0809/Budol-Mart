@@ -1,7 +1,6 @@
 <?php 
     include('includes/server.php');
     include('includes/protect.php');
-    // $total = 0;
     $user = $_SESSION['username'];
     $select_query = "SELECT * FROM Customers
     WHERE AccountName = '$user'";
@@ -51,7 +50,7 @@
                                     <th>Quantity</th>
                                     <th>Unlist</th>
                                 </tr>
-                                    <!-- LAMAN NG TABLE -->
+                                    <!-- TABLE -->
                                     <?php
                                         $display_query = "SELECT * FROM ShoppingCart
                                         WHERE CustomerID = '$customerid'";
@@ -119,52 +118,35 @@
 
             function updateSelectedProducts(checkbox) {
                 var productId = checkbox.value;
-
                 if (checkbox.checked) {
-                    // Add the product to the array if checked
                     selectedProducts.push(productId);
                 } else {
-                    // Remove the product from the array if unchecked
                     var index = selectedProducts.indexOf(productId);
                     if (index !== -1) {
                         selectedProducts.splice(index, 1);
                     }
                 }
-
-                // Update the hidden input value with the selected products array
                 document.getElementById('totalInput').value = selectedProducts.join(',');
-
-                // Calculate and update the total price display
                 calculateTotalPrice();
             }
-
             function calculateTotalPrice() {
                 var total = 0;
-
-                // Iterate over selected products and sum their prices
                 selectedProducts.forEach(function(productId) {
                     var productPrice = parseFloat(document.getElementById('price-' + productId).textContent.replace('P', ''));
                     total += productPrice;
                 });
-
-                // Update the total price display
                 document.getElementById('totalPrice').textContent = 'P' + total.toFixed(2);
             }
-
-            // Initialize currentQuantity with the value from the server
             var currentQuantity = <?php echo $qty; ?>;
             var product_id = <?php echo $prodid; ?>; // Assuming $prodid is the product ID
 
             function updateQuantity(new_quantity, product_id, callback) {
-                // Send an AJAX request to update_quantity.php
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'includes/update_cart.php', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
-                        // Handle the response if needed
                         console.log(xhr.responseText);
-                        // Execute the callback function
                         if (typeof callback === 'function') {
                             callback();
                         }
@@ -194,15 +176,12 @@
             }
 
             function removeProduct(row, product_id, callback) {
-                // Send an AJAX request to remove_product.php
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'includes/remove_cart.php', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
-                        // Handle the response if needed
                         console.log(xhr.responseText);
-                        // Execute the callback function
                         if (typeof callback === 'function') {
                             callback();
                         }
@@ -212,13 +191,9 @@
             }
 
             function reloadPage() {
-                // Reload the page
                 location.reload();
             }
 
         </script>
-
-        <!-- FOOTER -->
-        <!-- <footer-component></footer-component> -->
     </body>
 </html>

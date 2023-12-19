@@ -42,8 +42,6 @@
                     <img class="slider-image" src="images/img1.jpg" alt="Image 1">
                     <img class="slider-image" src="images/img2.jpg" alt="Image 2">
                     <img class="slider-image" src="images/img3.jpg" alt="Image 3">
-                    <!-- Add more images as needed -->
-
                     <button id="prev-btn" onclick="changeSlide(-1)">&#60;</button>
                     <button id="next-btn" onclick="changeSlide(1)">&#62;</button>
                     </div>

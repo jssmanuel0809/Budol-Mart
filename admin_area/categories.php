@@ -25,8 +25,6 @@ include('../includes/admin_protections.php');
         <!-- NAVIGATION BAR -->
         <header-component></header-component>
 
-        <!-- SHOP -->
-        <!-- same lang class name ng section sa about, contact, index, tsaka products -->
         <section class="content">
             <div class="admin-buttons">
                 <a href="add_products.php"><button>Add Products</button></a>
@@ -43,9 +41,8 @@ include('../includes/admin_protections.php');
                     <tr class="table-header">
                         <th>Brand</th>
                         <th>Series</th>
-                        <!-- <th>Unlist</th> -->
                     </tr>
-                    <!-- LAMAN NG TABLE -->
+                    <!-- TABLE -->
                     <?php 
                         $display_query = "SELECT *
                         FROM Brands
@@ -55,7 +52,6 @@ include('../includes/admin_protections.php');
                         if ($row > 0){
                             while($data = mysqli_fetch_assoc($results)){
                                 $brnd = $data['BrandID'];
-                                //check for series
                                 $series_query = "SELECT S.Series
                                 FROM Brands B
                                 INNER JOIN Series S ON B.BrandID = S.BrandID
@@ -84,47 +80,8 @@ include('../includes/admin_protections.php');
                             }
                         }
                     ?>
-                    <!-- <tr>
-                        <td>1</td>
-                        <td>POPMART</td>
-                        <td>1</td>
-                        <td>Lilios</td>
-                        <td>
-                            <a class="icon-button" onclick="showUnlistPopup()">
-                                <img src="../images/trash.png" alt="Unlist Icon" class="table-button">
-                            </a>
-                        </td>
-                    </tr> -->
                 </table>
             </div>
-
-            <!-- UNLIST WARNING -->
-            <!-- <div class="overlay" id="overlay"></div>
-            <div class="unlist-popup" id="unlistPopup">
-                <h2>Are you sure you want to<br>unlist this product?</h2>
-                <div class="popup-buttons">
-                    <button class="cancel" onclick="hideUnlistPopup()">Cancel</button>
-                    <button class="unlist">Unlist</button>
-                </div>
-            </div> -->
         </section>
-
-        <!-- <script>
-            function showUnlistPopup() {
-                var overlay = document.getElementById("overlay");
-                var unlistPopup = document.getElementById("unlistPopup");
-
-                overlay.style.display = "block";
-                unlistPopup.classList.add("active");
-            }
-
-            function hideUnlistPopup() {
-                var overlay = document.getElementById("overlay");
-                var unlistPopup = document.getElementById("unlistPopup");
-
-                overlay.style.display = "none";
-                unlistPopup.classList.remove("active");
-            }
-        </script> -->
     </body>
 </html>

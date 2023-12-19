@@ -56,7 +56,6 @@
                 <div class="form_box">
                     <form class="user_form" method="post" action="user_profile.php">
                         <h3>Username: <?php echo $data['AccountName']?></h3>
-                        <!-- <label for="">Password: <input type="password" name="password" value=""></label> -->
                         <label for="">Name: <input type="text" name="fullname" value="<?php echo $info['CustomerName']?>"></label>
                         <label for="">Email: <input type="text" name="email" value="<?php echo $info['EmailAddress']?>"></label>
                         <label for="">Phone Number: <input type="text" name="phone" value="<?php echo $info['PhoneNumber']?>"></label>

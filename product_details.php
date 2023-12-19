@@ -25,8 +25,6 @@
         <!-- NAVIGATION BAR -->
         <header-component username="<?php echo $_SESSION['username']; ?>" status="<?php echo $_SESSION['status']; ?>"></header-component>
 
-        <!-- same lang class name ng section sa about, contact, index, tsaka products -->
-        <!-- PRODUCTS -->
         <section id="profile" class="profile">
             <div class="product-box">
                 <!-- PRODUCT DETAILS PHP CODE -->
@@ -59,7 +57,6 @@
                         <img src="admin_area/' . $firstImage['ImageURL'] . '" class="product_images">
                     ';
 
-                    // Iterate through the images and display them
                     while ($img = mysqli_fetch_assoc($images)) {
                         echo '<img src="admin_area/' . $img['ImageURL'] . '" class="product_images">';
                     }
@@ -98,36 +95,18 @@
         </section>
 
         <script>
-            // JavaScript to handle quantity increment and decrement
             var quantityElement = document.getElementById('quantity');
-            var currentQuantity = 1; // Initial quantity
-
-            // function increment() {
-            //     currentQuantity++;
-            //     updateQuantity();
-            // }
-
-            // function decrement() {
-            //     if (currentQuantity > 1) {
-            //         currentQuantity--;
-            //         updateQuantity();
-            //     }
-            // }
-
-            // function updateQuantity() {
-            //     quantityElement.textContent = currentQuantity.toString().padStart(2, '0');
-            // }
+            var currentQuantity = 1;
 
             function decrement() {
                 var quantityElement = document.getElementById('quantity');
                 var hiddenInput = document.getElementById('product_quantity');
 
-                // Decrease the quantity
                 var quantityValue = parseInt(quantityElement.innerText, 10);
                 if (quantityValue > 1) {
                     quantityValue--;
                     quantityElement.innerText = quantityValue;
-                    hiddenInput.value = quantityValue; // Update the hidden input
+                    hiddenInput.value = quantityValue;
                 }
             }
 
@@ -135,20 +114,16 @@
                 var quantityElement = document.getElementById('quantity');
                 var hiddenInput = document.getElementById('product_quantity');
 
-                // Increase the quantity
                 var quantityValue = parseInt(quantityElement.innerText, 10);
                 quantityValue++;
                 quantityElement.innerText = quantityValue;
-                hiddenInput.value = quantityValue; // Update the hidden input
+                hiddenInput.value = quantityValue;
             }
 
             function changeSpotlight(event) {
                 if (event.target.tagName === 'IMG') {
-                    // Remove 'selected' class from all images
                     var images = document.querySelectorAll('.product_images');
                     images.forEach(image => image.classList.remove('selected'));
-
-                    // Set 'selected' class for the clicked image
                     event.target.classList.add('selected');
 
                     var spotlightImage = document.getElementById('spotlight');
@@ -157,7 +132,5 @@
             }
         </script>
 
-        <!-- FOOTER -->
-        <!-- <footer-component></footer-component> -->
     </body>
 </html>

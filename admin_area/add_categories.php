@@ -51,8 +51,6 @@
                     array_push($errors, "Duplicate series detected.");
                 }
 
-                
-
                 //INSERTION
                 if(count($errors) == 0){
                     $series_check_query = "SELECT * FROM Brands

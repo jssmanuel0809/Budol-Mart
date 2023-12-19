@@ -13,7 +13,6 @@
         if (mysqli_num_rows($results) == 1) {
             $_SESSION['admin'] = $data['AdminAccount'];
             $_SESSION['admin_status'] = "active";
-            // $_SESSION["logged_in"] = true;
             header('location: products.php');
         }else {
             array_push($errors, "Wrong username/password combination");
