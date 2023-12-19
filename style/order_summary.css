@@ -7,7 +7,7 @@
 .table-header{
     display: flex;
     margin: 5%;
-}
+}   
 
 .text_content {
     flex: 1;
@@ -15,6 +15,11 @@
     padding: 0 20px; 
     margin-left: 50px;
     justify-content: space-between;
+}
+.order-table     {
+    margin-top: -50px;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .order-table-admin {
@@ -38,6 +43,14 @@
     justify-content: space-around;
     padding: 0px 10%;
 }
+.order-table th {
+    color: #3D4C6C;
+    padding: 1% 14%;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    border-bottom: 2px solid #3D4C6C;
+}
 
 .order-table-admin th {
     color: #3D4C6C;
@@ -48,6 +61,13 @@
     border-bottom: 2px solid #3D4C6C;
 }
 
+.order-table td {
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+    font-family: 'Darker Grotesque', sans-serif;
+}
 .order-table-admin td {
     padding: 10px;
     text-align: center;
@@ -79,6 +99,14 @@
 .summary {
     text-align: right; 
 }
+
+.order-table td:last-child{
+    text-align: right;
+}
+.order-table th:last-child{
+    text-align: center;
+}
+
 
 .order-table-admin td:last-child{
     text-align: right;
@@ -204,9 +232,10 @@ button{
 
 form{
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     font-size: 40px;
     margin-left: 4%;
+    flex-direction: column;
 }
 button .submit{
     font-size: 10px;
