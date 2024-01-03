@@ -44,6 +44,7 @@
                             <table class="order-table">
                                 <!-- HEADER  -->
                                 <tr class="table-header">
+                                    <th>Select</th>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Price</th>
